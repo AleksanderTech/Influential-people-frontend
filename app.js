@@ -3,8 +3,13 @@ const BASEURL = "http://localhost:8080/";
 async function getUsersAW() {
     try {
         const result = await
-
-            fetch(`${BASEURL}user`);
+            fetch(`${BASEURL}user`,{
+                method: "get",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": "Basic b2xlazpvbGFrcw=="
+                }
+            });
         const data = await result.json();
         console.log(data);
         console.log(data[0].nickname);
@@ -23,3 +28,4 @@ async function getUsersAW() {
 };
 
 getUsersAW();
+
