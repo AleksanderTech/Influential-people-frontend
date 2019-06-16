@@ -11,10 +11,10 @@
 
 <body>
     <div class="login">
-        <form action="http://localhost:8080/user" method="get">
-            login<input type="text" placeholder="email" /><br><br>
-            password<input type="password" /><br><br>
-            <input type="submit" value="login" />
+        <form action="profile.html">
+            login<input type="text" placeholder="username" id="login"/><br><br>
+            password<input type="password" id="password" /><br><br>
+            <button type="submit" >login</button>
         </form>
         <div id ="users">
             <ol id="usersList">
@@ -24,7 +24,6 @@
         </div>
     </div>
     <script src="app.js"></script>
-    <script src="app2.js"></script>
 </body>
 
 </html>
