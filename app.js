@@ -9,7 +9,7 @@ function action(username, password) {
             const result = await
                 fetch(`${BASEURL}login`, {
                     method: "post",
-                    body: JSON.stringify({"username": "olek",
+                    body: JSON.stringify({"username": "bolek",
                     "password": "password"}),
                     headers: {
                         "Content-type": "application/json"
