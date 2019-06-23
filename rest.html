@@ -22,10 +22,10 @@
             entityName="hero";
         }
         function getEntity() {
-            fetch(`http://localhost:8080/${entityName}`, { //
+            fetch(`http://localhost:8080/${entityName}?e=element`, { //
                 method: 'GET',
                 headers: {
-                    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJvbGVrIiwiZXhwIjoxNTYxNTMzMzU0fQ.-4E9yeBww5b_XXIABEaEYXTrDn7k7Q63T7PBDHt1WVxl6ZD-6iBFj1sHPvdr-yWQw89bte95l6bIYyGnEqntKw"
+                    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJib2xlayIsImV4cCI6MTU2MjE5Mjc0NX0.mOXt2NfGvj4TWosVJuzSdgkvPgEbsD4tzlIpobrQ-R5Qz6HHNwjKpkIWBr_UZMi_IN7iHMSEtWWLxylAJRAF6Q"
                 }
                 
             }).then(
