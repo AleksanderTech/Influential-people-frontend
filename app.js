@@ -1,3 +1,21 @@
+import {HeroesBiography} from './components/heroesBiography.js';
+import {HeroesDetails} from './components/heroesDetails.js';
+import {DateManager} from './components/heroes.js';
+
+
+let heroesBiography=new HeroesBiography('kolek');
+console.log(heroesBiography.rat);
+
+let heroesBiography2=new HeroesBiography('olek');
+console.log(heroesBiography2.rat);
+heroesBiography2.rat='zmiana';
+
+console.log(heroesBiography.rat+' powinno byc kolek');
+console.log(heroesBiography2.rat+' powinno byc zmiana');
+
+
+
+
 const BASEURL = "http://localhost:8080/";
 let username = document.getElementById("login").value;
 let password = document.getElementById("password").value;
