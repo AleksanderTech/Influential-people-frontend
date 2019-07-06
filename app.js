@@ -15,7 +15,7 @@ console.log(heroesBiography2.rat+' powinno byc zmiana');
 
 
 
-
+// test
 const BASEURL = "http://localhost:8080/";
 let username = document.getElementById("login").value;
 let password = document.getElementById("password").value;
