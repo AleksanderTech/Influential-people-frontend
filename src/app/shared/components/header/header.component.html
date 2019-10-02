@@ -1,0 +1,10 @@
+<header class="header">
+    <nav >
+        <ul>
+         
+            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+            <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
+
+        </ul>
+    </nav>
+</header>
