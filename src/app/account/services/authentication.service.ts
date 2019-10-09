@@ -3,13 +3,6 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 
-export class JwtResponse {
-  constructor(
-    public jwttoken: string,
-  ) { }
-
-}
-
 @Injectable({
   providedIn: 'root'
 })

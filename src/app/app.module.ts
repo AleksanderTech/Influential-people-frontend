@@ -13,6 +13,7 @@ import { AuthenticationService } from './account/services/authentication.service
 import { AuthRedirectorService } from './account/services/auth-redirector.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './account/services/auth-interceptor.service';
+import { RegistrationComponent } from './account/components/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthInterceptorService } from './account/services/auth-interceptor.serv
     HomeComponent,
     LogoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RegistrationComponent
   ],
   imports: [
     HttpClientModule,

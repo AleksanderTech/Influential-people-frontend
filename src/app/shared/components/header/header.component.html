@@ -1,10 +1,9 @@
 <header class="header">
-    <nav >
-        <ul>
-         
-            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
-            <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
+    <h3>Influential People</h3>
 
-        </ul>
-    </nav>
+    <ul>
+        <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">login</a></li>
+        <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/sign-up" class="nav-link">sign-up</a></li>
+        <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">logout</a></li>
+    </ul>
 </header>

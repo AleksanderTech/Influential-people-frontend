@@ -1,3 +1,21 @@
 .container{
-    margin-top:100px;
+    margin-top:80px;
 }
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 16px;
+    margin: 8px 0 25px 0;
+    border: none;
+    background: #eeeeee;
+  }
+  
+  button {
+    background-color: #9b2717;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
