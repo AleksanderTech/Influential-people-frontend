@@ -1,18 +1,18 @@
 <div class="container">
 
     <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
+    <input type="text" placeholder="Enter Username" name="username" [(ngModel)] = "user.username" required>
 
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
+    <input type="text" placeholder="Enter Email" name="email" [(ngModel)] = "user.email" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="psw" [(ngModel)] = "user.password" required>
 
     <label for="psw-confirm"><b>Confirm Password</b></label>
     <input type="password" placeholder="Confirm Password" name="psw-confirm" required>
 
-    <button class="sign-up-button">
+    <button class="sign-up-button" (click) = "signUp()">
         Sign-up
     </button>
 </div>

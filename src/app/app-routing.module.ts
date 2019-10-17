@@ -5,10 +5,12 @@ import { LoginComponent } from './account/components/login/login.component';
 import { LogoutComponent } from './account/components/logout/logout.component';
 import { AuthRedirectorService } from './account/services/auth-redirector.service';
 import { RegistrationComponent } from './account/components/registration/registration.component';
+import { RegistrationMessageComponent } from './account/components/registration-message/registration-message.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'sign-up/message', component: RegistrationMessageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: RegistrationComponent },
   { path: 'logout', component: LogoutComponent,canActivate:[AuthRedirectorService]  },
