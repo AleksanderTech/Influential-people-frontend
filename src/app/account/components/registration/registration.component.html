@@ -1,18 +1,92 @@
 <div class="container">
-
+  <form #registerForm="ngForm">
     <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" [(ngModel)] = "user.username" required>
-
+    <input
+      #username="ngModel"
+      type="text"
+      id="username"
+      placeholder="Enter Username"
+      name="username"
+      [(ngModel)]="user.username"
+      minlength="3"
+      required
+    />
+    <div *ngIf="username.invalid && username.dirty" class="alert alert-danger">
+      <div *ngIf="username.errors.required">
+        Username is required.
+      </div>
+      <div *ngIf="username.errors.minlength">
+        Username must be at least 3 characters long.
+      </div>
+    </div>
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" [(ngModel)] = "user.email" required>
-
+    <input
+      #email="ngModel"
+      type="text"
+      id="email"
+      placeholder="Enter Email"
+      name="email"
+      [(ngModel)]="user.email"
+      pattern="(.)+[@][^@]+[.][a-zA-Z0-9]+"
+      required
+    />
+    <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
+      <div *ngIf="email.errors.required">
+        Email is required.
+      </div>
+      <div *ngIf="email.errors.pattern">
+        Invalid email format.
+      </div>
+    </div>
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" [(ngModel)] = "user.password" required>
+    <input
+      #psw="ngModel"
+      type="password"
+      id="psw"
+      placeholder="Enter Password"
+      name="psw"
+      [(ngModel)]="user.password"
+      required
+      minlength="4"
+    />
+    <div *ngIf="psw.invalid && psw.dirty" class="alert alert-danger">
+      <div *ngIf="psw.errors.required">
+        Password is required.
+      </div>
+      <div *ngIf="psw.errors.minlength">
+        Password must be at least 4 characters long.
+      </div>
+    </div>
+    <label for="pswConfirm"><b>Confirm Password</b></label>
 
-    <label for="psw-confirm"><b>Confirm Password</b></label>
-    <input type="password" placeholder="Confirm Password" name="psw-confirm" required>
-
-    <button class="sign-up-button" (click) = "signUp()">
-        Sign-up
+    <input
+      #pswConfirm="ngModel"
+      type="password"
+      id="pswConfirm"
+      placeholder="Confirm Password"
+      name="pswConfirm"
+      [(ngModel)]="pswConfirmation"
+      pattern="{{ user.password }}"
+      required
+    />
+    <div
+      *ngIf="pswConfirm.invalid && pswConfirm.dirty"
+      class="alert alert-danger"
+    >
+      <div *ngIf="pswConfirm.errors.required">
+        Password confirmation is required.
+      </div>
+      <div *ngIf="pswConfirm.errors.pattern">
+        Password confirmation and Password must match.
+      </div>
+    </div>
+    <button class="sign-up-button" (click)="signUp(registerForm)">
+      Sign-up
     </button>
+    <br />
+    <br />
+    <div *ngIf="invalidSubmit" class="alert alert-danger">
+      Please fill in all required fields.
+    </div>
+  </form>
 </div>

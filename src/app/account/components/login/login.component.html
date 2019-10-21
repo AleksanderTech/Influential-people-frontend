@@ -1,12 +1,43 @@
-
-
-
 <div class="container">
-    <div>
-      Username : <input type="text" name="username" [(ngModel)]="user.username">
-      Password : <input type="password" name="password" [(ngModel)]="user.password">
+  <div>
+    <label for="username">Username</label>
+    <input
+      #username="ngModel"
+      type="text"
+      id="username"
+      name="username"
+      [(ngModel)]="user.username"
+      required
+      minlength="3"
+    />
+    <div *ngIf="username.invalid && username.dirty" class="alert alert-danger">
+      <div *ngIf="username.errors.required">
+        Username is required.
+      </div>
+      <div *ngIf="username.errors.minlength">
+        Username must be at least 3 characters long.
+      </div>
     </div>
-    <button (click)=checkLogin() class="btn btn-success">
+    <label for="password">Password</label>
+    <input
+      #password="ngModel"
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="user.password"
+      required
+      minlength="4"
+    />
+    <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
+      <div *ngIf="password.errors.required">
+        Password is required.
+      </div>
+      <div *ngIf="password.errors.minlength">
+        Password must be at least 4 characters long.
+      </div>
+    </div>
+    <button (click)="logIn()" class="btn btn-success">
       Login
     </button>
   </div>
+</div>
