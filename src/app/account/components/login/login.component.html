@@ -1,5 +1,5 @@
 <div class="container">
-  <div>
+  <form #logInForm="ngForm">
     <label for="username">Username</label>
     <input
       #username="ngModel"
@@ -36,8 +36,13 @@
         Password must be at least 4 characters long.
       </div>
     </div>
-    <button (click)="logIn()" class="btn btn-success">
+    <button (click)="logIn(logInForm)" class="btn btn-success">
       Login
     </button>
-  </div>
+    <br />
+    <br />
+    <div *ngIf="invalidSubmit" class="alert alert-danger">
+      Please fill in all required fields.
+    </div>
+  </form>
 </div>

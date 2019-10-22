@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './account/components/logout/logout.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './account/services/authentication.service';
 import { AuthRedirectorService } from './account/services/auth-redirector.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -31,7 +31,8 @@ import { RegistrationMessageComponent } from './account/components/registration-
     HttpClientModule,
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [AuthenticationService, AuthRedirectorService, {
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true

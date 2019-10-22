@@ -1,82 +1,95 @@
 <div class="container">
-  <form #registerForm="ngForm">
-    <label for="username"><b>Username</b></label>
-    <input
-      #username="ngModel"
-      type="text"
-      id="username"
-      placeholder="Enter Username"
-      name="username"
-      [(ngModel)]="user.username"
-      minlength="3"
-      required
-    />
-    <div *ngIf="username.invalid && username.dirty" class="alert alert-danger">
-      <div *ngIf="username.errors.required">
-        Username is required.
-      </div>
-      <div *ngIf="username.errors.minlength">
-        Username must be at least 3 characters long.
+  <form [formGroup]="registerForm">
+    <div class="form-group">
+      <label for="username"><b>Username</b></label>
+      <input
+        formControlName="username"
+        class="form-control"
+        type="text"
+        id="username"
+        placeholder="Enter Username"
+        name="username"
+      />
+      <div *ngIf="invalidSubmit">
+        <div
+          *ngIf="f.username.errors?.required && invalidSubmit"
+          class="alert alert-danger"
+        >
+          Username is required.
+        </div>
+        <div
+          *ngIf="f.username.errors?.minlength && invalidSubmit"
+          class="alert alert-danger"
+        >
+          Username must be at least 3 characters long.
+        </div>
       </div>
     </div>
     <label for="email"><b>Email</b></label>
     <input
-      #email="ngModel"
+      formControlName="email"
       type="text"
+      class="form-control"
       id="email"
       placeholder="Enter Email"
       name="email"
-      [(ngModel)]="user.email"
-      pattern="(.)+[@][^@]+[.][a-zA-Z0-9]+"
-      required
     />
-    <div *ngIf="email.invalid && email.dirty" class="alert alert-danger">
-      <div *ngIf="email.errors.required">
+    <div *ngIf="invalidSubmit">
+      <div
+        *ngIf="f.email.errors?.required && invalidSubmit"
+        class="alert alert-danger"
+      >
         Email is required.
       </div>
-      <div *ngIf="email.errors.pattern">
+      <div
+        *ngIf="f.email.errors?.pattern && invalidSubmit"
+        class="alert alert-danger"
+      >
         Invalid email format.
       </div>
     </div>
-    <label for="psw"><b>Password</b></label>
+
+    <label for="password"><b>Password</b></label>
     <input
-      #psw="ngModel"
+      formControlName="password"
       type="password"
-      id="psw"
+      class="form-control"
+      id="password"
       placeholder="Enter Password"
-      name="psw"
-      [(ngModel)]="user.password"
-      required
-      minlength="4"
+      name="password"
     />
-    <div *ngIf="psw.invalid && psw.dirty" class="alert alert-danger">
-      <div *ngIf="psw.errors.required">
+    <div *ngIf="invalidSubmit">
+      <div *ngIf="f.password.errors?.required" class="alert alert-danger">
         Password is required.
       </div>
-      <div *ngIf="psw.errors.minlength">
+      <div
+        *ngIf="f.password.errors?.minlength && invalidSubmit"
+        class="alert alert-danger"
+      >
         Password must be at least 4 characters long.
       </div>
     </div>
+
     <label for="pswConfirm"><b>Confirm Password</b></label>
 
     <input
-      #pswConfirm="ngModel"
+      formControlName="confirmPassword"
       type="password"
       id="pswConfirm"
       placeholder="Confirm Password"
       name="pswConfirm"
-      [(ngModel)]="pswConfirmation"
-      pattern="{{ user.password }}"
-      required
     />
-    <div
-      *ngIf="pswConfirm.invalid && pswConfirm.dirty"
-      class="alert alert-danger"
-    >
-      <div *ngIf="pswConfirm.errors.required">
+    <div *ngIf="invalidSubmit">
+      <div
+        *ngIf="f.confirmPassword.errors?.required && invalidSubmit"
+        class="alert alert-danger"
+      >
         Password confirmation is required.
       </div>
-      <div *ngIf="pswConfirm.errors.pattern">
+      <div
+        *ngIf="f.confirmPassword.errors?.match && invalidSubmit"
+        class="alert alert-danger"
+      >
         Password confirmation and Password must match.
       </div>
     </div>
@@ -85,8 +98,5 @@
     </button>
     <br />
     <br />
-    <div *ngIf="invalidSubmit" class="alert alert-danger">
-      Please fill in all required fields.
-    </div>
   </form>
 </div>
