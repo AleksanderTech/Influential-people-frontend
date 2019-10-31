@@ -1,48 +1,41 @@
 <div class="container">
-  <form #logInForm="ngForm">
+  <form [formGroup]="logInForm">
     <label for="username">Username</label>
     <input
-      #username="ngModel"
+      placeholder="Enter Username"
+      formControlName="username"
       type="text"
       id="username"
       name="username"
-      [(ngModel)]="user.username"
-      required
-      minlength="3"
     />
-    <div *ngIf="username.invalid && username.dirty" class="alert alert-danger">
-      <div *ngIf="username.errors.required">
+    <div *ngIf="invalidSubmit">
+      <div
+        *ngIf="controls.username.errors?.required"
+        class="alert alert-danger"
+      >
         Username is required.
-      </div>
-      <div *ngIf="username.errors.minlength">
-        Username must be at least 3 characters long.
       </div>
     </div>
     <label for="password">Password</label>
     <input
-      #password="ngModel"
+      formControlName="password"
+      placeholder="Enter password"
       type="password"
       id="password"
       name="password"
-      [(ngModel)]="user.password"
-      required
-      minlength="4"
     />
-    <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
-      <div *ngIf="password.errors.required">
+    <div *ngIf="invalidSubmit">
+      <div
+        *ngIf="controls.password.errors?.required"
+        class="alert alert-danger"
+      >
         Password is required.
       </div>
-      <div *ngIf="password.errors.minlength">
-        Password must be at least 4 characters long.
-      </div>
     </div>
-    <button (click)="logIn(logInForm)" class="btn btn-success">
+    <button (click)="logIn(logInForm)" type="button" class="sign-up-button">
       Login
     </button>
     <br />
     <br />
-    <div *ngIf="invalidSubmit" class="alert alert-danger">
-      Please fill in all required fields.
-    </div>
   </form>
 </div>

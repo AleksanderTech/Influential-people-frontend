@@ -15,6 +15,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './account/services/auth-interceptor.service';
 import { RegistrationComponent } from './account/components/registration/registration.component';
 import { RegistrationMessageComponent } from './account/components/registration-message/registration-message.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { WelcomeComponent } from './start/components/welcome.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { RegistrationMessageComponent } from './account/components/registration-
     HeaderComponent,
     FooterComponent,
     RegistrationComponent,
-    RegistrationMessageComponent
+    RegistrationMessageComponent,
+    SpinnerComponent,
+    WelcomeComponent
   ],
   imports: [
     HttpClientModule,

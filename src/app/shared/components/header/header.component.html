@@ -1,9 +1,44 @@
-<header class="header">
-    <h3>Influential People</h3>
-
-    <ul>
-        <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">login</a></li>
-        <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/sign-up" class="nav-link">sign-up</a></li>
-        <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">logout</a></li>
-    </ul>
+<header>
+  <h1 class="logo">The Most Influential People</h1>
+  <nav id="top-nav">
+    <div class="navigation">
+      <ul class="menu-list">
+        <li>
+          <a *ngIf="!loginService.isUserLoggedIn()" routerLink="">Home</a
+          ><a *ngIf="loginService.isUserLoggedIn()" routerLink="/home">Home</a>
+        </li>
+        <li><a routerLink="">Heroes</a></li>
+        <li><a routerLink="">Rank</a></li>
+        <li id="account-item">
+          Account
+          <ul class="account-list">
+            <li>
+              <a
+                *ngIf="!loginService.isUserLoggedIn()"
+                routerLink="/login"
+                class="nav-link"
+                >sign in</a
+              >
+            </li>
+            <li>
+              <a
+                *ngIf="!loginService.isUserLoggedIn()"
+                routerLink="/sign-up"
+                class="nav-link"
+                >sign up</a
+              >
+            </li>
+            <li>
+              <a
+                *ngIf="loginService.isUserLoggedIn()"
+                routerLink="/logout"
+                class="nav-link"
+                >sign out</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </header>

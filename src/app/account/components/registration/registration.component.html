@@ -1,10 +1,9 @@
 <div class="container">
-  <form [formGroup]="registerForm">
-    <div class="form-group">
+  <div *ngIf="!loadingData; else loading">
+    <form [formGroup]="registerForm">
       <label for="username"><b>Username</b></label>
       <input
         formControlName="username"
-        class="form-control"
         type="text"
         id="username"
         placeholder="Enter Username"
@@ -12,91 +11,92 @@
       />
       <div *ngIf="invalidSubmit">
         <div
-          *ngIf="f.username.errors?.required && invalidSubmit"
+          *ngIf="controls.username.errors?.required && invalidSubmit"
           class="alert alert-danger"
         >
           Username is required.
         </div>
         <div
-          *ngIf="f.username.errors?.minlength && invalidSubmit"
+          *ngIf="controls.username.errors?.minlength && invalidSubmit"
           class="alert alert-danger"
         >
           Username must be at least 3 characters long.
         </div>
       </div>
-    </div>
-    <label for="email"><b>Email</b></label>
-    <input
-      formControlName="email"
-      type="text"
-      class="form-control"
-      id="email"
-      placeholder="Enter Email"
-      name="email"
-    />
-    <div *ngIf="invalidSubmit">
-      <div
-        *ngIf="f.email.errors?.required && invalidSubmit"
-        class="alert alert-danger"
-      >
-        Email is required.
-      </div>
-      <div
-        *ngIf="f.email.errors?.pattern && invalidSubmit"
-        class="alert alert-danger"
-      >
-        Invalid email format.
-      </div>
-    </div>
 
-    <label for="password"><b>Password</b></label>
-    <input
-      formControlName="password"
-      type="password"
-      class="form-control"
-      id="password"
-      placeholder="Enter Password"
-      name="password"
-    />
-    <div *ngIf="invalidSubmit">
-      <div *ngIf="f.password.errors?.required" class="alert alert-danger">
-        Password is required.
+      <label for="email"><b>Email</b></label>
+      <input
+        formControlName="email"
+        type="text"
+        id="email"
+        placeholder="Enter Email"
+        name="email"
+      />
+      <div *ngIf="invalidSubmit">
+        <div *ngIf="controls.email.errors?.required" class="alert alert-danger">
+          Email is required.
+        </div>
+        <div *ngIf="controls.email.errors?.pattern" class="alert alert-danger">
+          Invalid email format.
+        </div>
       </div>
-      <div
-        *ngIf="f.password.errors?.minlength && invalidSubmit"
-        class="alert alert-danger"
-      >
-        Password must be at least 4 characters long.
-      </div>
-    </div>
 
-    <label for="pswConfirm"><b>Confirm Password</b></label>
+      <label for="password"><b>Password</b></label>
+      <input
+        formControlName="password"
+        type="password"
+        id="password"
+        placeholder="Enter Password"
+        name="password"
+      />
+      <div *ngIf="invalidSubmit">
+        <div
+          *ngIf="controls.password.errors?.required"
+          class="alert alert-danger"
+        >
+          Password is required.
+        </div>
+        <div
+          *ngIf="controls.password.errors?.minlength"
+          class="alert alert-danger"
+        >
+          Password must be at least 4 characters long.
+        </div>
+      </div>
 
-    <input
-      formControlName="confirmPassword"
-      type="password"
-      id="pswConfirm"
-      placeholder="Confirm Password"
-      name="pswConfirm"
-    />
-    <div *ngIf="invalidSubmit">
-      <div
-        *ngIf="f.confirmPassword.errors?.required && invalidSubmit"
-        class="alert alert-danger"
-      >
-        Password confirmation is required.
+      <label for="pswConfirm"><b>Confirm Password</b></label>
+
+      <input
+        formControlName="confirmPassword"
+        type="password"
+        id="pswConfirm"
+        placeholder="Confirm Password"
+        name="pswConfirm"
+      />
+      <div *ngIf="invalidSubmit">
+        <div
+          *ngIf="controls.confirmPassword.errors?.required"
+          class="alert alert-danger"
+        >
+          Password confirmation is required.
+        </div>
+        <div
+          *ngIf="controls.confirmPassword.errors?.match"
+          class="alert alert-danger"
+        >
+          Password confirmation and Password must match.
+        </div>
       </div>
-      <div
-        *ngIf="f.confirmPassword.errors?.match && invalidSubmit"
-        class="alert alert-danger"
+      <button
+        class="sign-up-button"
+        type="button"
+        (click)="signUp(registerForm)"
       >
-        Password confirmation and Password must match.
-      </div>
-    </div>
-    <button class="sign-up-button" (click)="signUp(registerForm)">
-      Sign-up
-    </button>
-    <br />
-    <br />
-  </form>
+        Sign-up
+      </button>
+      <br />
+      <br />
+    </form>
+  </div>
+  <ng-template #loading><app-spinner></app-spinner></ng-template>
 </div>

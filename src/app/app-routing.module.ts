@@ -6,14 +6,16 @@ import { LogoutComponent } from './account/components/logout/logout.component';
 import { AuthRedirectorService } from './account/services/auth-redirector.service';
 import { RegistrationComponent } from './account/components/registration/registration.component';
 import { RegistrationMessageComponent } from './account/components/registration-message/registration-message.component';
+import { WelcomeComponent } from './start/components/welcome.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: WelcomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthRedirectorService] },
   { path: 'sign-up/message', component: RegistrationMessageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: RegistrationComponent },
-  { path: 'logout', component: LogoutComponent,canActivate:[AuthRedirectorService]  },
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthRedirectorService] },
 ];
 
 @NgModule({

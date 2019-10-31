@@ -1,18 +1,73 @@
-.header {
-    width:100%;
-    height: 50px;
-    color:#eeeeee;
-    background-color: #666666;
-    display:flex;
-    justify-content: space-around;
-    align-items: center;
+ul {
+  list-style-type: none;
 }
 
-ul{
-    list-style-type:none;
+.navigation {
+  text-align: center;
+  background-color: #500606;
 }
 
-li{
-    display:inline-block;
+h1.logo {
+  font-size: 44px;
+  font-weight: 400;
+  color: #f0e2c5;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  word-spacing: 7px;
+  margin-top: 100px;
+  margin-bottom: 80px;
+}
+.menu-list {
+  list-style-type: none;
+  list-style-position: inside;
+  display: inline-block;
+  padding: 0px;
+  background-color: #500606;
+  height: 20px;
+}
+.menu-list > li {
+  float: left;
+
+  padding-left: 28px;
+  padding-right: 28px;
+  letter-spacing: 4px;
 }
 
+.menu-list a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.menu-list a:hover {
+  color: #000000;
+}
+
+#account-item > ul {
+  list-style-type: none;
+  display: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+#account-item > ul > li {
+  list-style-type: none;
+  margin: 0px;
+  padding: 7px 3px 3px 3px;
+  position: relative;
+  z-index: 100;
+  background-color: #500606;
+}
+
+#account-item:hover > ul > li {
+  cursor: pointer;
+}
+
+#account-item > ul > li:hover {
+  color: #000000;
+}
+
+#account-item:hover > ul {
+  display: block;
+}

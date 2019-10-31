@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../../services/authentication.service";
 import { UserLogin } from "../../model/user-login";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: "app-login",
@@ -9,39 +10,49 @@ import { UserLogin } from "../../model/user-login";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
+
   private user: UserLogin;
-  private isLoginValid: boolean;
   private invalidSubmit: boolean;
+  private logInForm: FormGroup;
 
   constructor(
+    private formBuilder: FormBuilder,
     private router: Router,
     private loginservice: AuthenticationService
   ) { }
 
   ngOnInit() {
-    this.isLoginValid = false;
-    this.invalidSubmit = false;
+
     this.user = new UserLogin();
+    this.logInForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
-  validateForm(form: any): boolean {
-
-    return !form.invalid;
+  get controls() {
+    return this.logInForm.controls;
   }
 
-  logIn(form: any) {
-    if (this.validateForm(form)) {
-      this.loginservice.authenticate(this.user).subscribe(
-        data => {
-          this.router.navigate([""]);
-          this.isLoginValid = true;
-        },
-        error => {
-          this.isLoginValid = false;
-        }
-      );
-    } else {
+  logIn(form: FormGroup) {
+    if (this.logInForm.invalid) {
       this.invalidSubmit = true;
+      return;
     }
+    this.updateUserFields(form);
+    this.loginservice.authenticate(this.user).subscribe(
+      data => {
+        this.router.navigate(["home"]);
+
+      },
+      error => {
+
+      }
+    );
+  }
+
+  private updateUserFields(form: FormGroup) {
+    this.user.username = form.controls.username.value;
+    this.user.password = form.controls.password.value;
   }
 }

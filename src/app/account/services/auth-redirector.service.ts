@@ -11,7 +11,7 @@ export class AuthRedirectorService implements CanActivate {
     private authService: AuthenticationService) { }
 
   canActivate() {
-    
+
     if (this.authService.isUserLoggedIn()) {
       return true;
     }

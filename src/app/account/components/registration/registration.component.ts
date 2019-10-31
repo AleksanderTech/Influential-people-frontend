@@ -15,9 +15,10 @@ import { matchTwoValues } from 'src/app/shared/util/matcher';
 })
 export class RegistrationComponent implements OnInit {
 
+  private loadingData: boolean;
   private user: UserRegistration;
   private invalidSubmit: boolean;
-  registerForm: FormGroup;
+  private registerForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,8 +28,8 @@ export class RegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.user = new UserRegistration();
-    this.invalidSubmit = false;
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.pattern("(.)+[@][^@]+[.][a-zA-Z0-9]+")]],
@@ -37,10 +38,9 @@ export class RegistrationComponent implements OnInit {
     }, {
       validator: matchTwoValues('password', 'confirmPassword')
     });
-    console.log(this.f);
   }
 
-  get f() { return this.registerForm.controls; }
+  get controls() { return this.registerForm.controls; }
 
   signUp(form: FormGroup) {
 
@@ -50,6 +50,7 @@ export class RegistrationComponent implements OnInit {
     }
     this.updateUserFields(form);
     const headers = new HttpHeaders({ "Content-Type": "application/json" });
+    this.loadingData = true;
     this.httpClient
       .post<any>(Urls.SIGN_UP_REST_URL, JSON.stringify(this.user), {
         headers: headers,
@@ -58,11 +59,13 @@ export class RegistrationComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          this.loadingData = false;
           this.stateService.change(response);
           this.router.navigate(["/sign-up/message"]);
         },
         error => {
           console.log(error);
+          this.loadingData = false;
           this.stateService.change(error);
           this.router.navigate(["/sign-up/message"]);
         }

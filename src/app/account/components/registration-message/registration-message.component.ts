@@ -13,13 +13,11 @@ export class RegistrationMessageComponent implements OnInit {
   httpResponse: any;
   message: string;
 
-
   constructor(private stateService: StateService) { }
 
   ngOnInit() {
     this.stateService.currentHttpResponse.subscribe(httpResponse => this.httpResponse = httpResponse)
     this.message = this.getMessage();
-    console.log(this.httpResponse);
   }
 
   getMessage(): string {
