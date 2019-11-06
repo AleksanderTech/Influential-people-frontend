@@ -7,11 +7,15 @@ import { AuthRedirectorService } from './account/services/auth-redirector.servic
 import { RegistrationComponent } from './account/components/registration/registration.component';
 import { RegistrationMessageComponent } from './account/components/registration-message/registration-message.component';
 import { WelcomeComponent } from './start/components/welcome.component';
+import { HeroListComponent } from './core/hero/hero-list/hero-list.component';
+import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.component';
 
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthRedirectorService] },
+  { path: 'heroes', component: HeroListComponent, canActivate: [AuthRedirectorService] },
+  { path: 'heroes/:fullName/detail', component: HeroDetailComponent, canActivate: [AuthRedirectorService] },
   { path: 'sign-up/message', component: RegistrationMessageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: RegistrationComponent },

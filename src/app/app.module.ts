@@ -17,6 +17,8 @@ import { RegistrationComponent } from './account/components/registration/registr
 import { RegistrationMessageComponent } from './account/components/registration-message/registration-message.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { WelcomeComponent } from './start/components/welcome.component';
+import { HeroListComponent } from './core/hero/hero-list/hero-list.component';
+import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { WelcomeComponent } from './start/components/welcome.component';
     RegistrationComponent,
     RegistrationMessageComponent,
     SpinnerComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    HeroListComponent,
+    HeroDetailComponent
   ],
   imports: [
     HttpClientModule,
