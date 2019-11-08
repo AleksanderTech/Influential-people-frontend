@@ -11,11 +11,11 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class AuthenticationService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   authenticate(user: UserLogin): Observable<any> {
     return this.httpClient
-      .post<any>(Urls.LOGIN_REST_URL, JSON.stringify(user), {
+      .post<any>(Urls.ROOT_REST_URL + Urls.LOGIN, JSON.stringify(user), {
         observe: "response"
       })
       .pipe(

@@ -52,7 +52,7 @@ export class RegistrationComponent implements OnInit {
     const headers = new HttpHeaders({ "Content-Type": "application/json" });
     this.loadingData = true;
     this.httpClient
-      .post<any>(Urls.SIGN_UP_REST_URL, JSON.stringify(this.user), {
+      .post<any>(Urls.ROOT_REST_URL + Urls.SIGN_UP, JSON.stringify(this.user), {
         headers: headers,
         observe: "response"
       })
