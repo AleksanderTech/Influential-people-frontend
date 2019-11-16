@@ -5,4 +5,5 @@ export class Urls {
     static readonly SIGN_UP: string = '/sign-up';
     static readonly HERO: string = '/hero';
     static readonly HERO_AVATAR_IMAGE_URL: string = '/hero';
+    static readonly IMAGE: string = '/image';
 }

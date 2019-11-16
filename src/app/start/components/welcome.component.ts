@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
+  isNavDisplayed: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
+
+
+  clickEvent() {
+
+  }
+
+  showNavbar() {
+    this.isNavDisplayed = true;
+
+  }
+
+  closeNavbar() {
+    this.isNavDisplayed = false;
+  }
+
 
 }

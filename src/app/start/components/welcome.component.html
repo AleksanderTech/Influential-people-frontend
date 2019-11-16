@@ -1,1 +1,34 @@
-<p>welcome in the historical place</p>
+<div id="content">
+  <div
+    class="menu-icon"
+    (click)="showNavbar()"
+    [ngClass]="{
+      invisible: isNavDisplayed,
+      visible: !isNavDisplayed
+    }"
+  >
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+  </div>
+
+  <nav
+    class="navbar"
+    id="navbar"
+    [ngClass]="{
+      'show-navbar': isNavDisplayed,
+      'close-navbar': !isNavDisplayed
+    }"
+  >
+    <div class="navbar-header" (click)="closeNavbar()">
+      <div class="close-icon"></div>
+    </div>
+
+    <ul class="navbar-items">
+      <li><a class="navbar-link">Heroes</a></li>
+      <li><a class="navbar-link">Quotes</a></li>
+      <li><a class="navbar-link">Articles</a></li>
+      <li><a class="navbar-link">Account</a></li>
+    </ul>
+  </nav>
+</div>
