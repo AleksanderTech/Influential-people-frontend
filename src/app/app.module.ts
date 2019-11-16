@@ -19,6 +19,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { WelcomeComponent } from './start/components/welcome.component';
 import { HeroListComponent } from './core/hero/hero-list/hero-list.component';
 import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.compone
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [AuthenticationService, AuthRedirectorService, {
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true
