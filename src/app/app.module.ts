@@ -20,6 +20,7 @@ import { WelcomeComponent } from './start/components/welcome.component';
 import { HeroListComponent } from './core/hero/hero-list/hero-list.component';
 import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ArticleListComponent } from './core/article/article-list/article-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SpinnerComponent,
     WelcomeComponent,
     HeroListComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    ArticleListComponent
   ],
   imports: [
     HttpClientModule,

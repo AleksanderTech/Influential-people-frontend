@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/account/services/authentication.service';
 
 @Component({
@@ -8,9 +8,27 @@ import { AuthenticationService } from 'src/app/account/services/authentication.s
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private loginService:AuthenticationService) { }
+  isNavDisplayed: boolean = false;
+  // navbarHeight: number;
+
+  constructor(private loginService: AuthenticationService) { }
 
   ngOnInit() {
+    // this.navbarHeight = document.querySelector('.navbar-center').offsetHeight;
+    // console.log(this.navbarHeight);
+    // this.setUpCenterNavbar();
   }
 
+  showNavbar() {
+    this.isNavDisplayed = true;
+  }
+
+  // setUpCenterNavbar() {
+  //   document.querySelector('.clean-fixed-position').style.height = this.navbarHeight + 'px';
+
+  // }
+
+  closeNavbar() {
+    this.isNavDisplayed = false;
+  }
 }

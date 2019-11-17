@@ -1,8 +1,56 @@
 <header>
-  <h1 class="logo">The Most Influential People</h1>
-  <nav id="top-nav">
-    <div class="navigation">
-      <ul class="menu-list">
+  <nav id="navbar">
+    <div class="navbar-center">
+      <div
+        class="menu-icon"
+        (click)="showNavbar()"
+        [ngClass]="{
+          invisible: isNavDisplayed,
+          visible: !isNavDisplayed
+        }"
+      >
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+      </div>
+
+      <div class="navbar-links">
+        <a routerLink="/heroes">Heroes</a>
+        <a routerLink="/quotes">Quotes</a>
+        <a routerLink="/articles">Articles</a>
+        <a routerLink="/account">Account</a>
+      </div>
+      <div class="logo">
+        <a routerLink="/home">
+          <span class="influential">Influential</span> People
+          <img class="crown" src="../../../../favicon.ico" alt="" />
+        </a>
+      </div>
+    </div>
+    <div class="clean-fixed-position"></div>
+    <div
+      class="small-screen-navbar"
+      id="navbar"
+      [ngClass]="{
+        'show-navbar': isNavDisplayed,
+        'close-navbar': !isNavDisplayed
+      }"
+    >
+      <div class="navbar-header" (click)="closeNavbar()">
+        <div class="close-icon"></div>
+      </div>
+
+      <ul class="navbar-items">
+        <li><a routerLink="/heroes" class="navbar-link">Heroes</a></li>
+        <li><a routerLink="/quotes" class="navbar-link">Quotes</a></li>
+        <li><a routerLink="/articles" class="navbar-link">Articles</a></li>
+        <li><a routerLink="/account" class="navbar-link">Account</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!-- <ul class="menu-list">
+        <li><h1 class="logo">The Most Influential People</h1></li>
         <li>
           <a *ngIf="!loginService.isUserLoggedIn()" routerLink="">Home</a
           ><a *ngIf="loginService.isUserLoggedIn()" routerLink="/home">Home</a>
@@ -38,7 +86,4 @@
             </li>
           </ul>
         </li>
-      </ul>
-    </div>
-  </nav>
-</header>
+      </ul> -->
