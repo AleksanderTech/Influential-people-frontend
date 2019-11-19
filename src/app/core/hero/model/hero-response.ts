@@ -1,5 +1,6 @@
 export class HeroResponse {
-    fullName: string;
+
+    name: string;
     profileImageUrl: string;
     score: number;
 }

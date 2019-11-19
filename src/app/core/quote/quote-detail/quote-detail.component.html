@@ -1,0 +1,17 @@
+<div>
+  <div *ngIf="quote" class="quote-detail">
+    <div>
+      <p class="quote-item content">{{ quote.content }}</p>
+    </div>
+    <div>
+      <p class="quote-item hero-name">hero: {{ quote.heroName }}</p>
+    </div>
+    <div>
+      <a
+        routerLink="/heroes/{{ quote.heroName }}/detail"
+        class="quote-item hero"
+        >hero</a
+      >
+    </div>
+  </div>
+</div>

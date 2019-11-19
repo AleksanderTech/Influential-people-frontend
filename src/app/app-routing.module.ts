@@ -11,6 +11,7 @@ import { HeroListComponent } from './core/hero/hero-list/hero-list.component';
 import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.component';
 import { ArticleListComponent } from './core/article/article-list/article-list.component';
 import { QuoteListComponent } from './core/quote/quote-list/quote-list.component';
+import { QuoteDetailComponent } from './core/quote/quote-detail/quote-detail.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'heroes', component: HeroListComponent, canActivate: [AuthRedirectorService] },
   { path: 'articles', component: ArticleListComponent, canActivate: [AuthRedirectorService] },
   { path: 'quotes', component: QuoteListComponent, canActivate: [AuthRedirectorService] },
-  { path: 'heroes/:fullName/detail', component: HeroDetailComponent, canActivate: [AuthRedirectorService] },
+  { path: 'heroes/:name/detail', component: HeroDetailComponent, canActivate: [AuthRedirectorService] },
+  { path: 'quotes/:id/detail', component: QuoteDetailComponent, canActivate: [AuthRedirectorService] },
   { path: 'sign-up/message', component: RegistrationMessageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: RegistrationComponent },

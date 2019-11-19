@@ -14,7 +14,9 @@ export class HeroDetailComponent implements OnInit {
   constructor(private heroService: HeroService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.heroService.getHero(this.route.snapshot.paramMap.get('fullName')).subscribe(data => {
+    console.log(this.route.snapshot.paramMap);
+
+    this.heroService.getHero(this.route.snapshot.paramMap.get('name')).subscribe(data => {
       console.log(data);
       this.hero = data;
     });
