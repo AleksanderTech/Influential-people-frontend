@@ -1,5 +1,7 @@
-<ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/heroes/{{ hero.fullName }}/detail">{{ hero.fullName }}</a>
-  </li>
-</ul>
+<div class="container">
+  <ul class="hero-list">
+    <li class="hero-item" *ngFor="let hero of heroes">
+      <a routerLink="/heroes/{{ hero.fullName }}/detail">{{ hero.fullName }}</a>
+    </li>
+  </ul>
+</div>

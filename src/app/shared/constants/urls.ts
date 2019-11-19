@@ -4,6 +4,8 @@ export class Urls {
     static readonly LOGIN: string = '/login';
     static readonly SIGN_UP: string = '/sign-up';
     static readonly HERO: string = '/hero';
+    static readonly ARTICLE: string = '/article';
+    static readonly QUOTE: string = '/quote';
     static readonly HERO_AVATAR_IMAGE_URL: string = '/hero';
     static readonly IMAGE: string = '/image';
 }

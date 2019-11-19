@@ -1,1 +1,7 @@
-<p>article-list works!</p>
+<div class="container">
+  <ul class="article-list">
+    <li class="article-item" *ngFor="let article of articles">
+      <a href="">{{ article.title }}</a>
+    </li>
+  </ul>
+</div>

@@ -1,7 +1,21 @@
-<div *ngIf="hero">
-  <img src="{{ hero.avatarImageUrl }}" alt="hero image" />
-  <p>{{ hero.fullName }}</p>
-  <p>{{ hero.score }}</p>
-  <a routerLink="/hero/{fullName}/quote">quotes</a>
-  <a routerLink="/hero/{fullName}/article">articles</a>
+<div>
+  <div *ngIf="hero" class="hero-detail">
+    <div class="hero-item-image">
+      <img src="{{ hero.avatarImageUrl }}" alt="hero image" />
+    </div>
+    <div>
+      <p class="hero-item name">{{ hero.fullName }}</p>
+    </div>
+    <div>
+      <p class="hero-item score">score: {{ hero.score }}</p>
+    </div>
+    <div>
+      <a routerLink="/hero/{name}/quote" class="hero-item quotes">quotes</a>
+    </div>
+    <div>
+      <a routerLink="/hero/{name}/article" class="hero-item articles"
+        >articles</a
+      >
+    </div>
+  </div>
 </div>

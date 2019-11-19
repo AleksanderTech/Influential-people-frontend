@@ -13,6 +13,8 @@
 .navbar-center {
   z-index: 0;
   font-size: 1.2rem;
+  left: 0;
+  top: 0;
   position: fixed;
   width: 100%;
   background: white;

@@ -9,12 +9,14 @@ import { RegistrationMessageComponent } from './account/components/registration-
 import { WelcomeComponent } from './start/components/welcome.component';
 import { HeroListComponent } from './core/hero/hero-list/hero-list.component';
 import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.component';
+import { ArticleListComponent } from './core/article/article-list/article-list.component';
 
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthRedirectorService] },
   { path: 'heroes', component: HeroListComponent, canActivate: [AuthRedirectorService] },
+  { path: 'articles', component: ArticleListComponent, canActivate: [AuthRedirectorService] },
   { path: 'heroes/:fullName/detail', component: HeroDetailComponent, canActivate: [AuthRedirectorService] },
   { path: 'sign-up/message', component: RegistrationMessageComponent },
   { path: 'login', component: LoginComponent },

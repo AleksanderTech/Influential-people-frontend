@@ -1,6 +1,6 @@
 export class HeroDetails {
 
-    fullName: string;
+    name: string;
     profileImageUrl: string;
     categories: string[];
     score: number;

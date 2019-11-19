@@ -1,0 +1,16 @@
+.article-list {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.article-item {
+  text-align: center;
+  border: 2px solid #a56245;
+  padding: 1rem;
+  margin: 1rem;
+}
