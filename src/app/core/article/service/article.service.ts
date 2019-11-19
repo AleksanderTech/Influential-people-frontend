@@ -15,7 +15,7 @@ export class ArticleService {
     return this.httpClient.get<Article[]>(Urls.ROOT_REST_URL + Urls.ARTICLE);
   }
 
-  getHero(fullName: string): Observable<Article> {
-    return this.httpClient.get<Article>(Urls.ROOT_REST_URL + Urls.HERO + "/" + fullName);
+  getArticle(id: string): Observable<Article> {
+    return this.httpClient.get<Article>(Urls.ROOT_REST_URL + Urls.ARTICLE + "/" + id);
   }
 }

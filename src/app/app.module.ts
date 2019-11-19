@@ -24,6 +24,7 @@ import { ArticleListComponent } from './core/article/article-list/article-list.c
 import { QuoteListComponent } from './core/quote/quote-list/quote-list.component';
 import { ListComponent } from './shared/components/list/list.component';
 import { QuoteDetailComponent } from './core/quote/quote-detail/quote-detail.component';
+import { ArticleDetailComponent } from './core/article/article-detail/article-detail.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { QuoteDetailComponent } from './core/quote/quote-detail/quote-detail.com
     HeroDetailComponent,
     ArticleListComponent,
     QuoteListComponent,
-    QuoteDetailComponent
+    QuoteDetailComponent,
+    ArticleDetailComponent
   ],
   imports: [
     HttpClientModule,

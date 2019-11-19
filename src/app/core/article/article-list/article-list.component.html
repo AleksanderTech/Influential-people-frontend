@@ -1,7 +1,7 @@
 <div class="container">
   <ul class="article-list">
     <li class="article-item" *ngFor="let article of articles">
-      <a href="">{{ article.title }}</a>
+      <a routerLink="/articles/{{ article.id }}/detail">{{ article.title }}</a>
     </li>
   </ul>
 </div>
