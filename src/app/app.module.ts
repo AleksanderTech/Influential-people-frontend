@@ -22,6 +22,7 @@ import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.compone
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ArticleListComponent } from './core/article/article-list/article-list.component';
 import { QuoteListComponent } from './core/quote/quote-list/quote-list.component';
+import { ListComponent } from './shared/components/list/list.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { QuoteListComponent } from './core/quote/quote-list/quote-list.component
     HeroListComponent,
     HeroDetailComponent,
     ArticleListComponent,
-    QuoteListComponent
+    QuoteListComponent,
+    ListComponent
   ],
   imports: [
     HttpClientModule,
