@@ -17,14 +17,10 @@ import { RegistrationComponent } from './account/components/registration/registr
 import { RegistrationMessageComponent } from './account/components/registration-message/registration-message.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { WelcomeComponent } from './start/components/welcome.component';
-import { HeroListComponent } from './core/hero/hero-list/hero-list.component';
-import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ArticleListComponent } from './core/article/article-list/article-list.component';
-import { QuoteListComponent } from './core/quote/quote-list/quote-list.component';
-import { ListComponent } from './shared/components/list/list.component';
-import { QuoteDetailComponent } from './core/quote/quote-detail/quote-detail.component';
-import { ArticleDetailComponent } from './core/article/article-detail/article-detail.component';
+import { HeroesModule } from './heroes/heroes.module';
+import { QuoteModule } from './quote/quote.module';
+import { ArticleModule } from './article/article.module';
 
 @NgModule({
   declarations: [
@@ -38,12 +34,6 @@ import { ArticleDetailComponent } from './core/article/article-detail/article-de
     RegistrationMessageComponent,
     SpinnerComponent,
     WelcomeComponent,
-    HeroListComponent,
-    HeroDetailComponent,
-    ArticleListComponent,
-    QuoteListComponent,
-    QuoteDetailComponent,
-    ArticleDetailComponent
   ],
   imports: [
     HttpClientModule,
@@ -51,7 +41,10 @@ import { ArticleDetailComponent } from './core/article/article-detail/article-de
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HeroesModule,
+    QuoteModule,
+    ArticleModule
   ],
   providers: [AuthenticationService, AuthRedirectorService, {
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true

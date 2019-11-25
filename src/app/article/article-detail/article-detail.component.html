@@ -1,16 +1,16 @@
 <div>
   <div *ngIf="article" class="article-detail">
     <div>
-      <p class="article-item text">{{ article.text }}</p>
+      <p class="article-item title">{{ article.title }}</p>
     </div>
     <div>
-      <p class="article-item title">{{ article.title }}</p>
+      <p class="article-item hero-name">hero: {{ article.heroName }}</p>
     </div>
     <div>
       <p class="article-item created-at">{{ article.created_at }}</p>
     </div>
     <div>
-      <p class="article-item hero-name">hero: {{ article.heroName }}</p>
+      <p class="article-item text">{{ article.text }}</p>
     </div>
     <div>
       Comments:

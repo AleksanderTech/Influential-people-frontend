@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HeroService } from '../service/hero.service';
 import { ActivatedRoute } from '@angular/router';
-import { HeroDetails } from '../model/hero-details';
+import { Hero } from '../model/hero';
 
 @Component({
   selector: 'app-hero-detail',
@@ -10,7 +10,7 @@ import { HeroDetails } from '../model/hero-details';
 })
 export class HeroDetailComponent implements OnInit {
 
-  hero: HeroDetails;
+  hero: Hero;
   constructor(private heroService: HeroService, private route: ActivatedRoute) { }
 
   ngOnInit() {

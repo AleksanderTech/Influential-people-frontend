@@ -7,23 +7,11 @@ import { AuthRedirectorService } from './account/services/auth-redirector.servic
 import { RegistrationComponent } from './account/components/registration/registration.component';
 import { RegistrationMessageComponent } from './account/components/registration-message/registration-message.component';
 import { WelcomeComponent } from './start/components/welcome.component';
-import { HeroListComponent } from './core/hero/hero-list/hero-list.component';
-import { HeroDetailComponent } from './core/hero/hero-detail/hero-detail.component';
-import { ArticleListComponent } from './core/article/article-list/article-list.component';
-import { QuoteListComponent } from './core/quote/quote-list/quote-list.component';
-import { QuoteDetailComponent } from './core/quote/quote-detail/quote-detail.component';
-import { ArticleDetailComponent } from './core/article/article-detail/article-detail.component';
 
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthRedirectorService] },
-  { path: 'heroes', component: HeroListComponent, canActivate: [AuthRedirectorService] },
-  { path: 'articles', component: ArticleListComponent, canActivate: [AuthRedirectorService] },
-  { path: 'quotes', component: QuoteListComponent, canActivate: [AuthRedirectorService] },
-  { path: 'heroes/:name/detail', component: HeroDetailComponent, canActivate: [AuthRedirectorService] },
-  { path: 'quotes/:id/detail', component: QuoteDetailComponent, canActivate: [AuthRedirectorService] },
-  { path: 'articles/:id/detail', component: ArticleDetailComponent, canActivate: [AuthRedirectorService] },
   { path: 'sign-up/message', component: RegistrationMessageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: RegistrationComponent },
