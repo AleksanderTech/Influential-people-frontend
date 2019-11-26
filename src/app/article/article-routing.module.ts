@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ArticleListComponent } from './article-list/article-list.component';
-import { AuthRedirectorService } from '../account/services/auth-redirector.service';
+import { AuthRedirectorService } from '../core/auth/services/auth-redirector.service';
 
 
 const routes: Routes = [

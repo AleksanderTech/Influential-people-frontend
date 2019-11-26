@@ -1,7 +1,7 @@
 #content {
   width: 100vw;
   height: 100vh;
-  background: url("../../../assets/images/king.png");
+  background: url("../../assets/images/king.png");
   background-size: cover;
   background-position: center;
 }

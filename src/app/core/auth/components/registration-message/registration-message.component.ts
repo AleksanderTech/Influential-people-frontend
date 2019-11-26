@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StateService } from 'src/app/shared/service/state.service';
+import { StateService } from 'src/app/core/service/state.service';
 
 @Component({
   selector: 'app-registration-message',

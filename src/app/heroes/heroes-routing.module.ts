@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HeroListComponent } from './hero-list/hero-list.component';
-import { AuthRedirectorService } from '../account/services/auth-redirector.service';
+import { AuthRedirectorService } from '../core/auth/services/auth-redirector.service';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 
 const heroesRoutes: Routes = [
