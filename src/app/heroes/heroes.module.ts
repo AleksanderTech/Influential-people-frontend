@@ -4,6 +4,7 @@ import { HeroListComponent } from './hero-list/hero-list.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { RouterModule } from '@angular/router';
 import { HeroesRoutingModule } from './heroes-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { HeroesRoutingModule } from './heroes-routing.module';
   imports: [
     RouterModule,
     HeroesRoutingModule,
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class HeroesModule { }

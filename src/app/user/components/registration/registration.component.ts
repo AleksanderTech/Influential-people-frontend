@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { UserRegistration } from "../../model/user-registration";
+import { UserRegistration } from "../../../shared/model/user-registration";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Urls } from "src/app/shared/constants/urls";
 import { Router } from "@angular/router";
-import { StateService } from "src/app/core/service/state.service";
+import { StateService } from "src/app/core/services/state.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchTwoValues } from 'src/app/shared/util/matcher';
 
