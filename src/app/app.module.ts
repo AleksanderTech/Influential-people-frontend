@@ -15,6 +15,7 @@ import { QuoteModule } from './quote/quote.module';
 import { ArticleModule } from './article/article.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SharedModule } from './shared/shared.module';
     QuoteModule,
     ArticleModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    UserModule
   ],
 
   bootstrap: [AppComponent]

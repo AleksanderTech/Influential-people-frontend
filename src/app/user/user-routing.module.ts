@@ -2,10 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './components/user/user.component';
 import { AuthRedirectorService } from '../core/services/auth-redirector.service';
+import { UserLogin } from '../shared/model/user-login';
+import { UserRegistration } from '../shared/model/user-registration';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
   { path: '', component: UserComponent, canActivate: [AuthRedirectorService] },
+  { path: 'sign-in', component: LoginComponent },
+  { path: 'sign-up', component: RegistrationComponent },
 ];
 
 @NgModule({

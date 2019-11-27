@@ -1,9 +1,9 @@
-
-.container{
-    margin-top:80px;
+.container {
+  margin-top: 80px;
 }
-  
-input[type=text], input[type=password] {
+
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 16px;
   margin: 8px 0 25px 0;
@@ -19,4 +19,3 @@ button {
   cursor: pointer;
   width: 100%;
 }
-

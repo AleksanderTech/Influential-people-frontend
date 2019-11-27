@@ -6,12 +6,13 @@ import { Observable } from "rxjs";
 import { Urls } from 'src/app/shared/constants/urls';
 import { UserAttributes } from 'src/app/shared/constants/user-attributes';
 import { SecurityConstants } from 'src/app/shared/constants/security-constants';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   authenticate(user: UserLogin): Observable<any> {
     return this.httpClient
@@ -39,5 +40,7 @@ export class AuthenticationService {
   logOut(): void {
     sessionStorage.removeItem(UserAttributes.USERNAME);
     sessionStorage.removeItem(SecurityConstants.TOKEN);
+    this.router.navigate(['welcome']);
   }
+
 }

@@ -13,19 +13,26 @@
         <div class="hamburger-line"></div>
         <div class="hamburger-line"></div>
       </div>
-
+      <div class="logo">
+        <a routerLink="/">
+          <img class="crown" src="../../../../favicon.ico" alt="" />
+          <span class="influential">Influential</span> People
+        </a>
+      </div>
       <div class="navbar-links">
         <a routerLink="/heroes">Heroes</a>
         <a routerLink="/quotes">Quotes</a>
         <a routerLink="/articles">Articles</a>
         <a routerLink="/account">Categories</a>
       </div>
-
-      <div class="logo">
-        <a routerLink="/">
-          <span class="influential">Influential</span> People
-          <img class="crown" src="../../../../favicon.ico" alt="" />
-        </a>
+      <div>
+        <div *ngIf="!loginService.isUserLoggedIn()">
+          <span class="user-item"><a routerLink="/sign-in">sign in</a></span>
+          <span class="user-item"><a routerLink="/sign-up">sign up</a></span>
+        </div>
+        <div *ngIf="loginService.isUserLoggedIn()">
+          <a routerLink="/user"> {{ username }}</a>
+        </div>
       </div>
     </div>
     <div class="clean-fixed-position"></div>

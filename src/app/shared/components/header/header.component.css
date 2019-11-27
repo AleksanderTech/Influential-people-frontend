@@ -221,6 +221,10 @@
   }
 }
 
+.user-item {
+  margin: 0 0.5rem;
+}
+
 /* small-screen-navbar*/
 
 /* ul {

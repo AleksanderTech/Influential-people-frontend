@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,9 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 })
 export class HeaderComponent implements OnInit {
 
+  username: string = sessionStorage.username;
   isNavDisplayed: boolean = false;
+  currentUser: User;
 
   constructor(private loginService: AuthenticationService) { }
 
