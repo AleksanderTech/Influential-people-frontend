@@ -3,6 +3,9 @@ import { Router } from "@angular/router";
 import { AuthenticationService } from "../../../core/services/authentication.service";
 import { UserLogin } from "../../../shared/model/user-login";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
+import { User } from 'src/app/shared/model/user';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: "app-login",
@@ -10,6 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
+
 
   private user: UserLogin;
   private invalidSubmit: boolean;
@@ -34,6 +38,8 @@ export class LoginComponent implements OnInit {
     return this.logInForm.controls;
   }
 
+
+
   logIn(form: FormGroup) {
     if (this.logInForm.invalid) {
       this.invalidSubmit = true;
@@ -42,6 +48,7 @@ export class LoginComponent implements OnInit {
     this.updateUserFields(form);
     this.loginservice.authenticate(this.user).subscribe(
       data => {
+        this.loginservice.setAuth(new User(this.user.username));
         this.router.navigate(["home"]);
 
       },

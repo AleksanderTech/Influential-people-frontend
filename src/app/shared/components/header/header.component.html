@@ -31,7 +31,7 @@
           <span class="user-item"><a routerLink="/sign-up">sign up</a></span>
         </div>
         <div *ngIf="loginService.isUserLoggedIn()">
-          <a routerLink="/user"> {{ username }}</a>
+          <a routerLink="/user"> {{ currentUser.username }}</a>
         </div>
       </div>
     </div>
@@ -56,4 +56,5 @@
       </ul>
     </div>
   </nav>
+  <div class="under-nav-clean"></div>
 </header>

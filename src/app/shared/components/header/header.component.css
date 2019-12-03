@@ -7,10 +7,14 @@
   --dark-grey: #b8b8b8;
   --dark: #414141;
 }
-
+.under-nav-clean {
+  height: 3.8rem;
+}
 /* navbar center */
 
 .navbar-center {
+  min-height: 3.8rem;
+  max-height: 3.8rem;
   z-index: 0;
   font-size: 1.2rem;
   left: 0;
@@ -37,7 +41,8 @@
 
 .crown {
   width: 1.8rem;
-  margin: 0 0.5rem;
+  height: 1.8rem;
+  margin: 1rem 0.5rem;
 }
 
 .navbar-center a {
@@ -58,7 +63,6 @@
 
 .logo {
   cursor: pointer;
-  margin: 1rem 0;
   display: block;
   letter-spacing: 0.1rem;
   word-spacing: 0.2rem;
@@ -213,6 +217,27 @@
   .menu-icon {
     display: none;
   }
+}
+
+@media screen and (max-width: 500px) {
+  .logo {
+    font-size: calc(80%);
+  }
+  .crown {
+    height: calc(1.2rem);
+    width: calc(1.2rem);
+  }
+  .menu-icon {
+    width: 2rem;
+    margin: 0 0.2rem;
+  }
+  .hamburger-line {
+    width: calc(1.4rem);
+  }
+}
+
+.user-item {
+  margin: 0 0.5rem;
 }
 
 @media screen and (max-width: 750px) {

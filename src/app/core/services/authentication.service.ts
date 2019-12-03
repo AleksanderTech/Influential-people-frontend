@@ -1,17 +1,21 @@
 import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
+import { map, distinctUntilChanged } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { UserLogin } from "../../shared/model/user-login";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import { Urls } from 'src/app/shared/constants/urls';
 import { UserAttributes } from 'src/app/shared/constants/user-attributes';
 import { SecurityConstants } from 'src/app/shared/constants/security-constants';
 import { Router } from '@angular/router';
+import { User } from 'src/app/shared/model/user';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
+  private currentUserSubject = new BehaviorSubject<User>({} as User);
+  public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
+
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   authenticate(user: UserLogin): Observable<any> {
@@ -31,7 +35,9 @@ export class AuthenticationService {
         })
       );
   }
-
+  setAuth(user: User) {
+    this.currentUserSubject.next(user);
+  }
   isUserLoggedIn(): boolean {
     let user = sessionStorage.getItem(UserAttributes.USERNAME);
     return !(user === null);
