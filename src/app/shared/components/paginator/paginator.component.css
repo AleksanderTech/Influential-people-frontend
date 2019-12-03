@@ -1,0 +1,23 @@
+.link {
+  color: rgb(145, 82, 39);
+  margin: 0 1rem;
+  text-decoration: none;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 6px;
+}
+
+.right {
+  transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+}

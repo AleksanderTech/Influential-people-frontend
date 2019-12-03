@@ -6,13 +6,15 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    PaginatorComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     HeaderComponent,
     SpinnerComponent,
+    PaginatorComponent
   ]
 })
 export class SharedModule { }
