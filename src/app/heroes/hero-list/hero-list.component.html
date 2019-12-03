@@ -1,7 +1,5 @@
 <div class="container">
-  <app-hero-tile></app-hero-tile>
-  <app-hero-tile></app-hero-tile>
-  <app-hero-tile></app-hero-tile>
+  <app-hero-tile *ngFor="let hero of heroes" [hero]="hero"></app-hero-tile>
   <!-- <ul class="hero-list">
     <li class="hero-item" *ngFor="let hero of heroes">
       <a routerLink="/heroes/{{ hero.name }}/detail">{{ hero.name }}</a>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Hero } from '../model/hero';
 
 @Component({
   selector: 'app-hero-tile',
@@ -7,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroTileComponent implements OnInit {
 
-
+  @Input() hero: Hero;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.hero);
+
   }
 
 }
