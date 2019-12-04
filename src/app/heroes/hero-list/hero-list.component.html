@@ -1,5 +1,5 @@
 <div class="container">
-  <app-hero-tile *ngFor="let hero of heroes" [hero]="hero"></app-hero-tile>
+  <app-hero-tile *ngFor="let hero of entities" [hero]="hero"></app-hero-tile>
   <app-paginator
     *ngIf="numberOfPages"
     [numberOfPages]="numberOfPages"
