@@ -1,9 +1,8 @@
 <div class="container">
   <app-hero-tile *ngFor="let hero of heroes" [hero]="hero"></app-hero-tile>
-  <!-- <ul class="hero-list">
-    <li class="hero-item" *ngFor="let hero of heroes">
-      <a routerLink="/heroes/{{ hero.name }}/detail">{{ hero.name }}</a>
-    </li>
-  </ul> -->
-  <app-paginator></app-paginator>
+  <app-paginator
+    *ngIf="numberOfPages"
+    [numberOfPages]="numberOfPages"
+    (pageClicked)="updatePage($event)"
+  ></app-paginator>
 </div>

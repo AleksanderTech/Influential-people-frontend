@@ -2,9 +2,10 @@
   <li class="page">
     <a class="link" href="#"><i class="left"></i></a>
   </li>
-  <li class="page"><a class="link" href="#">1</a></li>
-  <li class="page"><a class="link" href="#">2</a></li>
-  <li class="page"><a class="link" href="#">3</a></li>
+  <li *ngFor="let page of pages; index as i" class="page">
+    <a class="link" (click)="pageClick(i)">{{ i + 1 }}</a>
+  </li>
+
   <li class="page">
     <a class="link" href="#"><i class="right"></i></a>
   </li>
