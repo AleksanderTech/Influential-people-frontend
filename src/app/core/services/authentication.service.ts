@@ -46,7 +46,7 @@ export class AuthenticationService {
   logOut(): void {
     sessionStorage.removeItem(UserAttributes.USERNAME);
     sessionStorage.removeItem(SecurityConstants.TOKEN);
-    this.router.navigate(['welcome']);
+    this.router.navigate(['']);
   }
 
 }
