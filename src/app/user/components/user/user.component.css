@@ -1,3 +1,32 @@
-.content {
-  margin: 5rem;
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.banner {
+  padding-top: 1rem;
+  width: 100%;
+  background-color: #ededed;
+  height: 15rem;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 7rem;
+  height: 7rem;
+  background-color: #656565;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
