@@ -1,5 +1,7 @@
 <div class="flex-container">
-  <div class="flex-item">{{ article.title }}</div>
+  <div class="flex-item">
+    <a routerLink="/article/{{ article.id }}/detail">{{ article.title }}</a>
+  </div>
   <div class="flex-item">
     {{ article.createdAt }}
   </div>

@@ -16,6 +16,7 @@ export class ArticleListComponent extends List<Article> implements OnInit {
   }
 
   ngOnInit() {
+    this.selectedPage = 0;
     this.getArticles(this.selectedPage, this.pageSize);
   }
 

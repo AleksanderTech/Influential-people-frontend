@@ -8,4 +8,5 @@ export class Urls {
     static readonly QUOTE: string = '/quote';
     static readonly HERO_AVATAR_IMAGE_URL: string = '/hero';
     static readonly IMAGE: string = '/image';
+    static readonly COMMENT: string = '/comment';
 }

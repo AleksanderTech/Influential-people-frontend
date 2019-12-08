@@ -6,17 +6,23 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleTileComponent } from './article-tile/article-tile.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { CommentComponent } from './comment/comment.component';
+import { CommentListComponent } from './comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
     ArticleDetailComponent,
     ArticleListComponent,
-    ArticleTileComponent
+    ArticleTileComponent,
+    CommentComponent,
+    CommentListComponent
   ],
   imports: [
     SharedModule,
     CommonModule,
-    ArticleRoutingModule
+    ArticleRoutingModule,
+    RouterModule
   ]
 })
 export class ArticleModule { }

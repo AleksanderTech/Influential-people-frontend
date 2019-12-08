@@ -12,8 +12,9 @@
     <div>
       <p class="article-item text">{{ article.text }}</p>
     </div>
-    <div>
-      Comments:
-    </div>
+    <hr />
+    <h2>Comments</h2>
+    <div>Add comment<textarea></textarea><button>add</button></div>
+    <app-comment-list [article]="article"></app-comment-list>
   </div>
 </div>

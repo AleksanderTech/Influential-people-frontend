@@ -1,0 +1,11 @@
+<div class="container">
+  <app-comment
+    *ngFor="let comment of entities"
+    [comment]="comment"
+  ></app-comment>
+  <app-paginator
+    *ngIf="numberOfPages"
+    [numberOfPages]="numberOfPages"
+    (pageClicked)="updatePage($event)"
+  ></app-paginator>
+</div>
