@@ -9,18 +9,13 @@ import { User } from '../../model/user';
 })
 export class HeaderComponent implements OnInit {
 
-  username: string = sessionStorage.username;
-  isNavDisplayed: boolean = false;
-  currentUser: User;
+  private isNavDisplayed: boolean = false;
+  private currentUsername: string;
 
   constructor(private loginService: AuthenticationService) { }
 
   ngOnInit() {
-    this.loginService.currentUser.subscribe(
-      (userData) => {
-        this.currentUser = userData;
-      }
-    );
+    this.currentUsername = this.loginService.getUsername();
   }
 
   showNavbar() {

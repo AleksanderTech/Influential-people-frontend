@@ -23,7 +23,7 @@
         <a routerLink="/heroes">Heroes</a>
         <a routerLink="/quotes">Quotes</a>
         <a routerLink="/articles">Articles</a>
-        <a routerLink="/account">Categories</a>
+        <a routerLink="/categories">Categories</a>
       </div>
       <div class="flex-item account">
         <div *ngIf="!loginService.isUserLoggedIn()">
@@ -31,13 +31,13 @@
           <span class="user-item"><a routerLink="/sign-up">sign up</a></span>
         </div>
         <div *ngIf="loginService.isUserLoggedIn()" class="flex-item">
-          <a routerLink="/user"> {{ currentUser.username }}</a>
+          <a routerLink="/user"> {{ currentUsername }}</a>
         </div>
       </div>
     </div>
     <div class="closeNavbar()"></div>
     <div
-      (focusout)="focusOutFunction()"
+      (focusOut)="focusOutFunction()"
       class="small-screen-navbar"
       id="navbar"
       [ngClass]="{
@@ -59,9 +59,7 @@
         <li><a routerLink="/articles" class="navbar-link">Articles</a></li>
         <li><a routerLink="/categories" class="navbar-link">Categories</a></li>
         <li>
-          <a routerLink="/user" class="navbar-link">
-            {{ currentUser.username }}</a
-          >
+          <a routerLink="/user" class="navbar-link"> {{ currentUsername }}</a>
         </li>
       </ul>
       <ul *ngIf="!loginService.isUserLoggedIn()" class="navbar-items">

@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     this.updateUserFields(form);
     this.loginservice.authenticate(this.user).subscribe(
       data => {
-        this.loginservice.setAuth(new User(this.user.username));
+        // this.loginservice.setAuth(new User(this.user.username));
         this.router.navigate(["home"]);
 
       },

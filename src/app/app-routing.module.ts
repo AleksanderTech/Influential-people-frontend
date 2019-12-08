@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'quotes',
     loadChildren: () => import('./quote/quote.module').then(mod => mod.QuoteModule)
+  },
+  {
+    path: 'categories',
+    loadChildren: () => import('./category/category.module').then(mod => mod.CategoryModule)
   }
 ];
 

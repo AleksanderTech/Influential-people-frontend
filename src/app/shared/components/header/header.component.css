@@ -27,7 +27,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid black;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .flex-item {
@@ -36,6 +36,10 @@
 
 .clean-fixed-position {
   display: block;
+}
+
+.account {
+  padding: 0 1rem;
 }
 
 .influential {
@@ -214,7 +218,7 @@
   margin-left: 0.2rem;
 }
 
-@media screen and (min-width: 751px) {
+@media screen and (min-width: 951px) {
   .small-screen-navbar {
     width: 26vw;
   }
@@ -244,7 +248,7 @@
   margin: 0 0.5rem;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
   .navbar-links {
     display: none;
   }

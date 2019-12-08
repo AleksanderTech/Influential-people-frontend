@@ -13,8 +13,7 @@ import { User } from 'src/app/shared/model/user';
   providedIn: "root"
 })
 export class AuthenticationService {
-  private currentUserSubject = new BehaviorSubject<User>({} as User);
-  public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
+
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -35,9 +34,11 @@ export class AuthenticationService {
         })
       );
   }
-  setAuth(user: User) {
-    this.currentUserSubject.next(user);
+
+  getUsername(): string {
+    return sessionStorage.getItem(UserAttributes.USERNAME);
   }
+
   isUserLoggedIn(): boolean {
     let user = sessionStorage.getItem(UserAttributes.USERNAME);
     return !(user === null);
