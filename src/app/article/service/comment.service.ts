@@ -15,5 +15,14 @@ export class CommentService {
     return this.httpClient.get<Comment[]>(Urls.ROOT_REST_URL + Urls.ARTICLE + '/' + articleId + Urls.COMMENT, { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
   }
 
+  addComment(comment: Comment, articleId: number): Observable<Comment> {
+    return this.httpClient.post<Comment>(Urls.ROOT_REST_URL + Urls.ARTICLE + '/' + articleId + Urls.COMMENT, comment);
+
+  }
+
+  deleteComment(commentId: number, articleId: number): Observable<Comment> {
+    return this.httpClient.delete<Comment>(Urls.ROOT_REST_URL + Urls.ARTICLE + '/' + articleId + Urls.COMMENT + '/' + commentId);
+
+  }
 
 }

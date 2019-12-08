@@ -11,7 +11,6 @@ import { Article } from '../model/article';
 export class CommentListComponent extends List<Comment> implements OnInit {
 
   @Input() article: Article;
-
   constructor(private commentService: CommentService) {
     super();
   }
@@ -32,5 +31,13 @@ export class CommentListComponent extends List<Comment> implements OnInit {
       this.numberOfPages = data['totalPages'];
       console.log(this.entities);
     });
+  }
+
+  updateComments(comment: Comment) {
+    for (let i = 0; i < this.entities.length; i++) {
+      if (this.entities[i] === comment) {
+        this.entities.splice(i, 1);
+      }
+    }
   }
 }

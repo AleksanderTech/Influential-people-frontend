@@ -12,5 +12,12 @@
       <span>{{ comment.created_at }}</span></small
     >
     <p>{{ comment.content }}</p>
+    <button
+      type="button"
+      (click)="delete()"
+      class="btn btn-outline-dark btn-sm"
+    >
+      delete
+    </button>
   </div>
 </div>

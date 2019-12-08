@@ -1,5 +1,6 @@
 <div class="container">
   <app-comment
+    (commentDeleted)="updateComments($event)"
     *ngFor="let comment of entities"
     [comment]="comment"
   ></app-comment>
