@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Category } from '../model/category';
 
 @Component({
@@ -8,7 +8,7 @@ import { Category } from '../model/category';
 })
 export class CategoryTileComponent implements OnInit {
 
-  category: Category = new Category('Scientists')
+  @Input() category: Category;
   constructor() { }
 
   ngOnInit() {
