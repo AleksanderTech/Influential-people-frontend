@@ -1,0 +1,12 @@
+<div *ngIf="category">
+  <img
+    style="width:50vw"
+    src="../../../assets/images/{{ category.name }}.png"
+    alt=""
+  /><br />
+  <p>{{ category.description }}</p>
+  <br />
+  <a routerLink=""> {{ category.name }} articles</a><br />
+  <a routerLink=""> {{ category.name }} heroes</a><br />
+  <a routerLink=""> {{ category.name }} quotes</a>
+</div>

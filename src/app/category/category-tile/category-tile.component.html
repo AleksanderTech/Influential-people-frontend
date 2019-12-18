@@ -1,5 +1,8 @@
 <div class="tile" style="width: 18rem;">
-  <a href="">
+  <a
+    routerLink="/categories/{{ category.name }}"
+    [queryParams]="{ category: category }"
+  >
     <img
       class="tile-img"
       src="../../../assets/images/{{ category.name }}.png"

@@ -12,6 +12,8 @@ export class CategoryTileComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+
   }
 
 }
