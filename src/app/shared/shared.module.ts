@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { SearchFilterPipe } from './pipes/filter-pipe';
 
 
 @NgModule({
@@ -14,9 +15,11 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     FooterComponent,
     HeaderComponent,
     SpinnerComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    SearchFilterPipe
   ],
   imports: [
+    FontAwesomeModule,
     CommonModule,
     FontAwesomeModule,
     ReactiveFormsModule,
@@ -24,10 +27,12 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     RouterModule
   ],
   exports: [
+    FontAwesomeModule,
     FooterComponent,
     HeaderComponent,
     SpinnerComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    SearchFilterPipe
   ]
 })
 export class SharedModule { }
