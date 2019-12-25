@@ -1,4 +1,45 @@
 <div class="container">
+  <app-search [entities]="entities" entityName="article"></app-search>
+  <!-- <div class="top-panel">
+    <form [formGroup]="articleSearch" class="item">
+      <input
+        clickOutside="closeDropdown()"
+        placeholder="Search for a article"
+        class="search-input"
+        id="search"
+        (keydown)="openDropdown($event)"
+        formControlName="search"
+        type="text"
+      />
+      <div
+        clickOutside
+        targetElementId="search"
+        (clickOutside)="closeDropdown()"
+      >
+        <div *ngIf="showDropdown" class="article-dropdown-container">
+          <div
+            *ngFor="let article of entities | searchFilter: getSearchValue()"
+            (click)="selectValue(article); closeDropdown()"
+            class="article"
+          >
+            {{ article.name }}
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="item">
+      <button
+        class="btn btn-outline-dark show-all-button"
+        (click)="showAll()"
+        type="submit"
+      >
+        Show all
+      </button>
+      <button class="btn btn-outline-dark filter-button" type="submit">
+        Filter
+      </button>
+    </div>
+  </div> -->
   <app-article-tile
     *ngFor="let art of entities"
     [article]="art"

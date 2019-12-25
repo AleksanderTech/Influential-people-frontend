@@ -7,7 +7,7 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 
 const routes: Routes = [
   { path: '', component: CategoryListComponent, canActivate: [AuthRedirectorService] },
-  { path: ':name', component: CategoryDetailComponent, canLoad: [AuthRedirectorService] },
+  { path: ':name/', component: CategoryDetailComponent, canLoad: [AuthRedirectorService] },
 ];
 
 @NgModule({

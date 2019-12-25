@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeroService } from '../service/hero.service';
 import { Hero } from '../model/hero';
 import { List } from 'src/app/shared/components/list/list';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { SearchComponent } from 'src/app/shared/components/search/search.component';
 
 @Component({
   selector: 'app-hero-list',
@@ -11,15 +11,13 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class HeroListComponent extends List<Hero> implements OnInit {
 
+
   private searchEntities: Hero[];
   private showEntities: boolean;
-  private searchingHero: string;
-  private showDropdown: boolean;
-  private heroSearch: FormGroup;
+  private searchValue: string;
 
-  constructor(private heroService: HeroService, private formBuilder: FormBuilder) {
+  constructor(private heroService: HeroService) {
     super();
-    this.initForm();
   }
 
   ngOnInit() {
@@ -28,50 +26,20 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     this.getHeroes(this.selectedPage, this.pageSize);
   }
 
-  initForm(): FormGroup {
-    return this.heroSearch = this.formBuilder.group({
-      search: [null]
-    })
+  onEntitySearching(searchValue: string) {
+    this.searchValue = searchValue;
+    this.showEntities = true;
+    console.log(this.searchValue);
+
   }
-  getSearchValue() {
-
-    return this.heroSearch.value.search;
-  }
-
-  selectValue(value: Hero) {
-
-    this.searchEntities = [value];
+  onEntityChoosing(chosenEntity) {
+    console.log(chosenEntity);
     this.showEntities = false;
-  }
-
-  closeDropdown() {
-    this.showDropdown = false;
-
-  }
-
-  openDropdown(event) {
-    if (event.target.value.length >= 1) {
-      this.showDropdown = true;
-      if (event.keyCode == 8) {
-
-        this.showDropdown = false;
-      }
-    }
-  }
-  goDownList() {
-    console.log('down');
-
-  }
-  goUpList() {
-    console.log('up');
+    this.searchEntities = [chosenEntity];
   }
   updatePage(page: number) {
     this.selectedPage = page;
     this.getHeroes(this.selectedPage, this.pageSize);
-  }
-
-  searchHero(name: string) {
-    this.getHero(name);
   }
 
   getHeroes(page: number, size: number) {
@@ -80,12 +48,4 @@ export class HeroListComponent extends List<Hero> implements OnInit {
       this.numberOfPages = data['totalPages'];
     });
   }
-
-  getHero(name: string) {
-    this.heroService.getHero(name).subscribe(data => {
-      this.entities = [data];
-      this.numberOfPages = 0;
-    });
-  }
-
 }

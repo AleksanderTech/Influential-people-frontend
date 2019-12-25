@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CommentListComponent } from './comment-list/comment-list.component';
   ],
   imports: [
     SharedModule,
+    ReactiveFormsModule,
     CommonModule,
     ArticleRoutingModule,
     RouterModule

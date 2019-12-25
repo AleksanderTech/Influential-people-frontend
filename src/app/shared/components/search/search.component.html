@@ -1,0 +1,36 @@
+<div class="search-section">
+  <form [formGroup]="entitySearch" class="item">
+    <input
+      clickOutside="closeDropdown()"
+      placeholder="Search for a {{ entityName }}"
+      class="search-input"
+      id="search"
+      (keyup)="openDropdown($event); emitSearchValue($event)"
+      formControlName="search"
+      type="text"
+    />
+    <div clickOutside targetElementId="search" (clickOutside)="closeDropdown()">
+      <div *ngIf="showDropdown" class="entity-dropdown-container">
+        <div
+          *ngFor="let entity of entities | searchFilter: getSearchValue()"
+          (click)="emitChosenEntity(entity); closeDropdown()"
+          class="entity"
+        >
+          {{ entity.name }}
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="item">
+    <button
+      class="btn btn-outline-dark show-all-button"
+      (click)="showAll()"
+      type="submit"
+    >
+      Show all
+    </button>
+    <button class="btn btn-outline-dark filter-button" type="submit">
+      Filter
+    </button>
+  </div>
+</div>

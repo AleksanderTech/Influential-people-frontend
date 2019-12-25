@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SearchFilterPipe } from './pipes/filter-pipe';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SearchFilterPipe } from './pipes/filter-pipe';
     HeaderComponent,
     SpinnerComponent,
     PaginatorComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    SearchComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -32,7 +34,8 @@ import { SearchFilterPipe } from './pipes/filter-pipe';
     HeaderComponent,
     SpinnerComponent,
     PaginatorComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    SearchComponent
   ]
 })
 export class SharedModule { }

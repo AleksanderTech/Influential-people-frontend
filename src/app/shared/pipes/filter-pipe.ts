@@ -3,11 +3,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'searchFilter' })
 export class SearchFilterPipe implements PipeTransform {
     transform(value: any, search: string): any {
-        if (!search || search.length < 2) { return value; }
+        if (!search) { return value; }
         let solution = value.filter(v => {
             if (!v) { return; }
 
-            return v.name.includes(search);
+            return v.name.toLowerCase().startsWith(search.toLowerCase());
         })
         return solution;
     }

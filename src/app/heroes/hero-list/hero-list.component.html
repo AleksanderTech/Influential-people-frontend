@@ -1,54 +1,19 @@
-<div class="container" (click)="closeDropdown()">
-  <div class="top-panel">
-    <form [formGroup]="heroSearch" class="item">
-      <input
-        clickOutside="closeDropdown()"
-        placeholder="Search for a Hero"
-        class="search-input"
-        id="search"
-        (keydown)="openDropdown($event)"
-        (keydown.arrowdown)="goDownList()"
-        (keydown.arrowup)="goUpList()"
-        formControlName="search"
-        (keyup.enter)="selectValue(hero); closeDropdown()"
-        type="text"
-        [(ngModel)]="searchingHero"
-      />
-      <div
-        clickOutside
-        targetElementId="search"
-        (clickOutside)="closeDropdown()"
-      >
-        <div *ngIf="showDropdown" class="hero-dropdown-container">
-          <div
-            *ngFor="let hero of entities | searchFilter: getSearchValue()"
-            (click)="selectValue(hero); closeDropdown()"
-            class="hero"
-          >
-            {{ hero.name }}
-          </div>
-        </div>
-      </div>
-    </form>
-    <div class="item">
-      <button class="btn btn-outline-dark show-all-button" type="submit">
-        Show all
-      </button>
-      <button class="btn btn-outline-dark filter-button" type="submit">
-        Filter
-      </button>
-    </div>
-  </div>
-
+<div class="container">
+  <app-search
+    [entities]="entities"
+    (entitySearching)="onEntitySearching($event)"
+    (entityChoosing)="onEntityChoosing($event)"
+    entityName="hero"
+  ></app-search>
   <div *ngIf="showEntities">
     <app-hero-tile
-      *ngFor="let hero of entities | searchFilter: getSearchValue()"
+      *ngFor="let hero of entities | searchFilter: searchValue"
       [hero]="hero"
     ></app-hero-tile>
   </div>
   <div *ngIf="!showEntities">
     <app-hero-tile
-      *ngFor="let hero of searchEntities | searchFilter: getSearchValue()"
+      *ngFor="let hero of searchEntities | searchFilter: searchValue"
       [hero]="hero"
     ></app-hero-tile>
   </div>
