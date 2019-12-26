@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../service/hero.service';
 import { Hero } from '../model/hero';
 import { List } from 'src/app/shared/components/list/list';
-import { SearchComponent } from 'src/app/shared/components/search/search.component';
 
 @Component({
   selector: 'app-hero-list',
@@ -11,7 +10,7 @@ import { SearchComponent } from 'src/app/shared/components/search/search.compone
 })
 export class HeroListComponent extends List<Hero> implements OnInit {
 
-
+  private searchingAttribute = 'name';
   private searchEntities: Hero[];
   private showEntities: boolean;
   private searchValue: string;

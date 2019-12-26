@@ -1,5 +1,6 @@
 <div class="container">
   <app-search
+    [searchingAttribute]="searchingAttribute"
     [entities]="entities"
     (entitySearching)="onEntitySearching($event)"
     (entityChoosing)="onEntityChoosing($event)"
@@ -7,13 +8,18 @@
   ></app-search>
   <div *ngIf="showEntities">
     <app-hero-tile
-      *ngFor="let hero of entities | searchFilter: searchValue"
+      *ngFor="
+        let hero of entities | searchFilter: searchValue:searchingAttribute
+      "
       [hero]="hero"
     ></app-hero-tile>
   </div>
   <div *ngIf="!showEntities">
     <app-hero-tile
-      *ngFor="let hero of searchEntities | searchFilter: searchValue"
+      *ngFor="
+        let hero of searchEntities
+          | searchFilter: searchValue:searchingAttribute
+      "
       [hero]="hero"
     ></app-hero-tile>
   </div>

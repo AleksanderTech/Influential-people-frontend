@@ -11,52 +11,31 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ArticleListComponent extends List<Article> implements OnInit {
 
+  private readonly searchingAttribute = 'title';
   private searchEntities: Article[];
   private showEntities: boolean;
-  private searchingArticle: string;
-  private showDropdown: boolean;
-  private articleSearch: FormGroup;
+  private searchValue: string;
 
   constructor(private articleService: ArticleService, private formBuilder: FormBuilder) {
     super();
-    this.initForm();
   }
 
   ngOnInit() {
     this.selectedPage = 0;
+    this.showEntities = true;
     this.getArticles(this.selectedPage, this.pageSize);
   }
-  initForm(): FormGroup {
-    return this.articleSearch = this.formBuilder.group({
-      search: [null]
-    })
+
+  onEntitySearching(searchValue: string) {
+    this.searchValue = searchValue;
+    this.showEntities = true;
   }
 
-  getSearchValue() {
-
-    return this.articleSearch.value.search;
+  onEntityChoosing(chosenEntity) {
+    this.showEntities = false;
+    this.searchEntities = [chosenEntity];
   }
 
-  selectValue(value: Article) {
-
-    this.searchEntities = [value];
-    // this.showEntities = false;
-  }
-
-  closeDropdown() {
-    this.showDropdown = false;
-
-  }
-
-  openDropdown(event) {
-    if (event.target.value.length >= 1) {
-      this.showDropdown = true;
-      if (event.keyCode == 8) {
-
-        this.showDropdown = false;
-      }
-    }
-  }
   getArticles(page: number, size: number) {
     this.articleService.getArticles(page, size).subscribe(data => {
       console.log(data);

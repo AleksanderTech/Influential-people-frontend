@@ -12,11 +12,14 @@
     <div clickOutside targetElementId="search" (clickOutside)="closeDropdown()">
       <div *ngIf="showDropdown" class="entity-dropdown-container">
         <div
-          *ngFor="let entity of entities | searchFilter: getSearchValue()"
+          *ngFor="
+            let entity of entities
+              | searchFilter: getSearchValue():searchingAttribute
+          "
           (click)="emitChosenEntity(entity); closeDropdown()"
           class="entity"
         >
-          {{ entity.name }}
+          {{ entity[searchingAttribute] }}
         </div>
       </div>
     </div>

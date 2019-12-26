@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,7 @@ export class SearchComponent implements OnInit {
 
   @Input() private entityName: string;
   @Input() private entities: any[];
+  @Input() private searchingAttribute: string;
   @Output() entitySearching: EventEmitter<string> = new EventEmitter<string>();
   @Output() entityChoosing: EventEmitter<any> = new EventEmitter<any>();
   private showDropdown: boolean;

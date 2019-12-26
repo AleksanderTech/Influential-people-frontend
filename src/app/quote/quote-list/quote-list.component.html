@@ -1,7 +1,38 @@
 <div class="container">
-  <ul class="quote-list">
-    <li class="quote-item" *ngFor="let quote of quotes">
-      <a routerLink="/quotes/{{ quote.id }}/detail">{{ quote.content }}</a>
-    </li>
-  </ul>
+  <app-search
+    (entitySearching)="onEntitySearching($event)"
+    (entityChoosing)="onEntityChoosing($event)"
+    [searchingAttribute]="searchingAttribute"
+    [entities]="entities"
+    entityName="quote"
+  ></app-search>
+  <div *ngIf="showEntities">
+    <ul class="quote-list">
+      <li
+        class="quote-item"
+        *ngFor="
+          let quote of entities | searchFilter: searchValue:searchingAttribute
+        "
+      >
+        <a routerLink="/quotes/{{ quote.id }}/detail">{{ quote.content }}</a>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="!showEntities">
+    <ul class="quote-list">
+      <li
+        class="quote-item"
+        *ngFor="
+          let quote of entities | searchFilter: searchValue:searchingAttribute
+        "
+      >
+        <a routerLink="/quotes/{{ quote.id }}/detail">{{ quote.content }}</a>
+      </li>
+    </ul>
+  </div>
+  <app-paginator
+    *ngIf="numberOfPages"
+    [numberOfPages]="numberOfPages"
+    (pageClicked)="updatePage($event)"
+  ></app-paginator>
 </div>

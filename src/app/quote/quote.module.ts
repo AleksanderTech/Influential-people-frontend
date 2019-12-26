@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { QuoteRoutingModule } from './quote-routing.module';
 import { QuoteListComponent } from './quote-list/quote-list.component';
 import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
   ],
   imports: [
     CommonModule,
-    QuoteRoutingModule
+    QuoteRoutingModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class QuoteModule { }

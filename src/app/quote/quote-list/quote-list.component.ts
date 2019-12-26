@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { List } from 'src/app/shared/components/list/list';
+import { FormBuilder } from '@angular/forms';
+import { Quote } from '../model/quote';
 import { QuoteService } from '../service/quote.service';
 
 @Component({
@@ -6,17 +9,43 @@ import { QuoteService } from '../service/quote.service';
   templateUrl: './quote-list.component.html',
   styleUrls: ['./quote-list.component.css']
 })
-export class QuoteListComponent implements OnInit {
+export class QuoteListComponent extends List<Quote> implements OnInit {
 
-  private quotes;
+  private readonly searchingAttribute = 'content';
+  private searchEntities: Quote[];
+  private showEntities: boolean;
+  private searchValue: string;
 
-  constructor(private quoteService: QuoteService) { }
+  constructor(private quoteService: QuoteService, private formBuilder: FormBuilder) {
+    super();
+  }
 
   ngOnInit() {
-    this.quoteService.getQuotes().subscribe(data => {
-      console.log(data);
+    this.selectedPage = 0;
+    this.showEntities = true;
+    this.getQuotes(this.selectedPage, this.pageSize);
+  }
 
-      this.quotes = data['content'];
+  onEntitySearching(searchValue: string) {
+    this.searchValue = searchValue;
+    this.showEntities = true;
+  }
+
+  onEntityChoosing(chosenEntity) {
+    this.showEntities = false;
+    this.searchEntities = [chosenEntity];
+  }
+
+  getQuotes(page: number, size: number) {
+    this.quoteService.getQuotes(page, size).subscribe(data => {
+      console.log(data);
+      this.entities = data['content'];
+      this.numberOfPages = data['totalPages']
     });
+  }
+
+  updatePage(page: number) {
+    this.selectedPage = page;
+    this.getQuotes(this.selectedPage, this.pageSize);
   }
 }

@@ -11,8 +11,8 @@ export class QuoteService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getQuotes(): Observable<Quote[]> {
-    return this.httpClient.get<Quote[]>(Urls.ROOT_REST_URL + Urls.QUOTE);
+  getQuotes(pageNumber: number = 0, sizeNumber: number = 10): Observable<Quote[]> {
+    return this.httpClient.get<Quote[]>(Urls.ROOT_REST_URL + Urls.QUOTE, { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
   }
 
   getQuote(name: string): Observable<Quote> {
