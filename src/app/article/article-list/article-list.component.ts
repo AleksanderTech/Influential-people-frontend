@@ -31,7 +31,7 @@ export class ArticleListComponent extends List<Article> implements OnInit {
     this.showEntities = true;
   }
 
-  onEntityChoosing(chosenEntity) {
+  onEntityChoosing(chosenEntity: any) {
     this.showEntities = false;
     this.searchEntities = [chosenEntity];
   }
