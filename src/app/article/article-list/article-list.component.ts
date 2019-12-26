@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../service/article.service';
 import { Article } from '../model/article';
 import { List } from 'src/app/shared/components/list/list';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-article-list',
@@ -16,7 +16,7 @@ export class ArticleListComponent extends List<Article> implements OnInit {
   private showEntities: boolean;
   private searchValue: string;
 
-  constructor(private articleService: ArticleService, private formBuilder: FormBuilder) {
+  constructor(private articleService: ArticleService) {
     super();
   }
 

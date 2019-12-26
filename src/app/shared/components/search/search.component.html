@@ -2,7 +2,7 @@
   <form [formGroup]="entitySearch" class="item">
     <input
       clickOutside="closeDropdown()"
-      placeholder="Search for a {{ entityName }}"
+      placeholder="Search for the {{ entityName }}"
       class="search-input"
       id="search"
       (keyup)="openDropdown($event); emitSearchValue($event)"
