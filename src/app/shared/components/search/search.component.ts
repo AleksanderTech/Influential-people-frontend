@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -57,5 +57,7 @@ export class SearchComponent implements OnInit {
     }
   }
 
-
+  showAll() {
+    this.entitySearching.emit("");
+  }
 }
