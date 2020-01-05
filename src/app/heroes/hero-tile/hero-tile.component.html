@@ -1,11 +1,11 @@
-<div class="flex-container">
-  <div class="flex-item">
-    <img src="{{ hero.avatarImageUrl }}" alt="image" />
+<a href="" routerLink="/{{ hero.name }}/detail"
+  ><div class="flex-container">
+    <div class="flex-item">
+      <img src="{{ hero.avatarImageUrl }}" alt="image" />
+    </div>
+    <div class="flex-item">
+      {{ hero.name }}
+    </div>
+    <div class="flex-item">{{ hero.score }} points</div>
   </div>
-  <div class="flex-item">
-    {{ hero.name }}
-  </div>
-  <div class="flex-item">
-    <a href="" routerLink="/{{ hero.name }}/detail">Detail</a>
-  </div>
-</div>
+</a>

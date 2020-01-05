@@ -3,7 +3,7 @@
     <a routerLink="/article/{{ article.id }}/detail">{{ article.title }}</a>
   </div>
   <div class="flex-item">
-    {{ article.createdAt }}
+    {{ article.createdAt | date: "dd/MM/yyyy" }}
   </div>
   <div class="flex-item">
     {{ article.heroName }}
