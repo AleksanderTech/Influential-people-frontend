@@ -6,6 +6,8 @@
     (entityChoosing)="onEntityChoosing($event)"
     entityName="hero"
   ></app-search>
+  <button (click)="getSortedHeroes(3, 2)">sort</button>
+  <app-sort [entities]="entities"></app-sort>
   <div *ngIf="showEntities">
     <app-hero-tile
       *ngFor="

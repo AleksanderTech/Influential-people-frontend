@@ -9,12 +9,17 @@ import { Hero } from '../model/hero';
 })
 export class HeroService {
 
+
+
   constructor(private httpClient: HttpClient) { }
 
   public getHeroes(pageNumber: number = 0, sizeNumber: number = 10): Observable<Hero[]> {
     return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO, { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
   }
 
+  public getSortedHeroes(pageNumber: number = 0, sizeNumber: number = 10): Observable<Hero[]> {
+    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?sort=desc', { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
+  }
   public getHero(heroName: string): Observable<Hero> {
     return this.httpClient.get<Hero>(Urls.ROOT_REST_URL + Urls.HERO + "/" + heroName);
   }

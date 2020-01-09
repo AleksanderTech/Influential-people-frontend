@@ -47,4 +47,10 @@ export class HeroListComponent extends List<Hero> implements OnInit {
       this.numberOfPages = data['totalPages'];
     });
   }
+  getSortedHeroes(page: number, size: number) {
+    this.heroService.getSortedHeroes(page, size).subscribe(data => {
+      this.entities = data['content'];
+      this.numberOfPages = data['totalPages'];
+    });
+  }
 }

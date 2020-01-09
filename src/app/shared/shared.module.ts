@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SearchFilterPipe } from './pipes/filter-pipe';
 import { SearchComponent } from './components/search/search.component';
+import { SortComponent } from './components/sort/sort.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SearchComponent } from './components/search/search.component';
     SpinnerComponent,
     PaginatorComponent,
     SearchFilterPipe,
-    SearchComponent
+    SearchComponent,
+    SortComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -35,7 +37,8 @@ import { SearchComponent } from './components/search/search.component';
     SpinnerComponent,
     PaginatorComponent,
     SearchFilterPipe,
-    SearchComponent
+    SearchComponent,
+    SortComponent
   ]
 })
 export class SharedModule { }

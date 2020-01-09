@@ -35,10 +35,12 @@
   outline: none;
 }
 
-.filter-button {
-  margin: 1rem;
-}
-
 .show-all-button {
   margin: 1rem;
+  float: left;
+}
+
+.sort-button {
+  margin: 1rem;
+  float: left;
 }
