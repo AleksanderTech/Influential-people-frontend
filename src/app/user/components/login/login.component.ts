@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     this.loginservice.authenticate(this.user).subscribe(
       data => {
         // this.loginservice.setAuth(new User(this.user.username));
-        this.router.navigate(["heroes"]);
+        this.router.navigate(["home"]);
 
       },
       error => {

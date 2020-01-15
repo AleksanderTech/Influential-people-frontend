@@ -40,7 +40,7 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     this.selectedPage = page;
     this.getHeroes(this.selectedPage, this.pageSize);
   }
-
+  
   getHeroes(page: number, size: number) {
     this.heroService.getHeroes(page, size).subscribe(data => {
       this.entities = data['content'];
