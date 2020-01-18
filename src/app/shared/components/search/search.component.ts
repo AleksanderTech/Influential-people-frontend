@@ -56,10 +56,4 @@ export class SearchComponent implements OnInit {
       }
     }
   }
-
-  showAll() {
-    this.entitySearching.emit("");
-  }
-
-
 }

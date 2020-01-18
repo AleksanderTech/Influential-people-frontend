@@ -7,13 +7,31 @@
       <p class="hero-item name">{{ hero.name }}</p>
     </div>
     <div>
-      <p class="hero-item score">score: {{ hero.score }}</p>
+      <p class="hero-item score">Score: {{ hero.score }}</p>
+    </div>
+    <div>
+      <p class="hero-item user-rate">Your rate: {{ hero.score }}</p>
     </div>
     <div>
       <a routerLink="/quotes" class="hero-item quotes">quotes</a>
     </div>
     <div>
       <a routerLink="/articles" class="hero-item articles">articles</a>
+    </div>
+    <div class="rate-list-title" (click)="showRateList(ol)">rate</div>
+    <div class="rate-list-div">
+      <ol #ol class="rate-list">
+        <li class="rate-list-item" #li1 (click)="rate(li1, ol)">1</li>
+        <li class="rate-list-item" #li2 (click)="rate(li2, ol)">2</li>
+        <li class="rate-list-item" #li3 (click)="rate(li3, ol)">3</li>
+        <li class="rate-list-item" #li4 (click)="rate(li4, ol)">4</li>
+        <li class="rate-list-item" #li5 (click)="rate(li5, ol)">5</li>
+        <li class="rate-list-item" #li6 (click)="rate(li6, ol)">6</li>
+        <li class="rate-list-item" #li7 (click)="rate(li7, ol)">7</li>
+        <li class="rate-list-item" #li8 (click)="rate(li8, ol)">8</li>
+        <li class="rate-list-item" #li9 (click)="rate(li9, ol)">9</li>
+        <li class="rate-list-item" #li10 (click)="rate(li10, ol)">10</li>
+      </ol>
     </div>
   </div>
 </div>

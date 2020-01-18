@@ -6,25 +6,45 @@
   margin: 5rem auto;
 }
 
-.hero-item {
-}
-
-.name {
-}
-
-.score {
-}
-
-.image {
-}
-
-.quotes {
-}
-.articles {
-}
-
 a {
   font-size: 1.5rem;
   text-decoration: underline;
   color: black;
+}
+
+.rate-button {
+  width: 100%;
+}
+
+.rate-list-div {
+  overflow: hidden;
+  width: 25%;
+}
+
+.rate-list-title {
+  width: 25%;
+  text-align: center;
+  height: 3rem;
+  border: 2px solid #a56245;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.rate-list {
+  transform:translateY(-120%);  
+  list-style-type: none;
+  transition: all 1s ease;
+}
+
+.show-list{
+  transform:translateY(0);
+}
+
+.rate-list-item {
+  margin: 0.4rem 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: 2px solid #a56245;
+  width: 100%;
+  text-align: center;
 }

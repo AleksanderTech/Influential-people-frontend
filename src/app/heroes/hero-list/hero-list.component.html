@@ -1,33 +1,48 @@
 <div class="container">
-  <app-search
-    [searchingAttribute]="searchingAttribute"
-    [entities]="entities"
-    (entitySearching)="onEntitySearching($event)"
-    (entityChoosing)="onEntityChoosing($event)"
-    entityName="hero"
-  ></app-search>
-  <button (click)="getSortedHeroes(3, 2)">sort</button>
-  <app-sort [entities]="entities"></app-sort>
-  <div *ngIf="showEntities">
-    <app-hero-tile
-      *ngFor="
-        let hero of entities | searchFilter: searchValue:searchingAttribute
-      "
-      [hero]="hero"
-    ></app-hero-tile>
+  <div>
+    <app-search
+      [searchingAttribute]="searchingAttribute"
+      [entities]="entities"
+      (entitySearching)="onEntitySearching($event)"
+      (entityChoosing)="onEntityChoosing($event)"
+      entityName="hero"
+    ></app-search>
+    <div class="buttons-group">
+      <button
+        
+        class="btn btn-outline-dark show-all-button item"
+      >
+        sort by
+      </button>
+      <button
+      
+        class="btn btn-outline-dark show-all-button item"
+      >
+        filter
+      </button>
+    </div>
+    <!-- <app-sort [entities]="entities"></app-sort> -->
+    <div *ngIf="showEntities">
+      <app-hero-tile
+        *ngFor="
+          let hero of entities | searchFilter: searchValue:searchingAttribute
+        "
+        [hero]="hero"
+      ></app-hero-tile>
+    </div>
+    <div *ngIf="!showEntities">
+      <app-hero-tile
+        *ngFor="
+          let hero of searchEntities
+            | searchFilter: searchValue:searchingAttribute
+        "
+        [hero]="hero"
+      ></app-hero-tile>
+    </div>
+    <app-paginator
+      *ngIf="numberOfPages"
+      [numberOfPages]="numberOfPages"
+      (pageClicked)="updatePage($event)"
+    ></app-paginator>
   </div>
-  <div *ngIf="!showEntities">
-    <app-hero-tile
-      *ngFor="
-        let hero of searchEntities
-          | searchFilter: searchValue:searchingAttribute
-      "
-      [hero]="hero"
-    ></app-hero-tile>
-  </div>
-  <app-paginator
-    *ngIf="numberOfPages"
-    [numberOfPages]="numberOfPages"
-    (pageClicked)="updatePage($event)"
-  ></app-paginator>
 </div>
