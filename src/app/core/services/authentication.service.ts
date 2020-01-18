@@ -1,20 +1,19 @@
 import { Injectable } from "@angular/core";
-import { map, distinctUntilChanged } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { UserLogin } from "../../shared/model/user-login";
-import { Observable, BehaviorSubject } from "rxjs";
+import { Observable } from "rxjs";
 import { Urls } from 'src/app/shared/constants/urls';
 import { UserAttributes } from 'src/app/shared/constants/user-attributes';
 import { SecurityConstants } from 'src/app/shared/constants/security-constants';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/model/user';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
 
-
+  username:string;
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   authenticate(user: UserLogin): Observable<any> {
@@ -36,12 +35,15 @@ export class AuthenticationService {
   }
 
   getUsername(): string {
+    if(this.username){
+      return this.username;
+    }
     return sessionStorage.getItem(UserAttributes.USERNAME);
   }
 
   isUserLoggedIn(): boolean {
-    let user = sessionStorage.getItem(UserAttributes.USERNAME);
-    return !(user === null);
+    let username = this.getUsername();
+    return !(username === null);
   }
 
   logOut(): void {
