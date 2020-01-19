@@ -5,6 +5,7 @@ import { Urls } from 'src/app/shared/constants/urls';
 import { Hero } from '../model/hero';
 import { Config } from 'protractor';
 import { Rate } from '../model/rate';
+import { HeroSearch } from '../model/ hero-search';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,16 @@ export class HeroService {
     return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO, { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
   }
 
-  public getSortedHeroes(pageNumber: number = 0, sizeNumber: number = 10): Observable<Hero[]> {
-    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?sort=desc', { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
+  public getSearchingHeroesList(heroSearch: HeroSearch): Observable<Hero[]> {
+    // build url based on heroSearch
+    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?paging=false&name=' + heroSearch.name);
+
+    // return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?sort=desc', { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
+  }
+
+  public getSearchingHeroesPage(pageNumber: number = 0, sizeNumber: number = 10, heroSearch: HeroSearch): Observable<Hero[]> {
+    // build url based on heroSearch
+    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?paging=true&name=' + heroSearch.name, { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
   }
 
   public getHero(heroName: string): Observable<Hero> {
@@ -30,6 +39,6 @@ export class HeroService {
   }
 
   public getUserRate(heroName: string): Observable<Rate> {
-    return this.httpClient.get<Rate>(Urls.ROOT_REST_URL + Urls.HERO + "/" + heroName+Urls.RATE+Urls.USER);
+    return this.httpClient.get<Rate>(Urls.ROOT_REST_URL + Urls.HERO + "/" + heroName + Urls.RATE + Urls.USER);
   }
 }

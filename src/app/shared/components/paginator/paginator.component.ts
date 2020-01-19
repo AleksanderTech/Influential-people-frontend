@@ -5,7 +5,11 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitte
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.css']
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent implements OnInit,OnChanges {
+
+  ngOnChanges(changes: SimpleChanges): void {
+  this.pages = new Array(this.numberOfPages);
+  }
 
   @Input() numberOfPages: number;
   @Output() pageClicked: EventEmitter<number> = new EventEmitter<number>();

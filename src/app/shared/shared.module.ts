@@ -11,6 +11,7 @@ import { SearchFilterPipe } from './pipes/filter-pipe';
 import { SearchComponent } from './components/search/search.component';
 import { SortComponent } from './components/sort/sort.component';
 import { DefaultPipe } from './pipes/default-pipe';
+import { ClickOutsideDirective } from './directives/dropdown.directive';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { DefaultPipe } from './pipes/default-pipe';
     SearchFilterPipe,
     DefaultPipe,
     SearchComponent,
-    SortComponent
+    SortComponent,
+    ClickOutsideDirective
   ],
   imports: [
     FontAwesomeModule,
@@ -41,7 +43,8 @@ import { DefaultPipe } from './pipes/default-pipe';
     SearchFilterPipe,
     DefaultPipe,
     SearchComponent,
-    SortComponent
+    SortComponent,
+    ClickOutsideDirective
   ]
 })
 export class SharedModule { }

@@ -9,6 +9,7 @@
 
 .entity-dropdown-container {
   position: absolute;
+  
   z-index: 999;
   width: 40vw;
   max-height: 20rem;
