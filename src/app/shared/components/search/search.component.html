@@ -1,6 +1,6 @@
 <div class="search-section">
   <form [formGroup]="entitySearch" class="item">
-    <input clickOutside (clickOutside)="toogleDropdown()"
+    <input 
       placeholder="Search for the {{ entityName }}"
       class="search-input"
       id="search"
@@ -18,7 +18,7 @@
               | searchFilter: getSearchValue():searchingAttribute
           "
           (click)="emitChosenEntity(entity); closeDropdown()"
-          class="entity"
+          class="entity"  [id]="'entity_'+entity.name"
         >
           {{ entity[searchingAttribute] }}
         </div>

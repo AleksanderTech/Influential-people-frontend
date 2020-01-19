@@ -9,7 +9,6 @@
 
 .entity-dropdown-container {
   position: absolute;
-  
   z-index: 999;
   width: 40vw;
   max-height: 20rem;
@@ -19,6 +18,14 @@
   overflow-y: auto;
 }
 
+.cursor-in {
+  background-color: #313131;
+  color: lightgray;
+}
+.entity:hover {
+  background-color: #313131;
+  color: lightgray;
+}
 .entity {
   padding: 1rem;
   cursor: pointer;

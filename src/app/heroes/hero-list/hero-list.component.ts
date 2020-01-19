@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeroService } from '../service/hero.service';
 import { Hero } from '../model/hero';
 import { List } from 'src/app/shared/components/list/list';
 import { HeroSearch } from '../model/ hero-search';
+import { SearchComponent } from 'src/app/shared/components/search/search.component';
 
 @Component({
   selector: 'app-hero-list',
@@ -15,7 +16,7 @@ export class HeroListComponent extends List<Hero> implements OnInit {
   private searchEntities: Hero[];
   private showEntities: boolean;
   private heroSearch:HeroSearch;
-  
+  @ViewChild('search',{static:false})search:SearchComponent;
 
   constructor(private heroService: HeroService) {
     super();
@@ -29,29 +30,26 @@ export class HeroListComponent extends List<Hero> implements OnInit {
   }
 
   onEntitySearching(searchValue: string) {
-    if(searchValue.length>0){
+    if(searchValue.length>=1){
+      this.heroSearch.name=searchValue;
       this.getSearchingHeroes(this.selectedPage, this.pageSize, this.heroSearch);
-      this.heroSearch.name = searchValue;
-      this.showEntities = true;
       return;
     }
     this.heroSearch.name = searchValue;
     this.getHeroesInit(this.selectedPage, this.pageSize);
-    
+   
   }
 
   onEntityChoosing(chosenEntity) {
-    console.log(chosenEntity);
     this.showEntities = false;
     this.searchEntities = [chosenEntity];
+    this.entities=[chosenEntity];
   }
 
   updatePage(page: number) {
     this.selectedPage = page;
     this.getHeroesInit(this.selectedPage, this.pageSize);
   }
-
-  
 
   getHeroesInit(page: number, size: number) {
     this.heroService.getHeroes(page, size).subscribe(data => {
@@ -63,19 +61,21 @@ export class HeroListComponent extends List<Hero> implements OnInit {
   getSearchingHeroes(page: number, size: number, heroSearch: HeroSearch) { 
     if (heroSearch.paging === true) {
       this.heroService.getSearchingHeroesPage(page, size, heroSearch).subscribe(data => {
-        // this.entities = data['content'];
+        this.entities = data['content'];
         this.numberOfPages = data['totalPages'];
-        console.log(data);
-        this.entities = data;
+        this.showEntities = true;
       });
       return;
-    }
+    }else
     this.heroService.getSearchingHeroesList(heroSearch).subscribe(data => {
-      // this.entities = data['content'];
-     
-      console.log(data);
-      this.entities = data;
-      this.numberOfPages = 1;
+      if(data.length>0){
+        this.entities = data;
+        this.numberOfPages = 1;
+        this.showEntities = true;
+      }else{
+        this.search.closeDropdown();
+        this.showEntities=false;
+      }
     });
   }
 }

@@ -43,8 +43,6 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.getUserRate(heroName)
       .subscribe(data => {
         this.userRate = data.rate;
-        console.log(data);
-        
       });
   }
 

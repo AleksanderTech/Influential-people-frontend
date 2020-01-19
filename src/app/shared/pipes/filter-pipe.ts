@@ -6,8 +6,6 @@ export class SearchFilterPipe implements PipeTransform {
         if (!search) { return value; }
         let solution = value.filter(v => {
             if (!v) { return; }
-            console.log(name);
-
             return v[name].toLowerCase().startsWith(search.toLowerCase());
         })
         return solution;

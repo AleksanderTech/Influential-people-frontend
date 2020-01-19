@@ -13,8 +13,6 @@ export class HeroTileComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.hero);
-
   }
 
 }

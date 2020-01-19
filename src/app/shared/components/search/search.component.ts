@@ -15,8 +15,8 @@ export class SearchComponent implements OnInit {
   @Output() entityChoosing: EventEmitter<any> = new EventEmitter<any>();
   private showDropdown: boolean;
   private entitySearch: FormGroup;
-  private searchingValue;
-
+  private searchingValue: string;
+  
   constructor(private formBuilder: FormBuilder) {
     this.initForm();
   }
@@ -24,24 +24,22 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.showDropdown = false;
   }
-
+ 
   initForm(): FormGroup {
-
     return this.entitySearch = this.formBuilder.group({
       search: [null]
     })
   }
 
   emitSearchValue(event: any) {
-
+    if (event.target.value.length < 1) {
+      this.showDropdown = false;
+    }
     this.entitySearching.emit(event.target.value);
   }
 
-  
-
   emitChosenEntity(entity: any) {
     this.searchingValue = entity.name;
-
     this.entityChoosing.emit(entity);
   }
 
@@ -49,21 +47,16 @@ export class SearchComponent implements OnInit {
     return this.entitySearch.value.search;
   }
 
-  toogleDropdown() {
-    this.showDropdown = !this.showDropdown;
-  }
-
   closeDropdown() {
     this.showDropdown = false;
   }
 
   openDropdown(event: any) {
-
     if (event.target.value.length >= 1) {
       this.showDropdown = true;
-      if (event.keyCode == 8) {
-        this.showDropdown = false;
-      }
+    }
+    if (this.entities.length < 1) {
+      this.showDropdown = false;
     }
   }
 }
