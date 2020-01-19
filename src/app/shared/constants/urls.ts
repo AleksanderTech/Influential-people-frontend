@@ -10,5 +10,6 @@ export class Urls {
     static readonly IMAGE: string = '/image';
     static readonly COMMENT: string = '/comment';
     static readonly CATEGORY: string = '/category';
-    static readonly RATE: string = '/score';
+    static readonly RATE: string = '/rate';
+    static readonly USER: string = '/user';
 }

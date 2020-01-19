@@ -1,6 +1,4 @@
-export class Rate {
-
-    constructor(public points: number, public heroName: string) {
+export class Rate{
+    constructor(public rate:number,public heroName:string){
     }
-
 }

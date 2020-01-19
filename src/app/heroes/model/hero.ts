@@ -3,12 +3,12 @@ export class Hero {
     name: string;
     profileImageUrl: string;
     categories: string[];
-    score: number;
+    rate: number;
 
-    constructor(name?: string, profileImageUrl?: string, categories?: string[], score?: number) {
+    constructor(name?: string, profileImageUrl?: string, categories?: string[], rate?: number) {
         this.name = name;
         this.profileImageUrl = profileImageUrl;
         this.categories = categories;
-        this.score = score;
+        this.rate=rate;
     }
 }

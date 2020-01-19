@@ -7,10 +7,10 @@
       <p class="hero-item name">{{ hero.name }}</p>
     </div>
     <div>
-      <p class="hero-item score">Score: {{ hero.score }}</p>
+      <p class="hero-item">Score: {{ hero.rate }}</p>
     </div>
     <div>
-      <p class="hero-item user-rate">Your rate: {{ hero.score }}</p>
+      <p class="hero-item user-rate">Your rate: {{ userRate | default:'not yet rated' }}</p>
     </div>
     <div>
       <a routerLink="/quotes" class="hero-item quotes">quotes</a>

@@ -13,13 +13,16 @@ export class HeroDetailComponent implements OnInit {
 
   hero: Hero;
   isOpened: boolean;
+  userRate: number;
   constructor(private heroService: HeroService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.isOpened = false;
     this.heroService.getHero(this.route.snapshot.paramMap.get('name')).subscribe(data => {
       this.hero = data;
+      this.getUserRate(data.name);
     });
+   
   }
 
   showRateList(list: HTMLElement) {
@@ -36,12 +39,23 @@ export class HeroDetailComponent implements OnInit {
     this.isOpened = false;
   }
 
+  getUserRate(heroName:string) {
+    this.heroService.getUserRate(heroName)
+      .subscribe(data => {
+        this.userRate = data.rate;
+        console.log(data);
+        
+      });
+  }
+
+
   rate(listElement: HTMLElement, list: HTMLElement) {
     let rateValue = listElement.innerText;
-    this.heroService.rateHero(new Rate(Number(rateValue), this.hero.name))
+    this.heroService.rateHero(new Rate(+rateValue, this.hero.name))
       .subscribe(data => {
         this.heroService.getHero(this.hero.name).subscribe(hero => {
           this.hero = hero;
+          this.getUserRate(hero.name);
         });
       });
     this.closeRateList(list);

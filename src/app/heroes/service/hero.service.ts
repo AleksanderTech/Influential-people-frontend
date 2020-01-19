@@ -3,16 +3,13 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Urls } from 'src/app/shared/constants/urls';
 import { Hero } from '../model/hero';
-import { Rate } from '../model/rate';
-import { catchError } from 'rxjs/operators';
 import { Config } from 'protractor';
+import { Rate } from '../model/rate';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
-
-
 
   constructor(private httpClient: HttpClient) { }
 
@@ -29,6 +26,10 @@ export class HeroService {
   }
 
   public rateHero(rate: Rate): Observable<HttpResponse<Config>> {
-    return this.httpClient.put<Config>(Urls.ROOT_REST_URL + Urls.HERO + Urls.RATE, rate,{ observe: 'response' });
+    return this.httpClient.put<Config>(Urls.ROOT_REST_URL + Urls.HERO + "/" + rate.heroName + Urls.RATE, rate, { observe: 'response' });
+  }
+
+  public getUserRate(heroName: string): Observable<Rate> {
+    return this.httpClient.get<Rate>(Urls.ROOT_REST_URL + Urls.HERO + "/" + heroName+Urls.RATE+Urls.USER);
   }
 }

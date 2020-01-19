@@ -10,6 +10,7 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SearchFilterPipe } from './pipes/filter-pipe';
 import { SearchComponent } from './components/search/search.component';
 import { SortComponent } from './components/sort/sort.component';
+import { DefaultPipe } from './pipes/default-pipe';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { SortComponent } from './components/sort/sort.component';
     SpinnerComponent,
     PaginatorComponent,
     SearchFilterPipe,
+    DefaultPipe,
     SearchComponent,
     SortComponent
   ],
@@ -37,6 +39,7 @@ import { SortComponent } from './components/sort/sort.component';
     SpinnerComponent,
     PaginatorComponent,
     SearchFilterPipe,
+    DefaultPipe,
     SearchComponent,
     SortComponent
   ]
