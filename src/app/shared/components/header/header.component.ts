@@ -10,14 +10,15 @@ import { User } from '../../model/user';
 export class HeaderComponent implements OnInit {
 
   private isNavDisplayed: boolean = false;
-  private currentUsername: string;
 
   constructor(private loginService: AuthenticationService) { }
 
   ngOnInit() {
-    this.currentUsername = this.loginService.getUsername();
   }
-
+  
+  currentUsername() {
+    return this.loginService.getUsername();
+  }
   showNavbar() {
     this.isNavDisplayed = true;
   }

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  username:string;
+  username: string;
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   authenticate(user: UserLogin): Observable<any> {
@@ -35,7 +35,7 @@ export class AuthenticationService {
   }
 
   getUsername(): string {
-    if(this.username){
+    if (this.username && this.username != '') {
       return this.username;
     }
     return sessionStorage.getItem(UserAttributes.USERNAME);

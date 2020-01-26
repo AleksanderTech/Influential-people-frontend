@@ -11,7 +11,8 @@ a {
   text-decoration: underline;
   color: black;
 }
-hr {
-  border: 1.2px solid black;
-  width: 50%;
-}
+
+
+.app-comments-section{
+  width:90%;
+} 

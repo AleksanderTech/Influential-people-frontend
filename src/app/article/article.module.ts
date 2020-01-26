@@ -8,8 +8,8 @@ import { ArticleTileComponent } from './article-tile/article-tile.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CommentComponent } from './comment/comment.component';
-import { CommentListComponent } from './comment-list/comment-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommentsSectionComponent } from './comments-section/comments-section.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ArticleListComponent,
     ArticleTileComponent,
     CommentComponent,
-    CommentListComponent
+    CommentsSectionComponent
   ],
   imports: [
     SharedModule,

@@ -31,7 +31,7 @@
           <span class="user-item"><a routerLink="/sign-up">sign up</a></span>
         </div>
         <div *ngIf="loginService.isUserLoggedIn()" class="flex-item">
-          <a routerLink="/user"> {{ currentUsername }}</a>
+          <a routerLink="/user"> {{ currentUsername() }}</a>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
         <li><a routerLink="/articles" class="navbar-link">Articles</a></li>
         <li><a routerLink="/categories" class="navbar-link">Categories</a></li>
         <li>
-          <a routerLink="/user" class="navbar-link"> {{ currentUsername }}</a>
+          <a routerLink="/user" class="navbar-link"> {{ currentUsername() }}</a>
         </li>
       </ul>
       <ul *ngIf="!loginService.isUserLoggedIn()" class="navbar-items">

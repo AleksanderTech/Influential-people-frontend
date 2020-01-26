@@ -7,17 +7,11 @@
       <p class="article-item hero-name">hero: {{ article.heroName }}</p>
     </div>
     <div>
-      <p class="article-item created-at">{{ article.created_at }}</p>
+      <p class="article-item created-at">{{ article.createdAt }}</p>
     </div>
     <div>
       <p class="article-item text">{{ article.text }}</p>
     </div>
-    <hr />
-    <h2>Comments</h2>
-    <div>
-      Add comment<textarea #comment></textarea
-      ><button (click)="addComment(comment.value)">add</button>
-    </div>
-    <app-comment-list [article]="article"></app-comment-list>
+    <app-comments-section class ="app-comments-section" [article]="article"></app-comments-section>
   </div>
 </div>

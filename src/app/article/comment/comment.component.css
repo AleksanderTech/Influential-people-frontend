@@ -1,4 +1,4 @@
-.comment {
+/* .comment {
   display: flex;
   justify-content: space-between;
 }
@@ -7,4 +7,56 @@
 }
 .delete {
   height: 2.5rem;
+} */
+
+/* -------COMMENT------------ */
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  width: 100%;
 }
+/* -------left-panel------------ */
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.comment-left-panel {
+  margin: 1rem;
+}
+
+/* -------left-panel------------ */
+
+/* -------right-panel------------ */
+
+.comment-right-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.username-right-panel {
+  font-weight: thin;
+  font-size: 0.8rem;
+}
+
+.timestamp-right-panel {
+  font-weight: thin;
+  font-size: 0.8rem;
+}
+.content-right-panel {
+  font-weight: bold;
+}
+
+/* -------right-panel------------ */
+
+/* -------COMMENT------------ */

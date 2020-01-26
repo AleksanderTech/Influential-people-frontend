@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../service/article.service';
 import { Article } from '../model/article';
 import { List } from 'src/app/shared/components/list/list';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-article-list',
@@ -38,7 +37,6 @@ export class ArticleListComponent extends List<Article> implements OnInit {
 
   getArticles(page: number, size: number) {
     this.articleService.getArticles(page, size).subscribe(data => {
-      console.log(data);
       this.entities = data['content'];
       this.numberOfPages = data['totalPages']
     });
