@@ -20,6 +20,13 @@ export class HeroService {
 
   public getSearchingHeroesList(heroSearch: HeroSearch): Observable<Hero[]> {
     // build url based on heroSearch
+    if (heroSearch.sort && heroSearch.sort != '') {
+      if (heroSearch.sort === 'asc') {
+        return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?sort=asc');
+      } else if (heroSearch.sort === 'desc') {
+        return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?sort=desc');
+      }
+    }
     return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?paging=false&name=' + heroSearch.name);
 
     // return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?sort=desc', { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });

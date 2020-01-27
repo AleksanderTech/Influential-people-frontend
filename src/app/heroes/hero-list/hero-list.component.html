@@ -8,18 +8,27 @@
       entityName="hero"
     ></app-search>
     <div class="buttons-group">
-      <button
-        
-        class="btn btn-outline-dark show-all-button item"
-      >
-        sort by
-      </button>
-      <button
-      
-        class="btn btn-outline-dark show-all-button item"
-      >
-        filter
-      </button>
+      <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          sort
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="searchSortHeroes('desc')">highest rank</a>
+          <a class="dropdown-item" (click)="searchSortHeroes('asc')">lowest rank</a>
+        </div>
+      </div>&nbsp;
+      <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          filter
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Politicians</a>
+          <a class="dropdown-item" href="#">Scientists</a>
+          <a class="dropdown-item" href="#">Tyrans</a>
+          <a class="dropdown-item" href="#">Explorers</a>
+          <a class="dropdown-item" href="#">Artists</a>
+        </div>
+      </div>
     </div>
     <!-- <app-sort [entities]="entities"></app-sort> -->
     <div *ngIf="showEntities">

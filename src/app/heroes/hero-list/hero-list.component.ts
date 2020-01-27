@@ -15,8 +15,8 @@ export class HeroListComponent extends List<Hero> implements OnInit {
   private searchingAttribute = 'name';
   private searchEntities: Hero[];
   private showEntities: boolean;
-  private heroSearch:HeroSearch;
-  @ViewChild('search',{static:false})search:SearchComponent;
+  private heroSearch: HeroSearch;
+  @ViewChild('search', { static: false }) search: SearchComponent;
 
   constructor(private heroService: HeroService) {
     super();
@@ -29,21 +29,33 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     this.getHeroesInit(this.selectedPage, this.pageSize);
   }
 
+  searchSortHeroes(type:string){
+    console.log(type);
+    
+    if(type==='asc'){
+      this.heroSearch.sort=type;
+      this.getSearchingHeroes(this.selectedPage, this.pageSize, this.heroSearch);
+    }else if(type==='desc'){
+      this.heroSearch.sort=type;
+      this.getSearchingHeroes(this.selectedPage, this.pageSize, this.heroSearch);
+    }
+  }
+
   onEntitySearching(searchValue: string) {
-    if(searchValue.length>=1){
-      this.heroSearch.name=searchValue;
+    if (searchValue.length >= 1) {
+      this.heroSearch.name = searchValue;
       this.getSearchingHeroes(this.selectedPage, this.pageSize, this.heroSearch);
       return;
     }
     this.heroSearch.name = searchValue;
     this.getHeroesInit(this.selectedPage, this.pageSize);
-   
+
   }
 
   onEntityChoosing(chosenEntity) {
     this.showEntities = false;
     this.searchEntities = [chosenEntity];
-    this.entities=[chosenEntity];
+    this.entities = [chosenEntity];
   }
 
   updatePage(page: number) {
@@ -58,7 +70,7 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     });
   }
 
-  getSearchingHeroes(page: number, size: number, heroSearch: HeroSearch) { 
+  getSearchingHeroes(page: number, size: number, heroSearch: HeroSearch) {
     if (heroSearch.paging === true) {
       this.heroService.getSearchingHeroesPage(page, size, heroSearch).subscribe(data => {
         this.entities = data['content'];
@@ -66,16 +78,16 @@ export class HeroListComponent extends List<Hero> implements OnInit {
         this.showEntities = true;
       });
       return;
-    }else
-    this.heroService.getSearchingHeroesList(heroSearch).subscribe(data => {
-      if(data.length>0){
-        this.entities = data;
-        this.numberOfPages = 1;
-        this.showEntities = true;
-      }else{
-        this.search.closeDropdown();
-        this.showEntities=false;
-      }
-    });
+    } else
+      this.heroService.getSearchingHeroesList(heroSearch).subscribe(data => {
+        if (data.length > 0) {
+          this.entities = data;
+          this.numberOfPages = 1;
+          this.showEntities = true;
+        } else {
+          this.search.closeDropdown();
+          this.showEntities = false;
+        }
+      });
   }
 }
