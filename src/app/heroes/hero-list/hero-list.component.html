@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container" >
   <div>
-    <app-search #search
+    <app-search
+      #search
       [searchingAttribute]="searchingAttribute"
       [entities]="entities"
       (entitySearching)="onEntitySearching($event)"
@@ -9,24 +10,50 @@
     ></app-search>
     <div class="buttons-group">
       <div class="dropdown">
-        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button
+          class="btn btn-dark dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           sort
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" (click)="searchSortHeroes('desc')">highest rank</a>
-          <a class="dropdown-item" (click)="searchSortHeroes('asc')">lowest rank</a>
+          <a class="dropdown-item" (click)="searchSortHeroes('none')" 
+          [ngClass]="{'dropdown-item-selected':  SORT_NONE === selectedSort }">none</a>
+          <a class="dropdown-item" (click)="searchSortHeroes('desc')"
+          [ngClass]="{'dropdown-item-selected':  SORT_DESC === selectedSort }"
+            >highest rank</a
+          >
+          <a class="dropdown-item" (click)="searchSortHeroes('asc')" 
+          [ngClass]="{'dropdown-item-selected':  SORT_ASC === selectedSort }"
+            >lowest rank</a
+          >
         </div>
-      </div>&nbsp;
+      </div>
+      &nbsp;
       <div class="dropdown">
-        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button
+          class="btn btn-dark dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+       
+        >
           filter
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Politicians</a>
-          <a class="dropdown-item" href="#">Scientists</a>
-          <a class="dropdown-item" href="#">Tyrans</a>
-          <a class="dropdown-item" href="#">Explorers</a>
-          <a class="dropdown-item" href="#">Artists</a>
+        <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
+          <a
+            *ngFor="let category of categories"
+            class="dropdown-item"
+            (click)="filter(category.name)"
+            [ngClass]="{'dropdown-item-selected':  category.name === selectedFilter }"
+            >{{ category.name }}</a
+          >
         </div>
       </div>
     </div>

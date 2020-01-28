@@ -7,6 +7,7 @@ import { HeroesRoutingModule } from './heroes-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { HeroTileComponent } from './hero-tile/hero-tile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CategoryModule } from '../category/category.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     HeroesRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    CategoryModule
   ]
 })
 export class HeroesModule { }

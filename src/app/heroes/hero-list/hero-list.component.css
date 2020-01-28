@@ -1,9 +1,21 @@
-.buttons-group{
-    display: flex;
-    margin:1rem 0;
-    justify-content: center;
+.buttons-group {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: center;
 }
 
-.item{
-    margin:0 1rem;
+.item {
+  margin: 0 1rem;
+}
+.dropdown-item:hover {
+  color: black;
+  cursor: pointer;
+}
+.dropdown-item:active {
+    background-color: black
+  }
+.dropdown-item-selected{
+    background-color: black;
+    color: white !important;
+    
 }

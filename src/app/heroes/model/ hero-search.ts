@@ -11,4 +11,11 @@ export class HeroSearch {
         this.paging = paging;
         this.sort = sort;
     }
+
+    reset() {
+        this.name = null;
+        this.categories = null;
+        this.paging = null;
+        this.sort = null;
+    }
 }
