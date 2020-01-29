@@ -21,14 +21,14 @@
           sort
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" (click)="searchSortHeroes('none')" 
-          [ngClass]="{'dropdown-item-selected':  SORT_NONE === selectedSort }">none</a>
-          <a class="dropdown-item" (click)="searchSortHeroes('desc')"
-          [ngClass]="{'dropdown-item-selected':  SORT_DESC === selectedSort }"
+          <a class="dropdown-item" (click)="sort('none')" 
+          [ngClass]="{'dropdown-item-selected':  'none' === selectedSort }">none</a>
+          <a class="dropdown-item" (click)="sort('desc')"
+          [ngClass]="{'dropdown-item-selected':  'desc' === selectedSort }"
             >highest rank</a
           >
-          <a class="dropdown-item" (click)="searchSortHeroes('asc')" 
-          [ngClass]="{'dropdown-item-selected':  SORT_ASC === selectedSort }"
+          <a class="dropdown-item" (click)="sort('asc')" 
+          [ngClass]="{'dropdown-item-selected':  'asc' === selectedSort }"
             >lowest rank</a
           >
         </div>
@@ -48,6 +48,12 @@
         </button>
         <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
           <a
+          class="dropdown-item"
+          (click)="filter('none')"
+          [ngClass]="{'dropdown-item-selected':  'none' === selectedFilter }"
+          >none</a
+        >
+          <a
             *ngFor="let category of categories"
             class="dropdown-item"
             (click)="filter(category.name)"
@@ -57,7 +63,6 @@
         </div>
       </div>
     </div>
-    <!-- <app-sort [entities]="entities"></app-sort> -->
     <div *ngIf="showEntities">
       <app-hero-tile
         *ngFor="
