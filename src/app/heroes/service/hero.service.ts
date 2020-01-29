@@ -18,31 +18,11 @@ export class HeroService {
     return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO, { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
   }
 
-  public getSearchingHeroesList(heroSearch: HeroSearch): Observable<Hero[]> {
-    // build url based on heroSearch
-    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?paging=false&name=' + heroSearch.name);
-
-    // return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?sort=desc', { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
-  }
-
-  public getSearchingHeroesPage(pageNumber: number = 0, sizeNumber: number = 10, heroSearch: HeroSearch): Observable<Hero[]> {
-    // build url based on heroSearch
-    console.log('he');
-    if (heroSearch.sort && heroSearch.sort != '') {
-      if (heroSearch.sort === 'asc') {
-        return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + `/search-filter?sort=asc&page=${pageNumber}&size=${sizeNumber}`);
-      } else if (heroSearch.sort === 'desc') {
-        console.log(Urls.ROOT_REST_URL + Urls.HERO + `/search-filter?sort=desc&page=${pageNumber}&size=${sizeNumber}`);
-        
-        return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + `/search-filter?sort=desc&page=${pageNumber}&size=${sizeNumber}`);
-      }
-    }else{
-      console.log('he');
-      
-      return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + `/search-filter?category=${heroSearch.categories[0]}`);
-    }
-    
-    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + '/search-filter?paging=true&name=' + heroSearch.name, { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
+  public getSpecificHeroes(page: number = 0, size: number = 10, heroSearch: HeroSearch): Observable<Hero[]> {
+    let url = Urls.ROOT_REST_URL + Urls.HERO + Urls.SEARCH_SORT_FILTER;
+    url = url + heroSearch.toQuery();
+    url = url + '&page=' + page + '&size=' + size;
+    return this.httpClient.get<Hero[]>(url);
   }
 
   public getHero(heroName: string): Observable<Hero> {
