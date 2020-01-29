@@ -1,5 +1,5 @@
 .link {
-  color: rgb(145, 82, 39);
+  color: rgb(145, 82, 39) !important;
   margin: 0 1rem;
   text-decoration: none;
   cursor: pointer;
@@ -21,4 +21,9 @@ i {
 
 .left {
   transform: rotate(135deg);
+}
+
+.current-page{
+  color: black !important;
+  font-weight: bold;
 }

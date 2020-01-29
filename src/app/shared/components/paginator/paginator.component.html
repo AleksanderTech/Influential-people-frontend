@@ -3,10 +3,10 @@
     <a (click)="previous()" class="link"><i class="left"></i></a>
   </li>
   <li *ngFor="let page of pages; index as i" class="page">
-    <a class="link" (click)="pageClick(i)">{{ i + 1 }}</a>
+    <a [ngClass]="{'current-page':  i === currentPage }" class="link"  (click)="pageClick(i)">{{ i + 1 }}</a>
   </li>
 
   <li class="page" *ngIf="currentPage + 1 < numberOfPages">
-    <a (click)="next()" class="link"><i class="right"></i></a>
+    <a   (click)="next()" class="link"><i class="right"></i></a>
   </li>
 </ul>
