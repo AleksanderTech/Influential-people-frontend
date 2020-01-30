@@ -1,6 +1,5 @@
 .quote-list {
-  display: flex;
-  flex-direction: column;
+  margin-top: 2rem;
   list-style-type: none;
 }
 a {
@@ -12,4 +11,29 @@ a {
   border: 2px solid #a56245;
   padding: 1rem;
   margin: 1rem;
+}
+
+.buttons-group {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.item {
+  margin: 0 1rem;
+}
+
+.dropdown-item:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.dropdown-item:active {
+    background-color: black
+  }
+  
+.dropdown-item-selected{
+    background-color: black;
+    color: white !important;
+    
 }

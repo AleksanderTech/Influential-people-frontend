@@ -76,8 +76,8 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     });
   }
 
-  getHeroes(page: number, size: number) {
-    this.heroService.getHeroes(page, size).subscribe(data => {
+  getHeroes() {
+    this.heroService.getHeroes().subscribe(data => {
       this.entities = data['content'];
       this.numberOfPages = data['totalPages'];
     });

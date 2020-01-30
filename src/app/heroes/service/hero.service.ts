@@ -14,8 +14,8 @@ export class HeroService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getHeroes(pageNumber: number = 0, sizeNumber: number = 10): Observable<Hero[]> {
-    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO, { params: { page: pageNumber.toString(), size: sizeNumber.toString() } });
+  public getHeroes(): Observable<Hero[]> {
+    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + Urls.SEARCH_SORT_FILTER + '?paging=false');
   }
 
   public getSpecificHeroes(page: number = 0, size: number = 10, heroSearch: HeroSearch): Observable<Hero[]> {

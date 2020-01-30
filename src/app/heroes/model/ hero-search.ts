@@ -15,13 +15,6 @@ export class HeroSearch {
         this.sort = sort;
     }
 
-    reset() {
-        this.name = null;
-        this.categories = null;
-        this.paging = null;
-        this.sort = null;
-    }
-
     resetSort() {
         this.sort = null;
     }
