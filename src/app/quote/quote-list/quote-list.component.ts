@@ -88,7 +88,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
   }
 
-  onEntityChoosing(chosenEntity) {
+  onEntityChoosing(chosenEntity:Quote) {
     this.showEntities = false;
     this.searchEntities = [chosenEntity];
     this.entities = [chosenEntity];

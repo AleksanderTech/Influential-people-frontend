@@ -12,7 +12,7 @@ export class QuoteService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getSpecificQuotes(page: number = 0, size: number = 10, quoteSearch:QuoteSearch): Observable<Quote[]> {
+   getSpecificQuotes(page: number = 0, size: number = 10, quoteSearch:QuoteSearch): Observable<Quote[]> {
     let url = Urls.ROOT_REST_URL + Urls.QUOTE + Urls.SEARCH_SORT_FILTER;
     url = url + quoteSearch.toQuery();
     url = url + '&page=' + page + '&size=' + size;

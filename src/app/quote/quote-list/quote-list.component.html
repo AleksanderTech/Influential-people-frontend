@@ -23,12 +23,12 @@
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a class="dropdown-item" (click)="sort('none')" 
       [ngClass]="{'dropdown-item-selected':  'none' === selectedSort }">none</a>
-      <a class="dropdown-item" (click)="sort('alph-asc')"
-      [ngClass]="{'dropdown-item-selected':  'alph-asc' === selectedSort }"
+      <a class="dropdown-item" (click)="sort('asc')"
+      [ngClass]="{'dropdown-item-selected':  'asc' === selectedSort }"
         >alphabetical</a
       >
-      <a class="dropdown-item" (click)="sort('alph-desc')" 
-      [ngClass]="{'dropdown-item-selected':  'alph-desc' === selectedSort }"
+      <a class="dropdown-item" (click)="sort('desc')" 
+      [ngClass]="{'dropdown-item-selected':  'desc' === selectedSort }"
         >reverse</a
       >
     </div>

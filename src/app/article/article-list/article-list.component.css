@@ -5,9 +5,25 @@
   list-style-type: none;
 }
 
-.entity {
+.buttons-group {
+  display: flex;
+  margin: 1rem 0;
+  justify-content: center;
 }
 
+
+.dropdown-item:hover {
+  color: black;
+  cursor: pointer;
+}
+.dropdown-item:active {
+    background-color: black
+  }
+.dropdown-item-selected{
+    background-color: black;
+    color: white !important;
+    
+}
 a {
   text-decoration: none;
   color: black;

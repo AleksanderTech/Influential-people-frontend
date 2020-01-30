@@ -19,10 +19,6 @@ a {
   justify-content: center;
 }
 
-.item {
-  margin: 0 1rem;
-}
-
 .dropdown-item:hover {
   color: black;
   cursor: pointer;

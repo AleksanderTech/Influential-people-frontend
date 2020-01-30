@@ -6,6 +6,64 @@
     [entities]="entities"
     entityName="article"
   ></app-search>
+
+   <!--  -->
+<div class="buttons-group">
+  <div class="dropdown">
+    <button
+      class="btn btn-dark dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      sort
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" (click)="sort('none')" 
+      [ngClass]="{'dropdown-item-selected':  'none' === selectedSort }">none</a>
+      <a class="dropdown-item" (click)="sort('desc')"
+      [ngClass]="{'dropdown-item-selected':  'desc' === selectedSort }"
+        >newest</a
+      >
+      <a class="dropdown-item" (click)="sort('asc')" 
+      [ngClass]="{'dropdown-item-selected':  'asc' === selectedSort }"
+        >oldest</a
+      >
+    </div>
+  </div>
+  &nbsp;
+  <div class="dropdown">
+    <button
+      class="btn btn-dark dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      filter
+    </button>
+    <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton">
+      <a
+      class="dropdown-item"
+      (click)="filter('none')"
+      [ngClass]="{'dropdown-item-selected':  'none' === selectedFilter }"
+      >none</a
+    >
+      <a
+        *ngFor="let hero of heroes"
+        class="dropdown-item"
+        (click)="filter(hero.name)"
+        [ngClass]="{'dropdown-item-selected':  hero.name === selectedFilter }"
+        >{{ hero.name }}</a
+      >
+    </div>
+  </div>
+</div>
+<!--  -->
+
   <div *ngIf="showEntities">
     <app-article-tile
       *ngFor="

@@ -1,12 +1,12 @@
-export class QuoteSearch {
+export class ArticleSearch {
 
     heroes: string[];
-    content: string;
+    title: string;
     paging: boolean;
     sort: string;
 
-    readonly SORT_ALPH_ASC: string = 'asc';
-    readonly SORT_ALPH_DESC: string = 'desc';
+    readonly SORT_NEWEST: string = 'desc';
+    readonly SORT_OLDEST: string = 'asc';
 
     constructor(heroes?: string[], paging?: boolean, sort?: string) {
         this.heroes = heroes;
@@ -27,20 +27,19 @@ export class QuoteSearch {
                 query = query + 'paging=' + 'false&';
             }
         } if (this.sort) {
-            if (this.sort === this.SORT_ALPH_ASC) {
-                query = query +'sort=asc&';
-            } else if (this.sort === this.SORT_ALPH_DESC) {
-                query = query +'sort=desc&';
+            if (this.sort === this.SORT_NEWEST) {
+                query = query +'sort='+this.SORT_NEWEST +'&';
+            } else if (this.sort === this.SORT_OLDEST) {
+                query = query +'sort='+this.SORT_OLDEST +'&';
             }
-        } if (this.content) {
-            query = query + 'content=' + this.content + '&';
+        } if (this.title) {
+            query = query + 'title=' + this.title + '&';
             if (query.includes('paging')) {
                 query = query.replace('paging=true', 'paging=false');
             } else {
                 query = query + 'paging=' + 'false&';
             }
         } if (this.heroes) {
-
             if (this.heroes[0] !== 'none') {
                 for (let i = 0; i < this.heroes.length; i++) {
                     query = query + 'hero=' + this.heroes[i] + '&';
