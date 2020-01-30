@@ -9,10 +9,10 @@
 
 .entity-dropdown-container {
   position: absolute;
-  z-index: 999;
+  z-index: 990;
   width: 40vw;
+  margin: 0 auto;
   max-height: 20rem;
-  left: 29.9%;
   background-color: #fafafae5;
   border-bottom: 2px solid #a56245;
   overflow-y: auto;
