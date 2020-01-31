@@ -11,7 +11,10 @@ import { HeroSearch } from '../model/ hero-search';
   providedIn: 'root'
 })
 export class HeroService {
-
+ 
+  public getTopHeroes(categoryName:string): Observable<Hero[]> {
+    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + Urls.SEARCH_SORT_FILTER + `?category=${categoryName}&sort=desc&paging=false`);
+  }
   constructor(private httpClient: HttpClient) { }
 
   public getHeroes(): Observable<Hero[]> {

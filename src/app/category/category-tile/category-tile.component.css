@@ -1,0 +1,23 @@
+.tile {
+  margin: 0.5rem;
+  border: 1px solid black;
+  width: 18rem;
+  opacity: 0.9;
+}
+.tile:hover {
+    opacity: 1;
+}
+
+.category-info {
+  margin: 1rem 1rem;
+  text-align: center;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: brown;
+}
+a:hover {
+  color: chocolate;
+}

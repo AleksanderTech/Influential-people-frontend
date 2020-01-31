@@ -61,3 +61,11 @@ a {
 .show-all-button {
   margin: 1rem;
 }
+
+.scrollable{
+    height: auto;
+    max-height: 50vh;
+    overflow-x: hidden;
+    
+}
+

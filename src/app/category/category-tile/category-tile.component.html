@@ -1,18 +1,17 @@
-<div class="tile" style="width: 18rem;">
+<div class="tile">
   <a
     routerLink="/categories/{{ category.name }}"
     [queryParams]="{ category: category }"
   >
-    <img
-      class="tile-img"
-      src="../../../assets/images/{{ category.name }}.png"
-      alt="image"
-    />
-    <div class="tile-body">
-      <p class="tile-body">
-        {{ category.name }} - simple category descriptive description in few
-        words
-      </p>
+    <div class = "category-tile">
+      <img
+        class="category-image"
+        src="../../../assets/images/{{ categoryImageName }}.png"
+        alt="image"
+      />
+      <div class="category-info">
+          {{ category.name }}
+      </div>
     </div>
   </a>
 </div>

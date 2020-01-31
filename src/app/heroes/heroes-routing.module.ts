@@ -7,6 +7,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 
 const heroesRoutes: Routes = [
     { path: '', component: HeroListComponent, canActivate: [AuthRedirectorService] },
+    { path: ':categoryName', component: HeroListComponent, canActivate: [AuthRedirectorService] },
     { path: ':name/detail', component: HeroDetailComponent, canActivate: [AuthRedirectorService] },
 
 ];

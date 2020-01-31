@@ -1,12 +1,50 @@
-<div *ngIf="category">
-  <img
-    style="width:50vw"
-    src="../../../assets/images/{{ category.name }}.png"
-    alt=""
-  /><br />
-  <p>{{ category.description }}</p>
+<div *ngIf="category" class="container">
+  <!--  -->
+  <div class="top-item">
+    <img
+      class="top-item-image"
+      src="../../../assets/images/{{ categoryImageName }}.png"
+    />
+    <div *ngIf="topHeroes" class="top-10">
+      <h3>Top 10 {{ category.name }}</h3>
+      <br />
+      <div *ngIf="topHeroes.length > 0">
+        <div class="top-hero" *ngFor="let hero of topHeroes; let i = index">
+          <a href="" *ngIf="i < 10">{{ hero.name }} - {{ hero.rate }} points</a>
+        </div>
+      </div>
+      <div *ngIf="topHeroes.length < 1">
+        <span style="color:red; font-weight: bold;">
+          There is no any hero in this category yet</span
+        >
+      </div>
+    </div>
+  </div>
   <br />
-  <a routerLink=""> {{ category.name }} articles</a><br />
-  <a routerLink=""> {{ category.name }} heroes</a><br />
-  <a routerLink=""> {{ category.name }} quotes</a>
+  <div class="category-item">
+    <h3>Category - {{ category.name }}</h3>
+  </div>
+  <div class="category-item quote">
+    <h4>
+      <fa-icon [icon]="faQuoteLeft"></fa-icon>&nbsp;{{ descriptionQuote }}
+    </h4>
+    <span *ngIf="category.description.includes('author-')">{{
+      descriptionAuthor
+    }}</span>
+  </div>
+  <br />
+  <!-- <div class="category-item">
+    <a routerLink=""> {{ category.name }} articles</a><br />
+  </div> -->
+  <div class="category-item">
+    <a routerLink="/heroes/{{category.name}}"> {{ category.name }} heroes</a><br />
+  </div>
+  <!-- <div class="category-item">
+    <a routerLink=""> {{ category.name }} quotes</a>
+  </div> -->
+  <br>
+  <br>
+  <br>
+  <br>
+  <!--  -->
 </div>

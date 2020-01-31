@@ -1,10 +1,11 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../service/hero.service';
 import { Hero } from '../model/hero';
 import { List } from 'src/app/shared/components/list/list';
 import { HeroSearch } from '../model/ hero-search';
 import { CategoryService } from 'src/app/category/service/category.service';
 import { Category } from 'src/app/category/model/category';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-hero-list',
@@ -22,7 +23,9 @@ export class HeroListComponent extends List<Hero> implements OnInit {
   private selectedFilter: string;
   private selectedSort: string;
 
-  constructor(private heroService: HeroService, private categoryService: CategoryService) {
+  private pathVariableCategory: string;
+
+  constructor(private heroService: HeroService, private categoryService: CategoryService, private route: ActivatedRoute) {
     super();
   }
 
@@ -30,10 +33,15 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     this.selectedPage = 0;
     this.showEntities = true;
     this.heroSearch = new HeroSearch();
-    this.heroSearch.paging=true;
+    this.heroSearch.paging = true;
     this.selectedSort = 'none';
     this.selectedFilter = 'none';
-    this.getSpecificHeroes(this.selectedPage, this.pageSize,this.heroSearch);
+    this.pathVariableCategory = this.route.snapshot.paramMap.get('categoryName');
+    if (this.pathVariableCategory) {
+      this.heroSearch.categories = [this.pathVariableCategory];
+      this.selectedFilter = this.pathVariableCategory;
+    }
+    this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
     this.getCategories();
   }
 
@@ -56,13 +64,13 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     this.heroSearch.categories = [categoryName];
     this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
   }
-  
+
   getSpecificHeroes(page: number, size: number, heroSearch: HeroSearch) {
     this.heroService.getSpecificHeroes(page, size, heroSearch).subscribe(data => {
-      if(data['pageable']){
+      if (data['pageable']) {
         this.entities = data['content'];
         this.numberOfPages = data['totalPages'];
-      }else{
+      } else {
         this.entities = data;
         this.numberOfPages = 1;
       }
@@ -84,8 +92,8 @@ export class HeroListComponent extends List<Hero> implements OnInit {
   }
 
   onEntitySearching(searchValue: string) {
-      this.heroSearch.name = searchValue;
-      this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
+    this.heroSearch.name = searchValue;
+    this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
   }
 
   onEntityChoosing(chosenEntity: Hero) {
@@ -96,6 +104,6 @@ export class HeroListComponent extends List<Hero> implements OnInit {
 
   updatePage(page: number) {
     this.selectedPage = page;
-      this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
+    this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
   }
 }

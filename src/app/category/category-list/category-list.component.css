@@ -5,3 +5,6 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.category-item{
+  align-self: center;
+}

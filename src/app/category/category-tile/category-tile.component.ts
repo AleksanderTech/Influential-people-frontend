@@ -9,12 +9,13 @@ import { Category } from '../model/category';
 export class CategoryTileComponent implements OnInit {
 
   @Input() category: Category;
+  categoryImageName:string;
+  
+
   constructor() { }
 
   ngOnInit() {
-
-
-
+    this.categoryImageName = this.category.name.split(' ').join('_');
   }
 
 }

@@ -1,0 +1,35 @@
+.container{
+    box-sizing: border-box;
+    margin:0 auto;
+    width: 60vw;
+    display:flex;
+    flex-direction: column;
+}
+/* ----------top-item---------- */
+.top-item{
+    margin-top:2rem;
+    display: flex;
+}   
+.top-10{
+    text-align: center;
+    width: 55%;
+}
+.top-item-image{
+    width: 45%;
+}
+.top-hero{
+    padding-left: 25%;
+    font-size: 1.2rem;
+    margin:0.4rem 0;
+    font-weight: bold;
+    text-align: start;
+}
+/* ----------top-item---------- */
+
+.category-item{
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin:0.4rem 0;
+    text-align: center;
+}
+
