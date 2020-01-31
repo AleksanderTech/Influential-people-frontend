@@ -11,8 +11,9 @@ img {
 
 a{
   text-decoration: none;
-  color:brown;
+  color:black;
 }
 a:hover{
+  text-decoration: none;
   color:#a56245;
 }

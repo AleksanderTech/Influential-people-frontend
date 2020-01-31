@@ -1,4 +1,5 @@
 .flex-container {
+  font-weight: bold;
   margin: 2rem auto;
   border: 2px solid #a56245;
   display: flex;
@@ -6,11 +7,10 @@
   justify-content: space-between;
 }
 
-img {
-  height: 4rem;
-  width: 4rem;
+.flex-container:hover {
+  background-color: #fbfbfb;
 }
 
 .flex-item {
-  margin: 1.2rem;
+  margin: 1.5rem;
 }

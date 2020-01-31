@@ -16,8 +16,8 @@
 a {
   font-weight: bold;
   text-decoration: none;
-  color: brown;
+  color: #a56245;
 }
 a:hover {
-  color: chocolate;
+  color: brown;
 }

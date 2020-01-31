@@ -1,16 +1,33 @@
 .quote-list {
   margin-top: 2rem;
   list-style-type: none;
+  font-weight: bold;
 }
+
+.router-link{
+  display: block;
+  padding: 1.5rem;
+  height: 100%;
+  width: 100%;
+}
+
+.router-link:hover{
+  color:#a56245;
+}
+
 a {
   text-decoration: none;
   color: black;
 }
+
 .quote-item {
+  margin: 1.5rem;
   text-align: center;
   border: 2px solid #a56245;
-  padding: 1rem;
-  margin: 1rem;
+}
+
+.quote-item:hover{
+  background-color: #fbfbfb;
 }
 
 .buttons-group {

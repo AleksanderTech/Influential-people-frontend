@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-weight: bold;
 }
 
 img {
@@ -13,4 +14,8 @@ img {
 
 .flex-item {
   margin: 1.2rem;
+}
+
+.flex-container:hover{
+    background-color: #fbfbfb;
 }
