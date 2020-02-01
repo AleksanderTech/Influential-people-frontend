@@ -5,6 +5,12 @@
     display:flex;
     flex-direction: column;
 }
+a{
+    color:#a56245;
+}
+a:hover{
+    color:chocolate;
+}
 /* ----------top-item---------- */
 .top-item{
     margin-top:2rem;

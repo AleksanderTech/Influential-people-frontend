@@ -1,11 +1,11 @@
 <div class="banner flex-container">
   <div class="circle flex-item">
-    <img class="profile-image" src="{{ profileImageUrl }}" alt="Avatar" />
+    <img class="profile-image" src="https://image.shutterstock.com/mosaic_250/1462748/766777333/stock-photo-galileo-galilei-portrait-on-italy-lira-banknote-closeup-macro-genius-italian-scientist-766777333.jpg" alt="Avatar" />
   </div>
-
-  <button class="btn btn-outline-dark btn-sm" type="button">
+  <label class="file-upload">
+    <input type="file" (change)="uploadFile($event)"/>
     Change image
-  </button>
+  </label>
 </div>
 <div>
   <div>username</div>
