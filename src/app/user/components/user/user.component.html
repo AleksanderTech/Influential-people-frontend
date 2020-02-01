@@ -1,4 +1,4 @@
-<div class="banner flex-container">
+<div *ngIf= "currentUser" class="banner flex-container">
   <div class="circle flex-item">
     <img
       class="profile-image"
@@ -19,18 +19,23 @@
     />
   </span>
 </div>
+<br>
 <!--  -->
-<div class="user-panel">
+<div *ngIf= "currentUser" class="user-panel">
   <div class="top-panel">
-    <div>username</div>
-    <div>roles</div>
-    <div>email</div>
-    <div>password</div>change password<input type="password" #password [ngModel]="newPassword"><button class="btn btn-dark"
-     (click)="changePassword(password.value)">change</button>
-    <div>actions</div>
+    <div>username: {{currentUser.username}}</div>
+    <div>roles: {{currentUser.roles}}</div>
+    <div>email: {{currentUser.email}}<input type="password" #password [ngModel]="newPassword"><button class="btn btn-dark"
+      (click)="changePassword(password.value)">change</button></div>
+    <div>password<input type="password" #password [ngModel]="newPassword"><button class="btn btn-dark"
+      (click)="changePassword(password.value)">change</button></div>
+    <!-- <div>actions</div> -->
   </div>
   <hr>
-  <div class="bottom-panel">
-    <div>favourites</div>
+  <div class="bottom-panel">favourites
+
+    <div>Heroes</div>
+    <div>Quotes</div>
+    <div>Articles</div>
   </div>
 </div>

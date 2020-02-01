@@ -3,6 +3,10 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../../service/user.service';
 import { UserPassword } from '../../model/user-password';
+import { User } from 'src/app/shared/model/user';
+import { Article } from 'src/app/article/model/article';
+import { Hero } from 'src/app/heroes/model/hero';
+import { Quote } from '@angular/compiler';
 
 @Component({
   selector: 'app-user',
@@ -13,10 +17,43 @@ export class UserComponent implements OnInit {
 
   img: File;
   newPassword: string;
+  currentUser: User;
+
+  favouritesHeroes: Hero[];
+  favouritesArticles: Article[];
+  favouritesQuotes: Quote[];
 
   constructor(private authService: AuthenticationService, private httpClient: HttpClient, private userService: UserService) { }
 
   ngOnInit() {
+    this.getUser(this.authService.getUsername());
+    this.getFavouritesHeroes();
+    this.getFavouritesArticles();
+    this.getFavouritesQuotes();
+  }
+
+  getFavouritesArticles() {
+    this.userService.getFavouritesArticles().subscribe(entities => {
+      this.favouritesArticles = entities;
+      console.log(this.favouritesArticles);
+      
+    });
+  }
+
+  getFavouritesQuotes() {
+    this.userService.getFavouritesQuotes().subscribe(entities => {
+      this.favouritesQuotes = entities;
+      console.log(this.favouritesQuotes);
+      
+    });
+  }
+
+  getFavouritesHeroes() {
+    this.userService.getFavouritesHeroes().subscribe(entities => {
+      this.favouritesHeroes = entities;
+      console.log(this.favouritesHeroes);
+      
+    });
   }
 
   uploadFile(event: Event) {
@@ -43,11 +80,17 @@ export class UserComponent implements OnInit {
 
   changePassword(newPassword: any) {
     this.userService.changePassword(new UserPassword(newPassword)).subscribe(data => {
-      if(data.status===200){
+      if (data.status === 200) {
         alert('Password changed successfully')
       }
     }, error => {
       alert('Error occured')
+    });
+  }
+
+  getUser(username: string) {
+    this.userService.getUser(username).subscribe(user => {
+      this.currentUser = user;
     });
   }
 }
