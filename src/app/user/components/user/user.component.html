@@ -1,16 +1,36 @@
 <div class="banner flex-container">
   <div class="circle flex-item">
-    <img class="profile-image" src="https://image.shutterstock.com/mosaic_250/1462748/766777333/stock-photo-galileo-galilei-portrait-on-italy-lira-banknote-closeup-macro-genius-italian-scientist-766777333.jpg" alt="Avatar" />
+    <img
+      class="profile-image"
+      src="https://image.shutterstock.com/mosaic_250/1462748/766777333/stock-photo-galileo-galilei-portrait-on-italy-lira-banknote-closeup-macro-genius-italian-scientist-766777333.jpg"
+      alt="Avatar"
+    />
   </div>
-  <label class="file-upload">
-    <input type="file" (change)="uploadFile($event)"/>
-    Change image
-  </label>
+  <span>
+    <label class="btn btn-outline-light banner-button">
+      <input type="file" (change)="uploadFile($event)"/>
+      change image
+    </label>
+    <input
+      class="btn btn-outline-light banner-button"
+      value="sign out"
+      type="button"
+      (click)="logout()"
+    />
+  </span>
 </div>
-<div>
-  <div>username</div>
-  <div>email</div>
-  <div>change password</div>
-  <div>favourites</div>
-  <button (click)="logout()">logout</button>
+<!--  -->
+<div class="user-panel">
+  <div class="top-panel">
+    <div>username</div>
+    <div>roles</div>
+    <div>email</div>
+    <div>password</div>change password<input type="password" #password [ngModel]="newPassword"><button class="btn btn-dark"
+     (click)="changePassword(password.value)">change</button>
+    <div>actions</div>
+  </div>
+  <hr>
+  <div class="bottom-panel">
+    <div>favourites</div>
+  </div>
 </div>

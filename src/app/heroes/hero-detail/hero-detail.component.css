@@ -12,8 +12,11 @@
 
 a {
   font-size: 1.5rem;
-  text-decoration: underline;
-  color: black;
+  color: #a56245;
+}
+
+a:hover{
+  color:chocolate;
 }
 
 .rate-button {
@@ -51,8 +54,4 @@ a {
   border: 2px solid #a56245;
   width: 100%;
   text-align: center;
-}
-.hero-item{
-  font-weight: bold;
-  font-size: 1.4rem;
 }

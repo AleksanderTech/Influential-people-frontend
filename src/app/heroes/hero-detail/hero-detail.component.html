@@ -1,10 +1,11 @@
 <div>
   <div *ngIf="hero" class="hero-detail">
     <div class="hero-item-image">
-      <img src="{{ hero.avatarImageUrl }}" alt="hero image" />
+      <img src="{{ hero.avatarImageUrl }}" alt=""/>
     </div>
     <div>
-      <p class="hero-item name">{{ hero.name }}</p>
+      <h3>{{ hero.name }}</h3>
+      <br>
     </div>
     <div>
       <p class="hero-item">Score: {{ hero.rate }}</p>

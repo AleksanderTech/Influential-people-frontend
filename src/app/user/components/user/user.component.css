@@ -35,15 +35,27 @@ input[type="file"] {
   display: none;
 }
 
-.file-upload {
-  outline: 2px solid white;
-  outline-offset: 4px;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  background-color: white;
+.banner-button {
+  width:132px;
+  margin: 0 10px;
 }
 
-.file-upload:hover{
- color: #414141;
+.banner-button:hover{
+ cursor: pointer;
 }
+/* ----------user-panel---------- */
+
+.user-panel{
+  margin:0 auto;
+  width: 55%;
+}
+
+.top-panel{
+text-align: center;
+}
+
+.bottom-panel{
+text-align: center;
+}
+
+/* ----------user-panel---------- */

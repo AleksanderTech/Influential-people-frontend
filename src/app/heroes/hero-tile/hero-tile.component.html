@@ -1,11 +1,11 @@
-<a href="" routerLink="/hero/{{ hero.name }}/detail"
+<a routerLink="/hero/{{ hero.name }}/detail"
   ><div class="flex-container">
-    <div class="flex-item">
-      <img src="{{ hero.avatarImageUrl }}" alt="image" />
+    <div class="flex-item image">
+      <img src="{{ hero.avatarImageUrl }}" alt="" />
     </div>
-    <div class="flex-item">
+    <div class="flex-item name">
       {{ hero.name }}
     </div>
-    <div class="flex-item">{{ hero.rate }} points</div>
+    <div class="flex-item rate">{{ hero.rate }} points</div>
   </div>
 </a>

@@ -7,8 +7,8 @@ import { AuthRedirectorService } from '../core/services/auth-redirector.service'
 
 const routes: Routes = [
   { path: '', component: ArticleListComponent, canActivate: [AuthRedirectorService] },
-  { path: 'article/:heroName', component: ArticleListComponent, canActivate: [AuthRedirectorService] },
-  { path: 'article/:id/detail', component: ArticleDetailComponent, canActivate: [AuthRedirectorService] },
+  { path: 'article/:heroName/', component: ArticleListComponent, canActivate: [AuthRedirectorService] },
+  { path: 'article/:id/detail/', component: ArticleDetailComponent, canActivate: [AuthRedirectorService] },
 ];
 
 @NgModule({

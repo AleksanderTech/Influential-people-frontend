@@ -8,7 +8,7 @@ import { Hero } from '../model/hero';
 })
 export class HeroTileComponent implements OnInit {
 
-  @Input() hero: Hero;
+  @Input('hero') hero: Hero;
 
   constructor() { }
 

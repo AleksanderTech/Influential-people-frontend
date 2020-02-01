@@ -8,14 +8,27 @@
 }
 
 img {
-  height: 4rem;
-  width: 4rem;
+  height: 100%;
+  width: 100%;
 }
 
-.flex-item {
-  margin: 1.2rem;
+.image{
+  margin:0.5rem;
+  max-width: 5rem;
+}
+
+.flex-item {  
+  height: 5rem;
 }
 
 .flex-container:hover{
     background-color: #fbfbfb;
+}
+
+.name{
+  padding:2rem;
+}
+
+.rate{
+  padding:2rem;
 }
