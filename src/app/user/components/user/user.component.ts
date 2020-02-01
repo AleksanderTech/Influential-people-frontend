@@ -20,7 +20,6 @@ export class UserComponent implements OnInit {
   }
 
   uploadFile(event: Event) {
-    console.log(event.target['files']);
     let file = event.target['files'][0];
     if (file.length === 0)
       return;

@@ -15,7 +15,7 @@
 .navbar-center {
   min-height: 3.8rem;
   max-height: 3.8rem;
-  z-index: 999;
+  z-index: 998;
   font-size: 1.2rem;
   left: 0;
   top: 0;
@@ -172,7 +172,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 999;
   padding-top: 1rem;
   padding-left: 2rem;
   color: white;
@@ -261,78 +261,3 @@
   margin: 0 0.5rem;
 }
 
-/* small-screen-navbar*/
-
-/* ul {
-  list-style-type: none;
-}
-
-.navigation {
-  text-align: center;
-  background-color: #500606;
-}
-
-h1.logo {
-  font-size: 2rem;
-  font-weight: 400;
-  color: #f0e2c5;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 10px;
-  word-spacing: 7px;
-  margin-top: 100px;
-  margin-bottom: 80px;
-}
-.menu-list {
-  list-style-type: none;
-  list-style-position: inside;
-  display: inline-block;
-  padding: 0px;
-  background-color: #500606;
-  height: 20px;
-}
-.menu-list > li {
-  float: left;
-
-  padding-left: 28px;
-  padding-right: 28px;
-  letter-spacing: 4px;
-}
-
-.menu-list a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-}
-
-.menu-list a:hover {
-  color: #000000;
-}
-
-#account-item > ul {
-  list-style-type: none;
-  display: none;
-  margin: 0px;
-  padding: 0px;
-}
-
-#account-item > ul > li {
-  list-style-type: none;
-  margin: 0px;
-  padding: 7px 3px 3px 3px;
-  position: relative;
-  z-index: 100;
-  background-color: #500606;
-}
-
-#account-item:hover > ul > li {
-  cursor: pointer;
-}
-
-#account-item > ul > li:hover {
-  color: #000000;
-}
-
-#account-item:hover > ul {
-  display: block;
-} */
