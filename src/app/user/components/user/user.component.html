@@ -32,10 +32,19 @@
     <!-- <div>actions</div> -->
   </div>
   <hr>
-  <div class="bottom-panel">favourites
+  <div class="bottom-panel">
 
-    <div>Heroes</div>
-    <div>Quotes</div>
-    <div>Articles</div>
+    <div class="favourite">Heroes
+      <br><br>
+      <div *ngFor="let hero of favouriteHeroes" class ="margin"><a routerLink="/hero/{{hero.name}}/detail">{{hero.name}}</a></div>
+    </div>
+    <div class="favourite">Quotes
+      <br><br>
+      <div *ngFor="let quote of favouriteQuotes" class ="margin"><a routerLink="/quote/{{quote.id}}/detail">{{quote.content | truncate:[20]}}</a></div>
+    </div>
+    <div class="favourite">Articles
+      <br><br>
+      <div *ngFor="let article of favouriteArticles" class ="margin"><a routerLink="/article/{{article.id}}/detail">{{article.title | truncate:[20]}}</a></div>
+    </div>
   </div>
 </div>

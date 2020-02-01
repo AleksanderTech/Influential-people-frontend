@@ -5,6 +5,20 @@
   align-items: center;
 }
 
+.margin{
+  margin: 0.4rem;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #a56245;
+}
+
+a:hover {
+  color: brown;
+}
+
 .banner {
   padding-top: 1rem;
   width: 100%;
@@ -36,26 +50,39 @@ input[type="file"] {
 }
 
 .banner-button {
-  width:132px;
+  width: 132px;
   margin: 0 10px;
 }
 
-.banner-button:hover{
- cursor: pointer;
+.banner-button:hover {
+  cursor: pointer;
 }
 /* ----------user-panel---------- */
 
-.user-panel{
-  margin:0 auto;
+.user-panel {
+  margin: 0 auto;
   width: 55%;
 }
 
-.top-panel{
-text-align: center;
+.top-panel {
+  text-align: center;
 }
 
-.bottom-panel{
-text-align: center;
+/* ----------bottom-panel---------- */
+
+.bottom-panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
+
+.favourite {
+  margin:1rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+/* ----------bottom-panel---------- */
 
 /* ----------user-panel---------- */

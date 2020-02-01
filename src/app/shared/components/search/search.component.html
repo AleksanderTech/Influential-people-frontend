@@ -20,7 +20,7 @@
           (click)="emitChosenEntity(entity); closeDropdown()"
           class="entity"  [id]="'entity_'+entity.name"
         >
-          {{ entity[searchingAttribute] }}
+          {{ entity[searchingAttribute] | truncate:[40] }}
         </div>
       </div>
     </div>

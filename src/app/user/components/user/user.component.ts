@@ -19,9 +19,9 @@ export class UserComponent implements OnInit {
   newPassword: string;
   currentUser: User;
 
-  favouritesHeroes: Hero[];
-  favouritesArticles: Article[];
-  favouritesQuotes: Quote[];
+  favouriteHeroes: Hero[];
+  favouriteArticles: Article[];
+  favouriteQuotes: Quote[];
 
   constructor(private authService: AuthenticationService, private httpClient: HttpClient, private userService: UserService) { }
 
@@ -34,24 +34,24 @@ export class UserComponent implements OnInit {
 
   getFavouritesArticles() {
     this.userService.getFavouritesArticles().subscribe(entities => {
-      this.favouritesArticles = entities;
-      console.log(this.favouritesArticles);
+      this.favouriteArticles = entities['content'];
+      console.log(this.favouriteArticles);
       
     });
   }
 
   getFavouritesQuotes() {
     this.userService.getFavouritesQuotes().subscribe(entities => {
-      this.favouritesQuotes = entities;
-      console.log(this.favouritesQuotes);
+      this.favouriteQuotes = entities['content'];
+      console.log(this.favouriteQuotes);
       
     });
   }
 
   getFavouritesHeroes() {
     this.userService.getFavouritesHeroes().subscribe(entities => {
-      this.favouritesHeroes = entities;
-      console.log(this.favouritesHeroes);
+      this.favouriteHeroes = entities['content'];
+      console.log(this.favouriteHeroes);
       
     });
   }
