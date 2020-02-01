@@ -10,7 +10,7 @@
       <br />
       <div *ngIf="topHeroes.length > 0">
         <div class="top-hero" *ngFor="let hero of topHeroes; let i = index">
-          <a href="" *ngIf="i < 10">{{ hero.name }} - {{ hero.rate }} points</a>
+          <a routerLink="/{{hero.name}}/detail" *ngIf="i < 10">{{ hero.name }} - {{ hero.rate }} points</a>
         </div>
       </div>
       <div *ngIf="topHeroes.length < 1">
