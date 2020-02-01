@@ -14,11 +14,11 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { CategoryModule } from './category/category.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     WelcomeComponent,
   ],
   imports: [
@@ -32,6 +32,7 @@ import { CategoryModule } from './category/category.module';
     ArticleModule,
     CategoryModule,
     CoreModule,
+    HomeModule,
     SharedModule,
     UserModule
   ],

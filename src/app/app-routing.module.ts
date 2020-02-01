@@ -7,24 +7,28 @@ const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: '', redirectTo: '', pathMatch: 'full' },
   {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule)
+  },
+  {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(mod => mod.UserModule)
   },
   {
-    path: 'heroes',
+    path: 'hero',
     loadChildren: () => import('./heroes/heroes.module').then(mod => mod.HeroesModule),
     canLoad: [AuthRedirectorService]
   },
   {
-    path: 'articles',
+    path: 'article',
     loadChildren: () => import('./article/article.module').then(mod => mod.ArticleModule)
   },
   {
-    path: 'quotes',
+    path: 'quote',
     loadChildren: () => import('./quote/quote.module').then(mod => mod.QuoteModule)
   },
   {
-    path: 'categories',
+    path: 'category',
     loadChildren: () => import('./category/category.module').then(mod => mod.CategoryModule)
   }
 ];

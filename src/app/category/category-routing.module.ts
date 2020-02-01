@@ -8,7 +8,8 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 const routes: Routes = [
 
   { path: '', component: CategoryListComponent, canActivate: [AuthRedirectorService] },
-  { path: 'categories/:name', component: CategoryDetailComponent, canActivate: [AuthRedirectorService] },
+  { path: 'category/:name', component: CategoryDetailComponent, canActivate: [AuthRedirectorService] },
+
 ];
 
 @NgModule({

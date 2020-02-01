@@ -13,11 +13,11 @@
       <p class="hero-item user-rate">Your rate: {{ userRate | default:'not yet rated' }}</p>
     </div>
     <div>
-      <a routerLink="/quotes/{{hero.name}}" class="hero-item quotes">quotes</a>
+      <a routerLink="/quote/{{hero.name}}" class="hero-item quotes">quotes</a>
     </div>
     <br>
     <div>
-      <a routerLink="/articles/{{hero.name}}" class="hero-item articles">articles</a>
+      <a routerLink="/article/{{hero.name}}" class="hero-item articles">articles</a>
     </div>
     <br>
     <div class="rate-list-title" (click)="showRateList(ol)">rate</div>

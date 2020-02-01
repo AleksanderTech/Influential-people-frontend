@@ -20,10 +20,10 @@
         </a>
       </div>
       <div *ngIf="loginService.isUserLoggedIn()" class="navbar-links flex-item">
-        <a routerLink="/heroes">Heroes</a>
-        <a routerLink="/quotes">Quotes</a>
-        <a routerLink="/articles">Articles</a>
-        <a routerLink="/categories">Categories</a>
+        <a routerLink="hero">Heroes</a>
+        <a routerLink="quote">Quotes</a>
+        <a routerLink="article">Articles</a>
+        <a routerLink="category">Categories</a>
       </div>
       <div class="flex-item account">
         <div *ngIf="!loginService.isUserLoggedIn()">
@@ -54,10 +54,10 @@
         class="navbar-items"
         (click)="closeNavbar()"
       >
-        <li><a routerLink="/heroes" class="navbar-link">Heroes</a></li>
-        <li><a routerLink="/quotes" class="navbar-link">Quotes</a></li>
-        <li><a routerLink="/articles" class="navbar-link">Articles</a></li>
-        <li><a routerLink="/categories" class="navbar-link">Categories</a></li>
+        <li><a routerLink="/hero" class="navbar-link">Heroes</a></li>
+        <li><a routerLink="/quote" class="navbar-link">Quotes</a></li>
+        <li><a routerLink="/article" class="navbar-link">Articles</a></li>
+        <li><a routerLink="/category" class="navbar-link">Categories</a></li>
         <li>
           <a routerLink="/user" class="navbar-link"> {{ currentUsername() }}</a>
         </li>
