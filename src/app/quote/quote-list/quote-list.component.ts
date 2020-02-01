@@ -5,6 +5,7 @@ import { QuoteService } from '../service/quote.service';
 import { QuoteSearch } from '../model/quote-search';
 import { HeroService } from 'src/app/heroes/service/hero.service';
 import { Hero } from 'src/app/heroes/model/hero';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-quote-list',
@@ -22,7 +23,9 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
   private selectedFilter: string;
   private selectedSort: string;
 
-  constructor(private quoteService: QuoteService, private heroService: HeroService) {
+  private pathVariableHero: string;
+
+  constructor(private quoteService: QuoteService, private heroService: HeroService,private route:ActivatedRoute) {
     super();
   }
 
@@ -33,6 +36,11 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.quoteSearch.paging = true;
     this.selectedSort = 'none';
     this.selectedFilter = 'none';
+    this.pathVariableHero = this.route.snapshot.paramMap.get('heroName');
+    if (this.pathVariableHero) {
+      this.quoteSearch.heroes = [this.pathVariableHero];
+      this.selectedFilter = this.pathVariableHero;
+    }
     this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
     this.getHeroes();
   }

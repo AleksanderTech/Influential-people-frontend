@@ -1,17 +1,28 @@
 <div>
   <div *ngIf="article" class="article-detail">
     <div>
-      <p class="article-item title">{{ article.title }}</p>
+      <h2>{{ article.heroName }}</h2>
+      <br />
     </div>
     <div>
-      <p class="article-item hero-name">hero: {{ article.heroName }}</p>
+      <h4>Title: {{ article.title }}</h4>
+    </div>
+
+    <div>
+      <p class="article-item created-at">
+        {{ article.createdAt | date: "medium" }}
+      </p>
+      <br>
     </div>
     <div>
-      <p class="article-item created-at">{{ article.createdAt }}</p>
+      <p class="article-item text">{{ article.text }}
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempora quos? Eligendi amet, accusantium error aliquid quam quaerat modi accusamus ipsum soluta obcaecati exercitationem a est tempora illo, quisquam necessitatibus ullam explicabo nam? Suscipit, iste natus, aspernatur maiores id minus recusandae fuga sint iure inventore quidem, at odio perspiciatis quam ullam laboriosam! Officiis quos iure qui vel nesciunt aliquam, quas ratione cumque recusandae, minus, officia beatae autem? Tenetur ipsa excepturi, officia mollitia repellendus illum! Id ab facere nesciunt iste cumque dolore ratione incidunt earum tenetur et labore consequuntur, at, enim blanditiis totam? Maiores, ducimus quasi nemo saepe tempore voluptas perferendis labore sequi! Aliquid voluptas facere tempore quod, quam rerum at cupiditate, voluptates esse beatae libero provident culpa voluptatibus tempora eligendi quaerat consectetur facilis quidem nulla incidunt hic laborum dignissimos? Optio, quisquam minus nisi adipisci eum placeat! Maxime quis sapiente itaque. Voluptatem iusto quaerat porro praesentium libero laborum unde, obcaecati nesciunt, ea quisquam sapiente ullam aperiam dolor facere delectus dolorum, minima sunt amet itaque. Rem libero beatae reiciendis nesciunt modi iure pariatur reprehenderit velit aliquam, laborum ullam aperiam harum ratione quas quod, distinctio laboriosam odit quia aut sequi. Nulla eveniet, doloremque, iure consequuntur itaque distinctio et nostrum non earum, qui cum?
+      </p>
+      <br />
     </div>
-    <div>
-      <p class="article-item text">{{ article.text }}</p>
-    </div>
-    <app-comments-section class ="app-comments-section" [article]="article"></app-comments-section>
+    <app-comments-section
+      class="app-comments-section"
+      [article]="article"
+    ></app-comments-section>
   </div>
 </div>

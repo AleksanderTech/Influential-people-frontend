@@ -5,6 +5,7 @@ import { List } from 'src/app/shared/components/list/list';
 import { ArticleSearch } from '../model/article-search';
 import { Hero } from 'src/app/heroes/model/hero';
 import { HeroService } from 'src/app/heroes/service/hero.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-article-list',
@@ -21,8 +22,9 @@ export class ArticleListComponent extends List<Article> implements OnInit {
   private articleSearch: ArticleSearch;
   private selectedFilter: string;
   private selectedSort: string;
+  private pathVariableHero: string;
 
-  constructor(private articleService: ArticleService, private heroService: HeroService) {
+  constructor(private articleService: ArticleService, private heroService: HeroService, private route: ActivatedRoute) {
     super();
   }
 
@@ -33,6 +35,11 @@ export class ArticleListComponent extends List<Article> implements OnInit {
     this.articleSearch.paging = true;
     this.selectedSort = 'none';
     this.selectedFilter = 'none';
+    this.pathVariableHero = this.route.snapshot.paramMap.get('heroName');
+    if (this.pathVariableHero) {
+      this.articleSearch.heroes = [this.pathVariableHero];
+      this.selectedFilter = this.pathVariableHero;
+    }
     this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
     this.getHeroes();
   }
