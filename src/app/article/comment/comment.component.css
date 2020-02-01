@@ -41,7 +41,7 @@
 .comment-right-panel {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
 }
 
 .username-right-panel {
@@ -55,6 +55,8 @@
 }
 .content-right-panel {
   font-weight: bold;
+  overflow-wrap: break-word;
+  width: 80%;
 }
 
 /* -------right-panel------------ */
