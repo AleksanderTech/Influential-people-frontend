@@ -6,6 +6,10 @@
     <div>
       <p class="quote-item hero-name">hero: {{ quote.heroName }}</p>
     </div>
+    <div class="quote-item favourite">
+      <div *ngIf="isFavourite" (click)="toogleFavourite(quote.id)">Your favourite&nbsp;<fa-icon [icon]="faSolid"></fa-icon></div>
+      <div *ngIf="!isFavourite" (click)="toogleFavourite(quote.id)">Add to favourite&nbsp;<fa-icon [icon]="faStar"></fa-icon></div>
+    </div>
     <div>
       <a
         routerLink="/hero/{{ quote.heroName }}/detail"

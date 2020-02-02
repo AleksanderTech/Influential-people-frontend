@@ -3,17 +3,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5rem auto;
-}
-
-.content {
-}
-
-.hero-name {
+  margin: 4rem auto;
 }
 
 a {
   font-size: 1.5rem;
   text-decoration: underline;
   color: black;
+}
+
+.favourite{
+  margin:0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size:1.3rem;
+}
+
+.favourite:hover{
+  color:#a56245;
 }
