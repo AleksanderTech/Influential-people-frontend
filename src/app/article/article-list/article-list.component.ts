@@ -6,6 +6,7 @@ import { ArticleSearch } from '../model/article-search';
 import { Hero } from 'src/app/heroes/model/hero';
 import { HeroService } from 'src/app/heroes/service/hero.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/user/service/user.service';
 
 @Component({
   selector: 'app-article-list',
@@ -16,6 +17,7 @@ export class ArticleListComponent extends List<Article> implements OnInit {
 
   private searchingAttribute = 'title';
   private searchEntities: Article[];
+  private favouriteArticles: Article[];
   private showEntities: boolean;
   private heroes: Hero[];
 
@@ -24,7 +26,7 @@ export class ArticleListComponent extends List<Article> implements OnInit {
   private selectedSort: string;
   private pathVariableHero: string;
 
-  constructor(private articleService: ArticleService, private heroService: HeroService, private route: ActivatedRoute) {
+  constructor(private articleService: ArticleService,private userService:UserService, private heroService: HeroService, private route: ActivatedRoute) {
     super();
   }
 
@@ -42,6 +44,7 @@ export class ArticleListComponent extends List<Article> implements OnInit {
     }
     this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
     this.getHeroes();
+    this.getFavouritesArticles();
   }
 
   sort(sortType: string) {
@@ -74,6 +77,18 @@ export class ArticleListComponent extends List<Article> implements OnInit {
         this.numberOfPages = 1;
       }
       this.showEntities = true;
+    });
+  }
+
+  isFavourite(id: number): boolean {
+    if (this.favouriteArticles) {
+      return this.favouriteArticles.find(article => article.id === id) != undefined;
+    }
+  }
+
+  getFavouritesArticles() {
+    this.userService.getFavouritesArticles().subscribe(entities => {
+      this.favouriteArticles = entities['content'];
     });
   }
 

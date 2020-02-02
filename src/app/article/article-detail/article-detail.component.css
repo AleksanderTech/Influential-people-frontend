@@ -21,6 +21,19 @@ a {
   width:100%;
 } 
 
+.favourite{
+  margin:0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size:1.3rem;
+}
+
+.favourite:hover{
+  color:#a56245;
+}
+
 @media screen and (min-width: 1600px) {
   .article-detail{
     width: 45%;

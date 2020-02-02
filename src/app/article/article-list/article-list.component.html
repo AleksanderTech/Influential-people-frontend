@@ -71,6 +71,7 @@
         let art of entities | searchFilter: searchValue:searchingAttribute
       "
       [article]="art"
+      [isFavourite]="isFavourite(art.id)"
     ></app-article-tile>
   </div>
   <div *ngIf="!showEntities">
@@ -79,6 +80,7 @@
         let art of searchEntities | searchFilter: searchValue:searchingAttribute
       "
       [article]="art"
+      [isFavourite]="isFavourite(art.id)"
     ></app-article-tile>
   </div>
   <app-paginator

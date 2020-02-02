@@ -1,13 +1,27 @@
-<a routerLink="/article/{{ article.id }}/detail">
-  <div class="flex-container">
-    <div class="flex-item">
-      {{ article.title }}
+<div class="container-out">
+  <a routerLink="/article/{{ article.id }}/detail">
+    <div class="flex-container">
+      <div class="item">
+        {{ article.title | truncate: [25] }}
+      </div>
+      <div class="item">
+        {{ article.createdAt | date: "short" }}
+      </div>
+      <div class="item">
+        {{ article.heroName | truncate: [25] }}
+      </div>
     </div>
-    <div class="flex-item">
-      {{ article.createdAt | date: "dd/MM/yyyy" }}
+  </a>
+  <div class="star">
+    <div *ngIf="isFavourite" (click)="toogleFavourite(article.id)">
+      <fa-icon [icon]="faSolid"></fa-icon>
     </div>
-    <div class="flex-item">
-      {{ article.heroName }}
+    <div
+      
+      *ngIf="!isFavourite"
+      (click)="toogleFavourite(article.id)"
+    >
+      <fa-icon [icon]="faStar"></fa-icon>
     </div>
   </div>
-</a>
+</div>

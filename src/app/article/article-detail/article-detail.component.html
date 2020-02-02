@@ -20,6 +20,10 @@
       </p>
       <br />
     </div>
+    <div class="favourite">
+      <div *ngIf="isFavourite" (click)="toogleFavourite(article.id)">Your favourite&nbsp;<fa-icon [icon]="faSolid"></fa-icon></div>
+      <div *ngIf="!isFavourite" (click)="toogleFavourite(article.id)">Add to favourite&nbsp;<fa-icon [icon]="faStar"></fa-icon></div>
+    </div>
     <app-comments-section
       class="app-comments-section"
       [article]="article"

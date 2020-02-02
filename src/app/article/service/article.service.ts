@@ -17,8 +17,6 @@ export class ArticleService {
     let url = Urls.ROOT_REST_URL + Urls.ARTICLE + Urls.SEARCH_SORT_FILTER;
     url = url + articleSearch.toQuery();
     url = url + '&page=' + page + '&size=' + size;
-    console.log(url);
-
     return this.httpClient.get<Article[]>(url);
   }
 
@@ -30,7 +28,15 @@ export class ArticleService {
     return this.httpClient.get<Article>(Urls.ROOT_REST_URL + Urls.ARTICLE + "/" + id);
   }
 
-  deleteFavouriteArticle(id: string): Observable<HttpResponse<Config>> {
+  getFavourite(id: number): Observable<Article> {
+    return this.httpClient.get<Article>(Urls.ROOT_REST_URL + Urls.ARTICLE + '/' + id + Urls.FAVOURITE);
+  }
+
+  addFavourite(id: number): Observable<HttpResponse<Config>> {
+    return this.httpClient.post<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.ARTICLE + '/' + id + Urls.FAVOURITE, '');
+  }
+
+  deleteFavourite(id: number): Observable<HttpResponse<Config>> {
     return this.httpClient.delete<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.ARTICLE + '/' + id + Urls.FAVOURITE);
   }
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Article } from '../model/article';
+import { ArticleService } from '../service/article.service';
+import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-article-tile',
@@ -8,12 +11,40 @@ import { Article } from '../model/article';
 })
 export class ArticleTileComponent implements OnInit {
 
-
-
   @Input() article: Article;
+  @Input('isFavourite') isFavourite: boolean;
+  faStar = faStar;
+  faSolid = faSolid;
 
-  constructor() { }
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
+    console.log(this.article);
+    
+  }
+
+
+  toogleFavourite(id: number) {
+    if (this.isFavourite) {
+      this.deleteFavourite(id);
+      return;
+    }
+    this.addFavourite(id);
+  }
+
+  deleteFavourite(id: number) {
+    this.articleService.deleteFavourite(id).subscribe(response => {
+      this.isFavourite = false;
+    }, error => {
+      alert('Error occured');
+    });
+  }
+
+  addFavourite(id: number) {
+    this.articleService.addFavourite(id).subscribe(response => {
+      this.isFavourite = true;
+    }, error => {
+      alert('Error occured');
+    });
   }
 }
