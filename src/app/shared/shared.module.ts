@@ -13,6 +13,7 @@ import { SortComponent } from './components/sort/sort.component';
 import { DefaultPipe } from './pipes/default-pipe';
 import { ClickOutsideDirective } from './directives/dropdown.directive';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ExtractRolePipe } from './pipes/extract-role.pipe';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     SearchComponent,
     SortComponent,
     ClickOutsideDirective,
-    TruncatePipe
+    TruncatePipe,
+    ExtractRolePipe
   ],
   imports: [
     FontAwesomeModule,
@@ -47,6 +49,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     TruncatePipe,
     SearchComponent,
     SortComponent,
+    ExtractRolePipe,
     ClickOutsideDirective
   ]
 })

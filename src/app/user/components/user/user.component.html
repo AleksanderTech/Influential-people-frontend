@@ -1,4 +1,4 @@
-<div *ngIf= "currentUser" class="banner flex-container">
+<div *ngIf="currentUser" class="banner flex-container">
   <div class="circle flex-item">
     <img
       class="profile-image"
@@ -8,7 +8,7 @@
   </div>
   <span>
     <label class="btn btn-outline-light banner-button">
-      <input type="file" (change)="uploadFile($event)"/>
+      <input type="file" (change)="uploadFile($event)" />
       change image
     </label>
     <input
@@ -21,30 +21,88 @@
 </div>
 <br>
 <!--  -->
-<div *ngIf= "currentUser" class="user-panel">
+<div *ngIf="currentUser" class="user-panel">
   <div class="top-panel">
-    <div>username: {{currentUser.username}}</div>
-    <div>roles: {{currentUser.roles}}</div>
-    <div>email: {{currentUser.email}}<input type="password" #password [ngModel]="newPassword"><button class="btn btn-dark"
-      (click)="changePassword(password.value)">change</button></div>
-    <div>password<input type="password" #password [ngModel]="newPassword"><button class="btn btn-dark"
-      (click)="changePassword(password.value)">change</button></div>
+      <div class="field">
+        <span>Username&nbsp;</span><span class="span-wrap">{{ currentUser.username }}</span>
+      </div>
+      <div *ngFor="let role of currentUser.roles" class="field">
+        <span>Role&nbsp;</span><span class="span-wrap">{{ role | extractRole }}</span>
+      </div>
+
+      <div class="field">
+        <span>Email&nbsp;</span><span class="span-wrap">{{ currentUser.email }}</span>
+      </div>
+      <button class="btn btn-dark change-button" (click)="toogleEmailChange()">
+        change email
+      </button>
+      <div *ngIf="emailChange" class="email-change">
+        <input
+          *ngIf="emailChange"
+          type="password"
+          #password
+          [ngModel]="newPassword"
+        />&nbsp;
+        <button class="btn btn-dark" (click)="changePassword(password.value)">
+          save</button
+        >&nbsp;
+        <button class="btn btn-dark">cancel</button>
+      </div>
+
+      <button
+        class="btn btn-dark change-button"
+        (click)="tooglePasswordChange()"
+      >
+        change password
+      </button>
+      <div *ngIf="passwordChange" class="password-change">
+        <input
+          *ngIf="passwordChange"
+          type="password"
+          #password
+          [ngModel]="newPassword"
+        />&nbsp;
+        <button class="btn btn-dark" (click)="changePassword(password.value)">
+          save</button
+        >&nbsp;
+        <button class="btn btn-dark">cancel</button>
+      </div>
+
     <!-- <div>actions</div> -->
   </div>
-  <hr>
+  <div class="line"></div>
+  <h2 class="favourite-header">Favourites</h2>
   <div class="bottom-panel">
-
-    <div class="favourite">Heroes
-      <br><br>
-      <div *ngFor="let hero of favouriteHeroes" class ="margin"><a routerLink="/hero/{{hero.name}}/detail">{{hero.name}}</a></div>
+    <div class="favourite">
+      <h3>Heroes</h3>
+      <div *ngFor="let hero of favouriteHeroes">
+        <div class="favourite-item">
+          <a routerLink="/hero/{{ hero.name }}/detail">{{ hero.name }}</a
+          ><fa-icon class="icon" [icon]="faTrash"></fa-icon>
+        </div>
+      </div>
     </div>
-    <div class="favourite">Quotes
-      <br><br>
-      <div *ngFor="let quote of favouriteQuotes" class ="margin"><a routerLink="/quote/{{quote.id}}/detail">{{quote.content | truncate:[20]}}</a></div>
+    <div class="favourite">
+      <h3>Quotes</h3>
+      <div *ngFor="let quote of favouriteQuotes">
+        <div class="favourite-item">
+          <a routerLink="/quote/{{ quote.id }}/detail">{{
+            quote.content | truncate: [20]
+          }}</a
+          ><fa-icon [icon]="faTrash"></fa-icon>
+        </div>
+      </div>
     </div>
-    <div class="favourite">Articles
-      <br><br>
-      <div *ngFor="let article of favouriteArticles" class ="margin"><a routerLink="/article/{{article.id}}/detail">{{article.title | truncate:[20]}}</a></div>
+    <div class="favourite">
+      <h3>Articles</h3>
+      <div *ngFor="let article of favouriteArticles">
+        <div class="favourite-item">
+          <a routerLink="/article/{{ article.id }}/detail">{{
+            article.title | truncate: [20]
+          }}</a
+          ><fa-icon [icon]="faTrash"></fa-icon>
+        </div>
+      </div>
     </div>
   </div>
 </div>

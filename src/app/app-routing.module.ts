@@ -5,7 +5,7 @@ import { AuthRedirectorService } from './core/services/auth-redirector.service';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  // { path: '', redirectTo: '', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule)

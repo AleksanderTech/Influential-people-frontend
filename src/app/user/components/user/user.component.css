@@ -5,8 +5,12 @@
   align-items: center;
 }
 
-.margin{
-  margin: 0.4rem;
+span {
+  font-weight: bold;
+}
+
+input {
+  margin: 0.3rem auto;
 }
 
 a {
@@ -58,19 +62,64 @@ input[type="file"] {
   cursor: pointer;
 }
 /* ----------user-panel---------- */
+/* ----------top-panel---------- */
 
 .user-panel {
   margin: 0 auto;
-  width: 55%;
+  width: 70%;
 }
 
 .top-panel {
+  margin: 0 auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  max-width: 220px;
+  flex-wrap: wrap;
 }
 
+.change-button {
+  margin: 0.4rem auto;
+  min-width: fit-content;
+  width: 170px;
+}
+
+.line {
+  margin: 1.5rem auto;
+  width: 67%;
+  border-bottom: 2px solid #a56245;
+}
+
+.span-wrap {
+  display: block;
+  max-width: 220px;
+  word-wrap: break-word;
+  text-align: left;
+}
+
+.field {
+  margin: 0.3rem auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.password-change {
+  margin: 0.5rem;
+}
+
+.email-change {
+  margin: 0.5rem;
+}
+
+/* ----------top-panel---------- */
 /* ----------bottom-panel---------- */
 
 .bottom-panel {
+  margin: 0 auto;
+  width: 75%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -78,11 +127,27 @@ input[type="file"] {
 }
 
 .favourite {
-  margin:1rem;
+  margin: 1rem;
   font-weight: bold;
   display: flex;
+  width: 220px;
   flex-direction: column;
 }
+
+.favourite-header {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.favourite-item {
+  border: 1px solid #a56245;
+  display: flex;
+  padding: 0.5rem 0.5rem;
+  margin: 0.4rem 0;
+  justify-content: space-between;
+}
+
 /* ----------bottom-panel---------- */
 
 /* ----------user-panel---------- */

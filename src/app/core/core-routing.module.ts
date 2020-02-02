@@ -10,7 +10,7 @@ import { HomeComponent } from '../home/home.component';
 
 const routes: Routes = [
   // { path: 'sign-up/message/', component: RegistrationMessageComponent },
-  // { path: 'login', component: LoginComponent },
+  // { path: 'sign-in', component: LoginComponent },
   // { path: 'sign-up', component: RegistrationComponent },
   // { path: 'logout', component: LogoutComponent, canActivate: [AuthRedirectorService] },
   // { path: 'home', component: HomeComponent, canActivate: [AuthRedirectorService] },

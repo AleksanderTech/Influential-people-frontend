@@ -18,8 +18,8 @@
           <img class="crown" src="../../../../favicon.ico" alt="" />
           <span class="influential">Influential</span> People
         </a>
-        <a *ngIf="!loginService.isUserLoggedIn()">
-          <img class="crown" src="../../../../favicon.ico" alt="" />
+        <a *ngIf="!loginService.isUserLoggedIn()" routerLink="/">
+          <img class="crown" src="../../../../favicon.ico" alt=""/>
           <span class="influential">Influential</span> People
         </a>
       </div>

@@ -7,6 +7,7 @@ import { User } from 'src/app/shared/model/user';
 import { Article } from 'src/app/article/model/article';
 import { Hero } from 'src/app/heroes/model/hero';
 import { Quote } from '@angular/compiler';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user',
@@ -18,6 +19,10 @@ export class UserComponent implements OnInit {
   img: File;
   newPassword: string;
   currentUser: User;
+  faTrash = faTrash;
+  
+  passwordChange: boolean;
+  emailChange: boolean;
 
   favouriteHeroes: Hero[];
   favouriteArticles: Article[];
@@ -36,7 +41,7 @@ export class UserComponent implements OnInit {
     this.userService.getFavouritesArticles().subscribe(entities => {
       this.favouriteArticles = entities['content'];
       console.log(this.favouriteArticles);
-      
+
     });
   }
 
@@ -44,7 +49,7 @@ export class UserComponent implements OnInit {
     this.userService.getFavouritesQuotes().subscribe(entities => {
       this.favouriteQuotes = entities['content'];
       console.log(this.favouriteQuotes);
-      
+
     });
   }
 
@@ -52,7 +57,7 @@ export class UserComponent implements OnInit {
     this.userService.getFavouritesHeroes().subscribe(entities => {
       this.favouriteHeroes = entities['content'];
       console.log(this.favouriteHeroes);
-      
+
     });
   }
 
@@ -92,5 +97,12 @@ export class UserComponent implements OnInit {
     this.userService.getUser(username).subscribe(user => {
       this.currentUser = user;
     });
+  }
+
+  toogleEmailChange() {
+    this.emailChange = !this.emailChange;
+  }
+  tooglePasswordChange() {
+    this.passwordChange = !this.passwordChange;
   }
 }

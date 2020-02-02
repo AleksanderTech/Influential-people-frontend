@@ -8,7 +8,7 @@ import { AuthenticationService } from './authentication.service';
 export class AuthRedirectorService implements CanActivate, CanLoad {
 
   canLoad(route: Route): boolean {
-
+    
     return this.canActivate();
   }
 
@@ -16,11 +16,15 @@ export class AuthRedirectorService implements CanActivate, CanLoad {
     private authService: AuthenticationService) { }
 
   canActivate() {
-
+    console.log(this.router);
+    
     if (this.authService.isUserLoggedIn()) {
+      console.log('true');
+      
       return true;
     }
-    this.router.navigate(['login']);
+    console.log('false');
+    this.router.navigate(['']);
     return false;
   }
 }

@@ -34,7 +34,7 @@ import { HomeModule } from './home/home.module';
     CoreModule,
     HomeModule,
     SharedModule,
-    UserModule
+    UserModule,
   ],
 
   bootstrap: [AppComponent]
