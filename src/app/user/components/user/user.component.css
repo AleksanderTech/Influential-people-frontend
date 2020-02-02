@@ -140,12 +140,22 @@ input[type="file"] {
   text-align: center;
 }
 
+.favourite-subheader{
+  display:flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+}
+
 .favourite-item {
   border: 1px solid #a56245;
   display: flex;
   padding: 0.5rem 0.5rem;
   margin: 0.4rem 0;
   justify-content: space-between;
+}
+
+.icon:hover{
+cursor: pointer;
 }
 
 /* ----------bottom-panel---------- */

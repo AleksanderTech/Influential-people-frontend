@@ -14,6 +14,7 @@ import { DefaultPipe } from './pipes/default-pipe';
 import { ClickOutsideDirective } from './directives/dropdown.directive';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ExtractRolePipe } from './pipes/extract-role.pipe';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ExtractRolePipe } from './pipes/extract-role.pipe';
     SortComponent,
     ClickOutsideDirective,
     TruncatePipe,
-    ExtractRolePipe
+    ExtractRolePipe,
+    ModalComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -50,7 +52,8 @@ import { ExtractRolePipe } from './pipes/extract-role.pipe';
     SearchComponent,
     SortComponent,
     ExtractRolePipe,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    ModalComponent
   ]
 })
 export class SharedModule { }

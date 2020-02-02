@@ -19,54 +19,54 @@
     />
   </span>
 </div>
-<br>
+<br />
 <!--  -->
 <div *ngIf="currentUser" class="user-panel">
   <div class="top-panel">
-      <div class="field">
-        <span>Username&nbsp;</span><span class="span-wrap">{{ currentUser.username }}</span>
-      </div>
-      <div *ngFor="let role of currentUser.roles" class="field">
-        <span>Role&nbsp;</span><span class="span-wrap">{{ role | extractRole }}</span>
-      </div>
+    <div class="field">
+      <span>Username&nbsp;</span
+      ><span class="span-wrap">{{ currentUser.username }}</span>
+    </div>
+    <div *ngFor="let role of currentUser.roles" class="field">
+      <span>Role&nbsp;</span
+      ><span class="span-wrap">{{ role | extractRole }}</span>
+    </div>
 
-      <div class="field">
-        <span>Email&nbsp;</span><span class="span-wrap">{{ currentUser.email }}</span>
-      </div>
-      <button class="btn btn-dark change-button" (click)="toogleEmailChange()">
-        change email
-      </button>
-      <div *ngIf="emailChange" class="email-change">
-        <input
-          *ngIf="emailChange"
-          type="password"
-          #password
-          [ngModel]="newPassword"
-        />&nbsp;
-        <button class="btn btn-dark" (click)="changePassword(password.value)">
-          save</button
-        >&nbsp;
-        <button class="btn btn-dark">cancel</button>
-      </div>
+    <div class="field">
+      <span>Email&nbsp;</span
+      ><span class="span-wrap">{{ currentUser.email }}</span>
+    </div>
+    <button class="btn btn-dark change-button" (click)="toogleEmailChange()">
+      change email
+    </button>
+    <div *ngIf="emailChange" class="email-change">
+      <input
+        *ngIf="emailChange"
+        type="password"
+        #password
+        [ngModel]="newPassword"
+      />&nbsp;
+      <button class="btn btn-dark" (click)="changePassword(password.value)">
+        save</button
+      >&nbsp;
+      <button class="btn btn-dark">cancel</button>
+    </div>
 
-      <button
-        class="btn btn-dark change-button"
-        (click)="tooglePasswordChange()"
-      >
-        change password
-      </button>
-      <div *ngIf="passwordChange" class="password-change">
-        <input
-          *ngIf="passwordChange"
-          type="password"
-          #password
-          [ngModel]="newPassword"
-        />&nbsp;
-        <button class="btn btn-dark" (click)="changePassword(password.value)">
-          save</button
-        >&nbsp;
-        <button class="btn btn-dark">cancel</button>
-      </div>
+    <button class="btn btn-dark change-button" (click)="tooglePasswordChange()">
+      change password
+    </button>
+    <div *ngIf="passwordChange" class="password-change">
+      <input
+        *ngIf="passwordChange"
+        type="password"
+        #password
+        [ngModel]="newPassword"
+      />&nbsp;
+      <button class="btn btn-dark" (click)="changePassword(password.value)">
+        save</button
+      >&nbsp;
+      <button class="btn btn-dark">cancel</button>
+    </div>
 
     <!-- <div>actions</div> -->
   </div>
@@ -74,33 +74,58 @@
   <h2 class="favourite-header">Favourites</h2>
   <div class="bottom-panel">
     <div class="favourite">
+      <div class="favourite-subheader">
       <h3>Heroes</h3>
+      <a routerLink="/hero"
+      ><fa-icon class="icon" [icon]="faSearch"></fa-icon
+    ></a></div>
       <div *ngFor="let hero of favouriteHeroes">
         <div class="favourite-item">
           <a routerLink="/hero/{{ hero.name }}/detail">{{ hero.name }}</a
-          ><fa-icon class="icon" [icon]="faTrash"></fa-icon>
+          ><fa-icon
+            class="icon"
+            [icon]="faTrash"
+            (click)="deleteFavouriteHero(hero.name)"
+          ></fa-icon>
         </div>
       </div>
     </div>
     <div class="favourite">
-      <h3>Quotes</h3>
+      <div class="favourite-subheader">
+        <h3>Quotes</h3>
+        <a routerLink="/quote"
+          ><fa-icon class="icon" [icon]="faSearch"></fa-icon
+        ></a>
+      </div>
       <div *ngFor="let quote of favouriteQuotes">
         <div class="favourite-item">
           <a routerLink="/quote/{{ quote.id }}/detail">{{
             quote.content | truncate: [20]
           }}</a
-          ><fa-icon [icon]="faTrash"></fa-icon>
+          ><fa-icon
+            class="icon"
+            [icon]="faTrash"
+            (click)="deleteFavouriteQuote(quote.id)"
+          ></fa-icon>
         </div>
       </div>
     </div>
     <div class="favourite">
+      <div class="favourite-subheader">
       <h3>Articles</h3>
+      <a routerLink="/article"
+      ><fa-icon class="icon" [icon]="faSearch"></fa-icon
+    ></a></div>
       <div *ngFor="let article of favouriteArticles">
         <div class="favourite-item">
           <a routerLink="/article/{{ article.id }}/detail">{{
             article.title | truncate: [20]
           }}</a
-          ><fa-icon [icon]="faTrash"></fa-icon>
+          ><fa-icon
+            class="icon"
+            [icon]="faTrash"
+            (click)="deleteFavouriteArticle(article.id)"
+          ></fa-icon>
         </div>
       </div>
     </div>

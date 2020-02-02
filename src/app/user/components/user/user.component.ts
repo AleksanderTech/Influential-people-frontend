@@ -6,8 +6,11 @@ import { UserPassword } from '../../model/user-password';
 import { User } from 'src/app/shared/model/user';
 import { Article } from 'src/app/article/model/article';
 import { Hero } from 'src/app/heroes/model/hero';
-import { Quote } from '@angular/compiler';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { HeroService } from 'src/app/heroes/service/hero.service';
+import { ArticleService } from 'src/app/article/service/article.service';
+import { QuoteService } from 'src/app/quote/service/quote.service';
+import { Quote } from 'src/app/quote/model/quote';
 
 @Component({
   selector: 'app-user',
@@ -20,7 +23,8 @@ export class UserComponent implements OnInit {
   newPassword: string;
   currentUser: User;
   faTrash = faTrash;
-  
+  faSearch = faSearch;
+
   passwordChange: boolean;
   emailChange: boolean;
 
@@ -28,7 +32,8 @@ export class UserComponent implements OnInit {
   favouriteArticles: Article[];
   favouriteQuotes: Quote[];
 
-  constructor(private authService: AuthenticationService, private httpClient: HttpClient, private userService: UserService) { }
+  constructor(private authService: AuthenticationService, private articleService: ArticleService, private quoteService: QuoteService,
+     private heroService: HeroService, private httpClient: HttpClient, private userService: UserService) { }
 
   ngOnInit() {
     this.getUser(this.authService.getUsername());
@@ -58,6 +63,33 @@ export class UserComponent implements OnInit {
       this.favouriteHeroes = entities['content'];
       console.log(this.favouriteHeroes);
 
+    });
+  }
+
+  deleteFavouriteHero(id: string) {
+    this.heroService.deleteFavouriteHero(id).subscribe(response=>{
+      alert('Hero deleted from Your favourites')
+      this.getFavouritesHeroes();
+    },error=>{
+      alert('Error occured')
+    });
+  }
+
+  deleteFavouriteArticle(id: string) {
+    this.articleService.deleteFavouriteArticle(id).subscribe(response=>{
+      alert('Article deleted from Your favourites');
+      this.getFavouritesArticles();
+    },error=>{
+      alert('Error occured');
+    });
+  }
+
+  deleteFavouriteQuote(id: string) {
+    this.quoteService.deleteFavouriteQuote(id).subscribe(response=>{
+      alert('Quote deleted from Your favourites');
+      this.getFavouritesQuotes();
+    },error=>{
+      alert('Error occured');
     });
   }
 
@@ -102,6 +134,7 @@ export class UserComponent implements OnInit {
   toogleEmailChange() {
     this.emailChange = !this.emailChange;
   }
+
   tooglePasswordChange() {
     this.passwordChange = !this.passwordChange;
   }

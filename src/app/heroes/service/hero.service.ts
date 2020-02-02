@@ -11,32 +11,38 @@ import { HeroSearch } from '../model/ hero-search';
   providedIn: 'root'
 })
 export class HeroService {
- 
-  public getTopHeroes(categoryName:string): Observable<Hero[]> {
-    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + Urls.SEARCH_SORT_FILTER + `?category=${categoryName}&sort=desc&paging=false`);
-  }
+
+
   constructor(private httpClient: HttpClient) { }
 
-  public getHeroes(): Observable<Hero[]> {
+  getTopHeroes(categoryName: string): Observable<Hero[]> {
+    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + Urls.SEARCH_SORT_FILTER + `?category=${categoryName}&sort=desc&paging=false`);
+  }
+
+  getHeroes(): Observable<Hero[]> {
     return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + Urls.SEARCH_SORT_FILTER + '?paging=false');
   }
 
-  public getSpecificHeroes(page: number = 0, size: number = 10, heroSearch: HeroSearch): Observable<Hero[]> {
+  deleteFavouriteHero(name: string): Observable<HttpResponse<Config>> {
+    return this.httpClient.delete<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.HERO + '/' + name + Urls.FAVOURITE);
+  }
+
+  getSpecificHeroes(page: number = 0, size: number = 10, heroSearch: HeroSearch): Observable<Hero[]> {
     let url = Urls.ROOT_REST_URL + Urls.HERO + Urls.SEARCH_SORT_FILTER;
     url = url + heroSearch.toQuery();
     url = url + '&page=' + page + '&size=' + size;
     return this.httpClient.get<Hero[]>(url);
   }
 
-  public getHero(heroName: string): Observable<Hero> {
+  getHero(heroName: string): Observable<Hero> {
     return this.httpClient.get<Hero>(Urls.ROOT_REST_URL + Urls.HERO + "/" + heroName);
   }
 
-  public rateHero(rate: Rate): Observable<HttpResponse<Config>> {
+  rateHero(rate: Rate): Observable<HttpResponse<Config>> {
     return this.httpClient.put<Config>(Urls.ROOT_REST_URL + Urls.HERO + "/" + rate.heroName + Urls.RATE, rate, { observe: 'response' });
   }
 
-  public getUserRate(heroName: string): Observable<Rate> {
+  getUserRate(heroName: string): Observable<Rate> {
     return this.httpClient.get<Rate>(Urls.ROOT_REST_URL + Urls.HERO + "/" + heroName + Urls.RATE + Urls.USER);
   }
 }
