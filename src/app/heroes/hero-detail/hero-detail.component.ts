@@ -3,6 +3,9 @@ import { HeroService } from '../service/hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../model/hero';
 import { Rate } from '../model/rate';
+import { faStar as faSolid  } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+
 
 @Component({
   selector: 'app-hero-detail',
@@ -11,9 +14,13 @@ import { Rate } from '../model/rate';
 })
 export class HeroDetailComponent implements OnInit {
 
+  faStar = faStar;
+  faSolid = faSolid;
+
   hero: Hero;
   isOpened: boolean;
   userRate: number;
+  
   constructor(private heroService: HeroService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -21,6 +28,7 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.getHero(this.route.snapshot.paramMap.get('name')).subscribe(data => {
       this.hero = data;
       this.getUserRate(data.name);
+
     });
    
   }

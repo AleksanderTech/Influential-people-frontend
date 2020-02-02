@@ -69,6 +69,7 @@
           let hero of entities | searchFilter: searchValue:searchingAttribute
         "
         [hero]="hero"
+        [isFavourite]="isFavourite(hero.name)"
       ></app-hero-tile>
     </div>
     <div *ngIf="!showEntities">

@@ -6,6 +6,7 @@ import { HeroSearch } from '../model/ hero-search';
 import { CategoryService } from 'src/app/category/service/category.service';
 import { Category } from 'src/app/category/model/category';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/user/service/user.service';
 
 @Component({
   selector: 'app-hero-list',
@@ -16,6 +17,7 @@ export class HeroListComponent extends List<Hero> implements OnInit {
 
   private searchingAttribute = 'name';
   private searchEntities: Hero[];
+  private favouriteHeroes: Hero[];
   private showEntities: boolean;
   private categories: Category[];
 
@@ -25,7 +27,7 @@ export class HeroListComponent extends List<Hero> implements OnInit {
 
   private pathVariableCategory: string;
 
-  constructor(private heroService: HeroService, private categoryService: CategoryService, private route: ActivatedRoute) {
+  constructor(private userService: UserService, private heroService: HeroService, private categoryService: CategoryService, private route: ActivatedRoute) {
     super();
   }
 
@@ -43,6 +45,7 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     }
     this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
     this.getCategories();
+    this.getFavouritesHeroes();
   }
 
   sort(sortType: string) {
@@ -75,6 +78,26 @@ export class HeroListComponent extends List<Hero> implements OnInit {
         this.numberOfPages = 1;
       }
       this.showEntities = true;
+    });
+  }
+
+  addFavourite(name: string) {
+    this.heroService.addFavourite(name).subscribe(response => {
+      this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
+    }, error => {
+      alert('Error occured');
+    });
+  }
+
+  isFavourite(name: string): boolean {
+    if (this.favouriteHeroes) {
+      return this.favouriteHeroes.find(hero => hero.name === name) != undefined;
+    }
+  }
+
+  getFavouritesHeroes() {
+    this.userService.getFavouritesHeroes().subscribe(entities => {
+      this.favouriteHeroes = entities['content'];
     });
   }
 

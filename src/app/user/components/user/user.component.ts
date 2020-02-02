@@ -67,7 +67,7 @@ export class UserComponent implements OnInit {
   }
 
   deleteFavouriteHero(id: string) {
-    this.heroService.deleteFavouriteHero(id).subscribe(response=>{
+    this.heroService.deleteFavourite(id).subscribe(response=>{
       alert('Hero deleted from Your favourites')
       this.getFavouritesHeroes();
     },error=>{

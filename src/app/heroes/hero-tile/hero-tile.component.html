@@ -1,11 +1,21 @@
-<a routerLink="/hero/{{ hero.name }}/detail"
-  ><div class="flex-container">
-    <div class="flex-item image">
-      <img src="{{ hero.avatarImageUrl }}" alt="" />
-    </div>
-    <div class="flex-item name">
-      {{ hero.name }}
-    </div>
-    <div class="flex-item rate">{{ hero.rate }} points</div>
+<div class="container-out">
+  <div class="container-in">
+    <a routerLink="/hero/{{ hero.name }}/detail"
+      ><div class="flex-container">
+        <div class="flex-item image">
+          <div><img src="{{ hero.avatarImageUrl }}" alt="" /></div>
+          <div class="name">{{ hero.name }}</div>
+        </div>
+        <div class="flex-item rate">{{ hero.rate }} points</div>
+      </div>
+    </a>
   </div>
-</a>
+  <div class="favourite">
+    <div class="star" *ngIf="isFavourite" (click)="toogleFavourite(hero.name)">
+      <fa-icon [icon]="faSolid"></fa-icon>
+    </div>
+    <div class="star" *ngIf="!isFavourite" (click)="toogleFavourite(hero.name)">
+      <fa-icon [icon]="faStar"></fa-icon>
+    </div>
+  </div>
+</div>

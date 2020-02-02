@@ -13,6 +13,10 @@
     <div>
       <p class="hero-item user-rate">Your rate: {{ userRate | default:'not yet rated' }}</p>
     </div>
+    <div class="hero-item favourite">
+      <div *ngIf="1==2">Your favourite<fa-icon [icon]="faSolid"></fa-icon></div>
+      <div *ngIf="1==1">Add to favourite<fa-icon [icon]="faStar"></fa-icon></div>
+    </div>
     <div>
       <a routerLink="/quote/{{hero.name}}" class="hero-item quotes">quotes</a>
     </div>
