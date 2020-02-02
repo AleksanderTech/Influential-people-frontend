@@ -28,7 +28,16 @@ export class QuoteService {
     return this.httpClient.get<Quote>(Urls.ROOT_REST_URL + Urls.QUOTE + "/" + name);
   }
   
-  deleteFavouriteQuote(id: string): Observable<HttpResponse<Config>> {
-    return this.httpClient.delete<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.QUOTE + '/' + id + Urls.FAVOURITE);
+  getFavourite(id: number): Observable<Quote> {
+    return this.httpClient.get<Quote>(Urls.ROOT_REST_URL + Urls.QUOTE + '/' + id + Urls.FAVOURITE);
   }
+
+  addFavourite(id: number): Observable<HttpResponse<Config>> {
+    return this.httpClient.post<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.QUOTE + '/' + id + Urls.FAVOURITE, '');
+  }
+
+  deleteFavourite(name: number): Observable<HttpResponse<Config>> {
+    return this.httpClient.delete<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.QUOTE + '/' + name + Urls.FAVOURITE);
+  }
+
 }

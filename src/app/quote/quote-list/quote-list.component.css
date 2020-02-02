@@ -6,12 +6,12 @@
 
 .router-link{
   display: block;
-  padding: 1.5rem;
+  padding-top: 1.5rem;
   height: 100%;
   width: 100%;
 }
 
-.router-link:hover{
+a:hover{
   color:#a56245;
 }
 
@@ -37,7 +37,7 @@ a {
 }
 
 .dropdown-item:hover {
-  color: black;
+  color:#a56245;
   cursor: pointer;
 }
 
@@ -54,4 +54,14 @@ a {
   height: auto;
   max-height: 50vh;
   overflow-x: hidden;
+}
+
+.star{
+  padding: 0.6rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.star:hover{
+  color:#a56245;
 }

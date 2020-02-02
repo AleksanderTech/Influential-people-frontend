@@ -25,14 +25,14 @@ export class UserService {
   }
 
   getFavouritesHeroes(): Observable<Hero[]> {
-    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + Urls.FAVOURITE);
+    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + Urls.FAVOURITE+'?size=200');
   }
 
   getFavouritesArticles(): Observable<Article[]> {
-    return this.httpClient.get<Article[]>(Urls.ROOT_REST_URL + Urls.ARTICLE + Urls.FAVOURITE);
+    return this.httpClient.get<Article[]>(Urls.ROOT_REST_URL + Urls.ARTICLE + Urls.FAVOURITE+'?size=200');
   }
 
   getFavouritesQuotes(): Observable<Quote[]> {
-    return this.httpClient.get<Quote[]>(Urls.ROOT_REST_URL + Urls.QUOTE +  Urls.FAVOURITE);
+    return this.httpClient.get<Quote[]>(Urls.ROOT_REST_URL + Urls.QUOTE +  Urls.FAVOURITE+'?size=200');
   }
 }

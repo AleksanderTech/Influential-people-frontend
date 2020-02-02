@@ -82,8 +82,8 @@ export class UserComponent implements OnInit {
     });
   }
 
-  deleteFavouriteQuote(id: string) {
-    this.quoteService.deleteFavouriteQuote(id).subscribe(response=>{
+  deleteFavouriteQuote(id: number) {
+    this.quoteService.deleteFavourite(id).subscribe(response=>{
       this.getFavouritesQuotes();
     },error=>{
       alert('Error occured');

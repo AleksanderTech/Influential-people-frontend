@@ -6,6 +6,9 @@ import { QuoteSearch } from '../model/quote-search';
 import { HeroService } from 'src/app/heroes/service/hero.service';
 import { Hero } from 'src/app/heroes/model/hero';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/user/service/user.service';
+import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-quote-list',
@@ -14,8 +17,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class QuoteListComponent extends List<Quote> implements OnInit {
 
+  faStar = faStar;
+  faSolid = faSolid;
+
   private searchingAttribute = 'content';
   private searchEntities: Quote[];
+  private favouriteQuotes: Quote[];
   private showEntities: boolean;
   private heroes: Hero[];
 
@@ -25,7 +32,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
 
   private pathVariableHero: string;
 
-  constructor(private quoteService: QuoteService, private heroService: HeroService,private route:ActivatedRoute) {
+  constructor(private quoteService: QuoteService, private userService: UserService, private heroService: HeroService, private route: ActivatedRoute) {
     super();
   }
 
@@ -43,6 +50,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     }
     this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
     this.getHeroes();
+    this.getFavouritesQuotes();
   }
 
   sort(sortType: string) {
@@ -78,6 +86,44 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     });
   }
 
+
+  getFavouritesQuotes() {
+    this.userService.getFavouritesQuotes().subscribe(entities => {
+      this.favouriteQuotes = entities['content'];
+    });
+  }
+
+
+  isFavourite(id: number): boolean {
+    if (this.favouriteQuotes) {
+      return this.favouriteQuotes.find(quote => quote.id === id) != undefined;
+    }
+  }
+
+  toogleFavourite(id: number) {
+    if (this.isFavourite(id)) {
+      this.deleteFavourite(id);
+      return;
+    }
+    this.addFavourite(id);
+  }
+
+  deleteFavourite(id: number) {
+    this.quoteService.deleteFavourite(id).subscribe(response => {
+      this.getFavouritesQuotes();
+    }, error => {
+      alert('Error occured');
+    });
+  }
+
+  addFavourite(id: number) {
+    this.quoteService.addFavourite(id).subscribe(response => {
+      this.getFavouritesQuotes();
+    }, error => {
+      alert('Error occured');
+    });
+  }
+
   getHeroes() {
     this.heroService.getHeroes().subscribe(data => {
       this.heroes = data;
@@ -96,7 +142,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
   }
 
-  onEntityChoosing(chosenEntity:Quote) {
+  onEntityChoosing(chosenEntity: Quote) {
     this.showEntities = false;
     this.searchEntities = [chosenEntity];
     this.entities = [chosenEntity];
