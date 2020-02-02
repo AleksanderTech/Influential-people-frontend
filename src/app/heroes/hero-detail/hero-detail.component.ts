@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../service/hero.service';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../model/hero';
 import { Rate } from '../model/rate';
-import { faStar as faSolid  } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 
@@ -17,10 +17,11 @@ export class HeroDetailComponent implements OnInit {
   faStar = faStar;
   faSolid = faSolid;
 
+  isFavourite;
   hero: Hero;
   isOpened: boolean;
   userRate: number;
-  
+
   constructor(private heroService: HeroService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -28,9 +29,39 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.getHero(this.route.snapshot.paramMap.get('name')).subscribe(data => {
       this.hero = data;
       this.getUserRate(data.name);
-
+      this.getFavourite(data.name)
     });
-   
+  }
+
+  toogleFavourite(name: string) {
+    if (this.isFavourite) {
+      this.deleteFavourite(name);
+      return;
+    }
+    this.addFavourite(name);
+  }
+
+  deleteFavourite(name: string) {
+    this.heroService.deleteFavourite(name).subscribe(response => {
+      this.isFavourite = false;
+    }, error => {
+      alert('Error occured');
+    });
+  }
+
+  addFavourite(name: string) {
+    this.heroService.addFavourite(name).subscribe(response => {
+      this.isFavourite = true;
+    }, error => {
+      alert('Error occured');
+    });
+  }
+  
+  getFavourite(name: string) {
+    this.heroService.getFavourite(name).subscribe(data => {
+      this.isFavourite = true;
+    }, (error => {
+    }));
   }
 
   showRateList(list: HTMLElement) {
@@ -47,7 +78,7 @@ export class HeroDetailComponent implements OnInit {
     this.isOpened = false;
   }
 
-  getUserRate(heroName:string) {
+  getUserRate(heroName: string) {
     this.heroService.getUserRate(heroName)
       .subscribe(data => {
         this.userRate = data.rate;

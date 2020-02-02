@@ -11,10 +11,6 @@ import { HeroSearch } from '../model/ hero-search';
   providedIn: 'root'
 })
 export class HeroService {
-  addToFavourite(name: string) {
-    throw new Error("Method not implemented.");
-  }
-
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,8 +22,12 @@ export class HeroService {
     return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + Urls.SEARCH_SORT_FILTER + '?paging=false');
   }
 
-  addFavourite(name:string): Observable<HttpResponse<Config>> {
-    return this.httpClient.post<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.HERO + '/'+name+Urls.FAVOURITE, '');
+  getFavourite(name: string): Observable<Hero> {
+    return this.httpClient.get<Hero>(Urls.ROOT_REST_URL + Urls.HERO + '/' + name + Urls.FAVOURITE);
+  }
+
+  addFavourite(name: string): Observable<HttpResponse<Config>> {
+    return this.httpClient.post<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.HERO + '/' + name + Urls.FAVOURITE, '');
   }
 
   deleteFavourite(name: string): Observable<HttpResponse<Config>> {

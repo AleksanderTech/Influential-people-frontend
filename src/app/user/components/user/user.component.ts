@@ -68,7 +68,6 @@ export class UserComponent implements OnInit {
 
   deleteFavouriteHero(id: string) {
     this.heroService.deleteFavourite(id).subscribe(response=>{
-      alert('Hero deleted from Your favourites')
       this.getFavouritesHeroes();
     },error=>{
       alert('Error occured')
@@ -77,7 +76,6 @@ export class UserComponent implements OnInit {
 
   deleteFavouriteArticle(id: string) {
     this.articleService.deleteFavouriteArticle(id).subscribe(response=>{
-      alert('Article deleted from Your favourites');
       this.getFavouritesArticles();
     },error=>{
       alert('Error occured');
@@ -86,7 +84,6 @@ export class UserComponent implements OnInit {
 
   deleteFavouriteQuote(id: string) {
     this.quoteService.deleteFavouriteQuote(id).subscribe(response=>{
-      alert('Quote deleted from Your favourites');
       this.getFavouritesQuotes();
     },error=>{
       alert('Error occured');

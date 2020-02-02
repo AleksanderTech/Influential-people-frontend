@@ -1,5 +1,5 @@
 export class Hero {
-
+ 
     name: string;
     avatarImageUrl: string;
     categories: string[];

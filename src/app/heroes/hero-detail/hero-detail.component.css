@@ -57,5 +57,10 @@ a:hover{
 }
 
 .favourite{
+  margin:1.5rem;
   font-size: 1.5rem;
+}
+
+.favourite:hover{
+  cursor: pointer;
 }
