@@ -11,6 +11,7 @@ import { HeroService } from 'src/app/heroes/service/hero.service';
 import { ArticleService } from 'src/app/article/service/article.service';
 import { QuoteService } from 'src/app/quote/service/quote.service';
 import { Quote } from 'src/app/quote/model/quote';
+import { UserEmail } from '../../model/user-email';
 
 @Component({
   selector: 'app-user',
@@ -21,6 +22,7 @@ export class UserComponent implements OnInit {
 
   img: File;
   newPassword: string;
+  newEmail: string;
   currentUser: User;
   faTrash = faTrash;
   faSearch = faSearch;
@@ -112,9 +114,21 @@ export class UserComponent implements OnInit {
     this.authService.logOut();
   }
 
-  changePassword(newPassword: any) {
-    this.userService.changePassword(new UserPassword(newPassword)).subscribe(data => {
+  changePassword() {
+    this.userService.changePassword(new UserPassword(this.newPassword)).subscribe(data => {
       if (data.status === 200) {
+        this.tooglePasswordChange();
+        alert('Password changed successfully')
+      }
+    }, error => {
+      alert('Error occured')
+    });
+  }
+
+  changeEmail() {
+    this.userService.changeEmail(new UserEmail(this.newEmail)).subscribe(data => {
+      if (data.status === 200) {
+        this.toogleEmailChange() ;
         alert('Password changed successfully')
       }
     }, error => {

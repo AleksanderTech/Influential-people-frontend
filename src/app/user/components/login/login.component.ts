@@ -15,9 +15,9 @@ import { distinctUntilChanged } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
 
-  private user: UserLogin;
-  private invalidSubmit: boolean;
-  private logInForm: FormGroup;
+  user: UserLogin;
+  invalidSubmit: boolean;
+  logInForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,

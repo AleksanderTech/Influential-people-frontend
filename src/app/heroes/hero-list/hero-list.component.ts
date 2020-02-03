@@ -15,17 +15,15 @@ import { UserService } from 'src/app/user/service/user.service';
 })
 export class HeroListComponent extends List<Hero> implements OnInit {
 
-  private searchingAttribute = 'name';
-  private searchEntities: Hero[];
-  private favouriteHeroes: Hero[];
-  private showEntities: boolean;
-  private categories: Category[];
-
-  private heroSearch: HeroSearch;
-  private selectedFilter: string;
-  private selectedSort: string;
-
-  private pathVariableCategory: string;
+  searchingAttribute = 'name';
+  searchEntities: Hero[];
+  favouriteHeroes: Hero[];
+  showEntities: boolean;
+  categories: Category[];
+  heroSearch: HeroSearch;
+  selectedFilter: string;
+  selectedSort: string;
+  pathVariableCategory: string;
 
   constructor(private userService: UserService, private heroService: HeroService, private categoryService: CategoryService, private route: ActivatedRoute) {
     super();

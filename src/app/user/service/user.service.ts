@@ -8,6 +8,7 @@ import { User } from 'src/app/shared/model/user';
 import { Hero } from 'src/app/heroes/model/hero';
 import { Article } from 'src/app/article/model/article';
 import { Quote } from '@angular/compiler';
+import { UserEmail } from '../model/user-email';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class UserService {
 
   changePassword(password: UserPassword): Observable<HttpResponse<Config>> {
     return this.httpClient.put<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.USER + Urls.PASSWORD, password, { observe: 'response' });
+  }
+
+  changeEmail(email: UserEmail): Observable<HttpResponse<Config>> {
+    return this.httpClient.put<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.USER + Urls.EMAIL, email, { observe: 'response' });
   }
 
   getUser(username: string): Observable<User> {

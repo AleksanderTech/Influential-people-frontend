@@ -14,5 +14,6 @@ export class Urls {
     static readonly USER: string = '/user';
     static readonly SEARCH_SORT_FILTER: string = '/search-filter';
     static readonly PASSWORD: string = '/password';
+    static readonly EMAIL: string = '/email';
     static readonly FAVOURITE: string = '/favourite';
 }

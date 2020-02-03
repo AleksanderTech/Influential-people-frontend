@@ -15,10 +15,10 @@ import { matchTwoValues } from 'src/app/shared/util/matcher';
 })
 export class RegistrationComponent implements OnInit {
 
-  private loadingData: boolean;
-  private user: UserRegistration;
-  private invalidSubmit: boolean;
-  private registerForm: FormGroup;
+  loadingData: boolean;
+  user: UserRegistration;
+  invalidSubmit: boolean;
+  registerForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,

@@ -68,7 +68,7 @@
   <div *ngIf="showEntities">
     <app-article-tile
       *ngFor="
-        let art of entities | searchFilter: searchValue:searchingAttribute
+        let art of entities | searchFilter: articleSearch.title:searchingAttribute
       "
       [article]="art"
       [isFavourite]="isFavourite(art.id)"
@@ -77,7 +77,7 @@
   <div *ngIf="!showEntities">
     <app-article-tile
       *ngFor="
-        let art of searchEntities | searchFilter: searchValue:searchingAttribute
+        let art of searchEntities | searchFilter: articleSearch.title:searchingAttribute
       "
       [article]="art"
       [isFavourite]="isFavourite(art.id)"

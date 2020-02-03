@@ -9,13 +9,13 @@ import { User } from '../../model/user';
 })
 export class HeaderComponent implements OnInit {
 
-  private isNavDisplayed: boolean = false;
+  isNavDisplayed: boolean = false;
 
-  constructor(private loginService: AuthenticationService) { }
+  constructor(public loginService: AuthenticationService) { }
 
   ngOnInit() {
   }
-  
+
   currentUsername() {
     return this.loginService.getUsername();
   }

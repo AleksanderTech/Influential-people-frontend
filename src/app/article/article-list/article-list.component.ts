@@ -15,18 +15,17 @@ import { UserService } from 'src/app/user/service/user.service';
 })
 export class ArticleListComponent extends List<Article> implements OnInit {
 
-  private searchingAttribute = 'title';
-  private searchEntities: Article[];
-  private favouriteArticles: Article[];
-  private showEntities: boolean;
-  private heroes: Hero[];
+  searchingAttribute = 'title';
+  searchEntities: Article[];
+  favouriteArticles: Article[];
+  showEntities: boolean;
+  heroes: Hero[];
+  articleSearch: ArticleSearch;
+  selectedFilter: string;
+  selectedSort: string;
+  pathVariableHero: string;
 
-  private articleSearch: ArticleSearch;
-  private selectedFilter: string;
-  private selectedSort: string;
-  private pathVariableHero: string;
-
-  constructor(private articleService: ArticleService,private userService:UserService, private heroService: HeroService, private route: ActivatedRoute) {
+  constructor(private articleService: ArticleService, private userService: UserService, private heroService: HeroService, private route: ActivatedRoute) {
     super();
   }
 

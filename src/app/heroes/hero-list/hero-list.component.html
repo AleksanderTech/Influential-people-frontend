@@ -66,7 +66,7 @@
     <div *ngIf="showEntities">
       <app-hero-tile
         *ngFor="
-          let hero of entities | searchFilter: searchValue:searchingAttribute
+          let hero of entities | searchFilter: heroSearch.name:searchingAttribute
         "
         [hero]="hero"
         [isFavourite]="isFavourite(hero.name)"
@@ -76,7 +76,7 @@
       <app-hero-tile
         *ngFor="
           let hero of searchEntities
-            | searchFilter: searchValue:searchingAttribute
+            | searchFilter: heroSearch.name:searchingAttribute
         "
         [hero]="hero"
       ></app-hero-tile>

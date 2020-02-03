@@ -8,14 +8,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
 
-  @Input() private entityName: string;
-  @Input() private entities: any[];
-  @Input() private searchingAttribute: string;
+  @Input()  entityName: string;
+  @Input()  entities: any[];
+  @Input()  searchingAttribute: string;
   @Output() entitySearching: EventEmitter<string> = new EventEmitter<string>();
   @Output() entityChoosing: EventEmitter<any> = new EventEmitter<any>();
-  private showDropdown: boolean;
-  private entitySearch: FormGroup;
-  private searchingValue: string;
+   showDropdown: boolean;
+   entitySearch: FormGroup;
+   searchingValue: string;
   
   constructor(private formBuilder: FormBuilder) {
     this.initForm();

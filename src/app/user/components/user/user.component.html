@@ -42,14 +42,13 @@
     <div *ngIf="emailChange" class="email-change">
       <input
         *ngIf="emailChange"
-        type="password"
-        #password
-        [ngModel]="newPassword"
+        type="text"
+        [(ngModel)]="newEmail"
       />&nbsp;
-      <button class="btn btn-dark" (click)="changePassword(password.value)">
+      <button class="btn btn-dark" (click)="changeEmail()">
         save</button
       >&nbsp;
-      <button class="btn btn-dark">cancel</button>
+      <button class="btn btn-dark" (click)="toogleEmailChange()">cancel</button>
     </div>
 
     <button class="btn btn-dark change-button" (click)="tooglePasswordChange()">
@@ -59,13 +58,12 @@
       <input
         *ngIf="passwordChange"
         type="password"
-        #password
-        [ngModel]="newPassword"
+        [(ngModel)]="newPassword"
       />&nbsp;
-      <button class="btn btn-dark" (click)="changePassword(password.value)">
+      <button class="btn btn-dark" (click)="changePassword()">
         save</button
       >&nbsp;
-      <button class="btn btn-dark">cancel</button>
+      <button class="btn btn-dark" (click)="tooglePasswordChange()">cancel</button>
     </div>
 
     <!-- <div>actions</div> -->

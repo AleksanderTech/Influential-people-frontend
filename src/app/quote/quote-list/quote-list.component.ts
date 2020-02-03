@@ -20,17 +20,15 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
   faStar = faStar;
   faSolid = faSolid;
 
-  private searchingAttribute = 'content';
-  private searchEntities: Quote[];
-  private favouriteQuotes: Quote[];
-  private showEntities: boolean;
-  private heroes: Hero[];
-
-  private quoteSearch: QuoteSearch;
-  private selectedFilter: string;
-  private selectedSort: string;
-
-  private pathVariableHero: string;
+  searchingAttribute = 'content';
+  searchEntities: Quote[];
+  favouriteQuotes: Quote[];
+  showEntities: boolean;
+  heroes: Hero[];
+  quoteSearch: QuoteSearch;
+  selectedFilter: string;
+  selectedSort: string;
+  pathVariableHero: string;
 
   constructor(private quoteService: QuoteService, private userService: UserService, private heroService: HeroService, private route: ActivatedRoute) {
     super();
