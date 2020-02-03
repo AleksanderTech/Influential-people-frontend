@@ -8,6 +8,11 @@
 a{
     color:#a56245;
 }
+
+h5{
+    font-weight: bold;
+}
+
 a:hover{
     color:chocolate;
 }

@@ -1,21 +1,24 @@
-<div>
-  <div *ngIf="quote" class="quote-detail">
-    <div>
-      <p class="quote-item content">{{ quote.content }}</p>
-    </div>
-    <div>
-      <p class="quote-item hero-name">hero: {{ quote.heroName }}</p>
+<div class="quote-container">
+  <div class="item arrow" (click)="previous()"><i class="left"></i></div>
+  <div *ngIf="quote" class="quote-detail item">
+    <div class="quote-item content">
+      <h5><fa-icon [icon]="faQuoteLeft"></fa-icon>&nbsp;{{ quote.content }}</h5>
+      <h5>{{ quote.heroName }}</h5>
     </div>
     <div class="quote-item favourite">
-      <div *ngIf="isFavourite" (click)="toogleFavourite(quote.id)">Your favourite&nbsp;<fa-icon [icon]="faSolid"></fa-icon></div>
-      <div *ngIf="!isFavourite" (click)="toogleFavourite(quote.id)">Add to favourite&nbsp;<fa-icon [icon]="faStar"></fa-icon></div>
+      <div *ngIf="isFavourite" (click)="toogleFavourite(quote.id)">
+        Your favourite&nbsp;<fa-icon [icon]="faSolid"></fa-icon>
+      </div>
+      <div *ngIf="!isFavourite" (click)="toogleFavourite(quote.id)">
+        Add to favourite&nbsp;<fa-icon [icon]="faStar"></fa-icon>
+      </div>
     </div>
-    <div>
-      <a
-        routerLink="/hero/{{ quote.heroName }}/detail"
-        class="quote-item hero"
-        >hero</a
+    <div >
+      <a routerLink="/hero/{{ quote.heroName }}/detail" class="quote-item hero"
+        >Hero</a
       >
     </div>
   </div>
+
+  <div class="item arrow" (click)="next()"><i class="right"></i></div>
 </div>

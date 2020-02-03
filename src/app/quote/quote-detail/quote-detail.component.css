@@ -1,19 +1,52 @@
+.quote-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .quote-detail {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 4rem auto;
+  width: 70%;
+  max-width: 70% !important;
+  margin-top: 3rem;
+  padding-bottom: 1rem;
+}
+
+.hidden{
+  visibility: hidden;
 }
 
 a {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #a56245;
+}
+
+a:hover{
+  color:brown;
+}
+
+h5{
+  font-weight: bold;
+}
+
+.hero{
   font-size: 1.5rem;
-  text-decoration: underline;
-  color: black;
+}
+
+.content{
+  margin:2rem auto;
+  text-align: center;
+  font-weight: bold;
 }
 
 .favourite{
+  color:#a56245;
   margin:0.5rem;
+  text-align: center;
   padding-top: 0.5rem;
   padding-bottom: 1rem;
   cursor: pointer;
@@ -22,5 +55,26 @@ a {
 }
 
 .favourite:hover{
-  color:#a56245;
+  color:brown;
+}
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 10px;
+}
+
+.right {
+  transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+}
+
+.arrow{
+  cursor: pointer;
+  margin:auto;
+  padding:2rem 1.3rem;
 }

@@ -25,9 +25,9 @@
     <h3>Category - {{ category.name }}</h3>
   </div>
   <div class="category-item quote">
-    <h4>
+    <h5>
       <fa-icon [icon]="faQuoteLeft"></fa-icon>&nbsp;{{ descriptionQuote }}
-    </h4>
+    </h5>
     <span *ngIf="category.description.includes('author-')">{{
       descriptionAuthor
     }}</span>

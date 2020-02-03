@@ -16,14 +16,9 @@ export class AuthRedirectorService implements CanActivate, CanLoad {
     private authService: AuthenticationService) { }
 
   canActivate() {
-    console.log(this.router);
-    
     if (this.authService.isUserLoggedIn()) {
-      console.log('true');
-      
       return true;
     }
-    console.log('false');
     this.router.navigate(['']);
     return false;
   }

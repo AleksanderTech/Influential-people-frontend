@@ -39,5 +39,4 @@ export class QuoteService {
   deleteFavourite(name: number): Observable<HttpResponse<Config>> {
     return this.httpClient.delete<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.QUOTE + '/' + name + Urls.FAVOURITE);
   }
-
 }

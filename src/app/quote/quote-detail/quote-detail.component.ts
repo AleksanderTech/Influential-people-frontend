@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { QuoteService } from '../service/quote.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Quote } from '../model/quote';
-import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faSolid, faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { isContext } from 'vm';
 
 
 @Component({
@@ -13,18 +14,62 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 })
 export class QuoteDetailComponent implements OnInit {
 
+  faQuoteLeft = faQuoteLeft;
   faStar = faStar;
   faSolid = faSolid;
 
-  quote:Quote;
-  isFavourite:boolean;
-  
+  quote: Quote;
+  isFavourite: boolean;
+  quoteId: number;
+  quotes: Quote[];
+  quoteIndex: number;
+
   constructor(private quoteService: QuoteService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.quoteService.getQuote(this.route.snapshot.paramMap.get('id')).subscribe(data => {
+    this.quoteId = +this.route.snapshot.paramMap.get('id');
+    this.quoteService.getQuote(this.quoteId + "").subscribe(data => {
       this.quote = data;
       this.getFavourite(data.id);
+      this.getQuotes();
+    });
+  }
+
+  next(): boolean {
+    let currentIndex = this.quotes.findIndex(quote => quote.id === this.quoteId);
+    if (this.isNext(currentIndex)) {
+      this.quote = this.quotes[currentIndex + 1];
+      this.quoteId = this.quote.id;
+      this.getFavourite(this.quoteId);
+      return true;
+    }
+    return false;
+  }
+
+  isNext(currentIndex: number): boolean {
+    return this.quotes.length > currentIndex + 1;
+  }
+
+  isPrevious(currentIndex: number): boolean {
+    return 0 < currentIndex;
+  }
+
+  previous(): boolean {
+    let currentIndex = this.quotes.findIndex(quote => quote.id === this.quoteId);
+    if (this.isPrevious(currentIndex)) {
+      this.quote = this.quotes[currentIndex - 1];
+      this.quoteId = this.quote.id;
+      this.getFavourite(this.quoteId);
+      return true;
+    }
+    return false;
+  }
+
+  getQuotes() {
+    this.quoteService.getQuotes().subscribe(data => {
+      this.quotes = data;
+    }, error => {
+      alert('Error occured');
     });
   }
 
@@ -51,7 +96,7 @@ export class QuoteDetailComponent implements OnInit {
       alert('Error occured');
     });
   }
-  
+
   getFavourite(id: number) {
     this.quoteService.getFavourite(id).subscribe(data => {
       this.isFavourite = true;

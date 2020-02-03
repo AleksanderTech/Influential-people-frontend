@@ -75,7 +75,7 @@ export class UserComponent implements OnInit {
   }
 
   deleteFavouriteArticle(id: string) {
-    this.articleService.deleteFavouriteArticle(id).subscribe(response=>{
+    this.articleService.deleteFavourite(+id).subscribe(response=>{
       this.getFavouritesArticles();
     },error=>{
       alert('Error occured');
