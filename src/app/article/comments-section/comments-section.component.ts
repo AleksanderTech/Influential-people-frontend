@@ -4,6 +4,7 @@ import { ArticleComment } from '../model/article-comment';
 import { Article } from '../model/article';
 import { CommentService } from '../service/comment.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { Urls } from 'src/app/shared/constants/urls';
 
 @Component({
   selector: 'app-comments-section',
@@ -14,6 +15,8 @@ export class CommentsSectionComponent extends List<ArticleComment> implements On
 
   @Input() article: Article;
   pageSize: number = 10;
+  profileImageUrl:string;
+  readonly defaultImageUrl:string = Urls.PROFILE_DEFAULT_IMAGE_URL;
 
   constructor(private commentService: CommentService, private authService: AuthenticationService) {
     super();
@@ -21,6 +24,7 @@ export class CommentsSectionComponent extends List<ArticleComment> implements On
 
   ngOnInit() {
     this.selectedPage = 0;
+    this.profileImageUrl=this.authService.getUserImageUrl();
     this.getComments(this.article.id, this.selectedPage, this.pageSize);
   }
 

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { UserAttributes } from 'src/app/shared/constants/user-attributes';
 import { SecurityConstants } from 'src/app/shared/constants/security-constants';
 

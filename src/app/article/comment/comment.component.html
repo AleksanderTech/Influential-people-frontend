@@ -1,45 +1,27 @@
-<!-- <div class="comment">
-  <div class="user-img flex-item">
-    <img
-      src="../../../assets/images/rulers.jpg"
-      alt="image"
-      style="width: 3rem;"
-    />
-  </div>
-  <div class="content flex-item">
-    <small
-      ><span>{{ comment.username }}</span> posted -
-      <span>{{ comment.createdAt }}</span></small
-    >
-    <p>{{ comment.content }}</p>
-    <button
-      type="button"
-      (click)="delete()"
-      class="btn btn-outline-dark btn-sm"
-    >
-      delete
-    </button>
-  </div>
-</div> -->
-
 <div class="comment">
   <div class="comment-left-panel">
     <div class="avatar">
-      <img
-        class="avatar-image"
-        src="https://images.pexels.com/photos/1167160/pexels-photo-1167160.jpeg?cs=srgb&dl=photo-of-red-paper-lanterns-1167160.jpg&fm=jpg"
-      />
+      <img *ngIf = "profileImageUrl" class="avatar-image" src="{{ profileImageUrl }}" alt="" />
+      <img *ngIf = "!profileImageUrl" class="avatar-image" src="{{ defaultImageUrl }}" alt="" />
     </div>
   </div>
 
   <div class="comment-right-panel">
     <div class="user-right-panel">
       <span class="username-right-panel">{{ comment.username }}</span>
-      <span class="timestamp-right-panel"> {{ comment.createdAt | date:'medium' }}</span>
+      <span class="timestamp-right-panel">
+        {{ comment.createdAt | date: "medium" }}</span
+      >
     </div>
     <div class="content-right-panel">{{ comment.content }}</div>
     <div class="manage-right-panel">
-     <button class="btn btn-dark btn-sm" *ngIf="isOwner(comment)" (click)="delete()">delete</button>
+      <button
+        class="btn btn-dark btn-sm"
+        *ngIf="isOwner(comment)"
+        (click)="delete()"
+      >
+        delete
+      </button>
     </div>
   </div>
 </div>

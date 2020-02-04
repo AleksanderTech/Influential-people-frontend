@@ -2,18 +2,18 @@ import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { UserLogin } from "../../shared/model/user-login";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import { Urls } from 'src/app/shared/constants/urls';
 import { UserAttributes } from 'src/app/shared/constants/user-attributes';
 import { SecurityConstants } from 'src/app/shared/constants/security-constants';
 import { Router } from '@angular/router';
+import { User } from 'src/app/shared/model/user';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthenticationService {
 
-  username: string;
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   authenticate(user: UserLogin): Observable<any> {
@@ -29,15 +29,16 @@ export class AuthenticationService {
             response.headers.get(SecurityConstants.AUTHORIZATION)
           ).replace(SecurityConstants.TOKEN_PREFIX, "");
           sessionStorage.setItem(SecurityConstants.TOKEN, token);
+          sessionStorage.setItem(SecurityConstants.TOKEN, token);
+          this.getUser(user.username).subscribe(user => {
+            sessionStorage.setItem(UserAttributes.USER_AVATAR_URL, user.avatarImageUrl);
+          });
           return response;
         })
       );
   }
 
   getUsername(): string {
-    if (this.username && this.username != '') {
-      return this.username;
-    }
     return sessionStorage.getItem(UserAttributes.USERNAME);
   }
 
@@ -49,7 +50,15 @@ export class AuthenticationService {
   logOut(): void {
     sessionStorage.removeItem(UserAttributes.USERNAME);
     sessionStorage.removeItem(SecurityConstants.TOKEN);
+    sessionStorage.removeItem(UserAttributes.USER_AVATAR_URL);
     this.router.navigate(['']);
   }
 
+  getUser(username: string): Observable<User> {
+    return this.httpClient.get<User>(Urls.ROOT_REST_URL + Urls.USER + '/' + username);
+  }
+
+  getUserImageUrl(): string {
+    return sessionStorage.getItem(UserAttributes.USER_AVATAR_URL);
+  }
 }

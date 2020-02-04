@@ -58,13 +58,11 @@ export class RegistrationComponent implements OnInit {
       })
       .subscribe(
         response => {
-          console.log(response);
           this.loadingData = false;
           this.stateService.change(response);
           this.router.navigate(["/sign-up/message"]);
         },
         error => {
-          console.log(error);
           this.loadingData = false;
           this.stateService.change(error);
           this.router.navigate(["/sign-up/message"]);

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { HttpClient } from '@angular/common/http';
 import { UserService } from '../../service/user.service';
 import { UserPassword } from '../../model/user-password';
 import { User } from 'src/app/shared/model/user';
@@ -12,6 +11,8 @@ import { ArticleService } from 'src/app/article/service/article.service';
 import { QuoteService } from 'src/app/quote/service/quote.service';
 import { Quote } from 'src/app/quote/model/quote';
 import { UserEmail } from '../../model/user-email';
+import { ImageService } from 'src/app/core/services/image.service';
+import { Urls } from 'src/app/shared/constants/urls';
 
 @Component({
   selector: 'app-user',
@@ -33,81 +34,79 @@ export class UserComponent implements OnInit {
   favouriteHeroes: Hero[];
   favouriteArticles: Article[];
   favouriteQuotes: Quote[];
+  profileDefaultUrl: string = Urls.PROFILE_DEFAULT_IMAGE_URL;
 
-  constructor(private authService: AuthenticationService, private articleService: ArticleService, private quoteService: QuoteService,
-     private heroService: HeroService, private httpClient: HttpClient, private userService: UserService) { }
+  constructor(private imageService: ImageService, private authService: AuthenticationService, private articleService: ArticleService, private quoteService: QuoteService,
+    private heroService: HeroService, private userService: UserService) { }
 
   ngOnInit() {
+    this.imageService.userImageUrl.subscribe(url => {
+      if (this.currentUser) {
+        this.currentUser.avatarImageUrl = '';
+        setTimeout(() => {
+          this.getUser(this.authService.getUsername());
+        }, 200);
+      }
+    });
     this.getUser(this.authService.getUsername());
     this.getFavouritesHeroes();
     this.getFavouritesArticles();
     this.getFavouritesQuotes();
   }
 
+  onError() {
+    this.currentUser.avatarImageUrl = '';
+  }
+
   getFavouritesArticles() {
     this.userService.getFavouritesArticles().subscribe(entities => {
       this.favouriteArticles = entities['content'];
-      console.log(this.favouriteArticles);
-
     });
   }
 
   getFavouritesQuotes() {
     this.userService.getFavouritesQuotes().subscribe(entities => {
       this.favouriteQuotes = entities['content'];
-      console.log(this.favouriteQuotes);
-
     });
   }
 
   getFavouritesHeroes() {
     this.userService.getFavouritesHeroes().subscribe(entities => {
       this.favouriteHeroes = entities['content'];
-      console.log(this.favouriteHeroes);
-
     });
   }
 
   deleteFavouriteHero(id: string) {
-    this.heroService.deleteFavourite(id).subscribe(response=>{
+    this.heroService.deleteFavourite(id).subscribe(response => {
       this.getFavouritesHeroes();
-    },error=>{
+    }, error => {
       alert('Error occured')
     });
   }
 
   deleteFavouriteArticle(id: string) {
-    this.articleService.deleteFavourite(+id).subscribe(response=>{
+    this.articleService.deleteFavourite(+id).subscribe(response => {
       this.getFavouritesArticles();
-    },error=>{
+    }, error => {
       alert('Error occured');
     });
   }
 
   deleteFavouriteQuote(id: number) {
-    this.quoteService.deleteFavourite(id).subscribe(response=>{
+    this.quoteService.deleteFavourite(id).subscribe(response => {
       this.getFavouritesQuotes();
-    },error=>{
+    }, error => {
       alert('Error occured');
     });
   }
 
   uploadFile(event: Event) {
     let file = event.target['files'][0];
-    if (file.length === 0)
-      return;
-    let mimeType = file.type;
-    if (mimeType.match(/image\/*/) == null) {
+    if (file.length === 0 || file.type.match(/image\/*/) == null) {
       return;
     }
-    let reader = new FileReader();
-    this.img = file;
-    reader.readAsDataURL(file);
-    reader.onload = event => {
-      const formData = new FormData();
-      formData.append('image', this.img);
-      this.httpClient.put('http://localhost:8080/hero/Aristotle1/image', formData).subscribe();
-    }
+    let url = this.imageService.resolveUploadUrl(this.currentUser.avatarImageUrl);
+    this.imageService.uploadImage(url, file);
   }
 
   logout() {
@@ -119,6 +118,7 @@ export class UserComponent implements OnInit {
       if (data.status === 200) {
         this.tooglePasswordChange();
         alert('Password changed successfully')
+        this.getUser(this.authService.getUsername());
       }
     }, error => {
       alert('Error occured')
@@ -128,8 +128,8 @@ export class UserComponent implements OnInit {
   changeEmail() {
     this.userService.changeEmail(new UserEmail(this.newEmail)).subscribe(data => {
       if (data.status === 200) {
-        this.toogleEmailChange() ;
-        alert('Password changed successfully')
+        this.toogleEmailChange();
+        this.getUser(this.authService.getUsername());
       }
     }, error => {
       alert('Error occured')

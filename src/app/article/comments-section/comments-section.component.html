@@ -1,40 +1,46 @@
 <div class="container">
-    <div class="add-comment">
-        <div class="left-panel">
-          <div class="avatar">
-            <img
-              class="avatar-image"
-              src="https://images.pexels.com/photos/1167160/pexels-photo-1167160.jpeg?cs=srgb&dl=photo-of-red-paper-lanterns-1167160.jpg&fm=jpg"
-            />
-          </div>
-        </div>
-        <div class="right-panel">
-          <textarea
-            placeholder="add a comment..."
-            rows="1"
-            #textarea
-            (keydown)="resize(textarea)"
-          
-          ></textarea>
-          <input
-            class="btn btn-dark btn-sm add-button"
-            type="submit"
-            value="comment"
-            (click)="addComment(textarea.value)"
-          />
-        </div>
+  <div class="add-comment">
+    <div class="left-panel">
+      <div class="avatar">
+        <img
+          *ngIf="!profileImageUrl"
+          class="avatar-image"
+          src="{{ profileDefaultImage }}"
+          alt=""
+        />
+        <img
+          *ngIf="profileImageUrl"
+          class="avatar-image"
+          src="{{ profileImageUrl }}"
+          alt=""
+        />
       </div>
-    <app-comment
-      (commentDeleted)="updateComments($event)"
-      *ngFor="let comment of entities"
-      [articleId]="article.id"
-      [comment]="comment"
-    ></app-comment>
-    <br>
-    <app-paginator
-      *ngIf="numberOfPages"
-      [numberOfPages]="numberOfPages"
-      (pageClicked)="updatePage($event)"
-    ></app-paginator>
+    </div>
+    <div class="right-panel">
+      <textarea
+        placeholder="add a comment..."
+        rows="1"
+        #textarea
+        (keydown)="resize(textarea)"
+      ></textarea>
+      <input
+        class="btn btn-dark btn-sm add-button"
+        type="submit"
+        value="comment"
+        (click)="addComment(textarea.value)"
+      />
+    </div>
   </div>
-  
+  <app-comment
+    (commentDeleted)="updateComments($event)"
+    *ngFor="let comment of entities"
+    [articleId]="article.id"
+    [comment]="comment"
+  ></app-comment>
+  <br />
+  <app-paginator
+    *ngIf="numberOfPages"
+    [numberOfPages]="numberOfPages"
+    (pageClicked)="updatePage($event)"
+  ></app-paginator>
+</div>

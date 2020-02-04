@@ -1,10 +1,15 @@
 <div *ngIf="currentUser" class="banner flex-container">
   <div class="circle flex-item">
-    <img
+    <img *ngIf="currentUser.avatarImageUrl"
       class="profile-image"
-      src="https://image.shutterstock.com/mosaic_250/1462748/766777333/stock-photo-galileo-galilei-portrait-on-italy-lira-banknote-closeup-macro-genius-italian-scientist-766777333.jpg"
-      alt="Avatar"
+      src="{{currentUser.avatarImageUrl}}"
+      alt=""
     />
+    <img *ngIf="!currentUser.avatarImageUrl"
+    class="profile-image"
+    src="{{profileDefaultUrl}}"
+    alt=""
+  />
   </div>
   <span>
     <label class="btn btn-outline-light banner-button">
