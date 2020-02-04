@@ -94,6 +94,14 @@
         "
       >
         <a class="router-link" routerLink="/quote/{{ quote.id }}/detail">{{ quote.content | truncate:[40] }}  </a>
+        <div class="favourite">
+          <div class="star" *ngIf="isFavourite(quote.id)" (click)="toogleFavourite(quote.id)">
+            <fa-icon [icon]="faSolid"></fa-icon>
+          </div>
+          <div class="star" *ngIf="!isFavourite(quote.id)" (click)="toogleFavourite(quote.id)">
+            <fa-icon [icon]="faStar"></fa-icon>
+          </div>
+        </div>
       </li>
     </ul>
   </div>

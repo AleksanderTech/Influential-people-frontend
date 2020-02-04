@@ -79,6 +79,7 @@
             | searchFilter: heroSearch.name:searchingAttribute
         "
         [hero]="hero"
+        [isFavourite]="isFavourite(hero.name)"
       ></app-hero-tile>
     </div>
     <app-paginator

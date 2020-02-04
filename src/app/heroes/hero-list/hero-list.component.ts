@@ -79,14 +79,6 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     });
   }
 
-  addFavourite(name: string) {
-    this.heroService.addFavourite(name).subscribe(response => {
-      this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
-    }, error => {
-      alert('Error occured');
-    });
-  }
-
   isFavourite(name: string): boolean {
     if (this.favouriteHeroes) {
       return this.favouriteHeroes.find(hero => hero.name === name) != undefined;
@@ -114,6 +106,7 @@ export class HeroListComponent extends List<Hero> implements OnInit {
 
   onEntitySearching(searchValue: string) {
     this.heroSearch.name = searchValue;
+    this.getFavouritesHeroes();
     this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
   }
 

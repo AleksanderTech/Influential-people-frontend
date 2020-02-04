@@ -106,6 +106,7 @@ export class ArticleListComponent extends List<Article> implements OnInit {
 
   onEntitySearching(searchValue: string) {
     this.articleSearch.title = searchValue;
+    this.getFavouritesArticles();
     this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
   }
 

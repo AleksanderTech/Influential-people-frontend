@@ -60,8 +60,6 @@ export class AuthenticationService {
   }
 
   updateUserImageUrl(url: string) {
-    console.log(url);
-    
     sessionStorage.setItem(UserAttributes.USER_AVATAR_URL, url);
   }
 

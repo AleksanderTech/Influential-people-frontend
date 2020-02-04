@@ -137,7 +137,9 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
 
   onEntitySearching(searchValue: string) {
     this.quoteSearch.content = searchValue;
+    this.getFavouritesQuotes();
     this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
+   
   }
 
   onEntityChoosing(chosenEntity: Quote) {
