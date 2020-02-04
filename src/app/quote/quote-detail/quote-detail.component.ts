@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { QuoteService } from '../service/quote.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Quote } from '../model/quote';
 import { faStar as faSolid, faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { isContext } from 'vm';
 
 
 @Component({
@@ -98,9 +97,14 @@ export class QuoteDetailComponent implements OnInit {
   }
 
   getFavourite(id: number) {
-    this.quoteService.getFavourite(id).subscribe(data => {
-      this.isFavourite = true;
+    this.quoteService.getFavourite(id).subscribe(response => {
+      if(response){
+        this.isFavourite = true;
+      }else{
+        this.isFavourite = false;
+      }
     }, (error => {
+      this.isFavourite=false;
     }));
   }
 }
