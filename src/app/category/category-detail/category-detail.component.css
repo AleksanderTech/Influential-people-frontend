@@ -1,7 +1,7 @@
 .container{
     box-sizing: border-box;
     margin:0 auto;
-    width: 60vw;
+    width: 85vw;
     display:flex;
     flex-direction: column;
 }
@@ -20,17 +20,21 @@ a:hover{
 .top-item{
     margin-top:2rem;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }   
 .top-10{
     text-align: center;
-    width: 55%;
+    width: 23rem;
 }
+
 .top-item-image{
-    width: 45%;
+    width: 23rem;
 }
+
 .top-hero{
-    padding-left: 25%;
-    font-size: 1.2rem;
+    padding-left: 15%;
+    font-size: 1.1rem;
     margin:0.4rem 0;
     font-weight: bold;
     text-align: start;

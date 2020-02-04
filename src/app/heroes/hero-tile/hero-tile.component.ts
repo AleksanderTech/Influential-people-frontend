@@ -3,6 +3,7 @@ import { Hero } from '../model/hero';
 import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { HeroService } from '../service/hero.service';
+import { Urls } from 'src/app/shared/constants/urls';
 
 @Component({
   selector: 'app-hero-tile',
