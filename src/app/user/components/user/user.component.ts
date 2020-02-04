@@ -105,8 +105,7 @@ export class UserComponent implements OnInit {
     if (file.length === 0 || file.type.match(/image\/*/) == null) {
       return;
     }
-    let url = this.imageService.resolveUploadUrl(this.currentUser.avatarImageUrl);
-    this.imageService.uploadImage(url, file);
+    this.imageService.uploadImage(this.imageService.resolveUploadUrl(this.currentUser.avatarImageUrl), file);
   }
 
   logout() {

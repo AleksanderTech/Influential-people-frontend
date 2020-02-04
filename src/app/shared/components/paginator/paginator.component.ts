@@ -24,7 +24,6 @@ export class PaginatorComponent implements OnInit, OnChanges {
   }
 
   next() {
-    console.log(this.currentPage);
     this.currentPage = this.currentPage + 1;
     if (this.currentPage <= this.numberOfPages) {
       this.pageClicked.emit(this.currentPage);

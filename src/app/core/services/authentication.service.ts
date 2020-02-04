@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { UserLogin } from "../../shared/model/user-login";
@@ -14,7 +14,8 @@ import { User } from 'src/app/shared/model/user';
 })
 export class AuthenticationService {
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) {
+  }
 
   authenticate(user: UserLogin): Observable<any> {
     return this.httpClient
@@ -58,7 +59,17 @@ export class AuthenticationService {
     return this.httpClient.get<User>(Urls.ROOT_REST_URL + Urls.USER + '/' + username);
   }
 
+  updateUserImageUrl(url: string) {
+    console.log(url);
+    
+    sessionStorage.setItem(UserAttributes.USER_AVATAR_URL, url);
+  }
+
   getUserImageUrl(): string {
-    return sessionStorage.getItem(UserAttributes.USER_AVATAR_URL);
+    let url = sessionStorage.getItem(UserAttributes.USER_AVATAR_URL);
+    if (url && url !== 'null') {
+      return url;
+    }
+    return null;
   }
 }

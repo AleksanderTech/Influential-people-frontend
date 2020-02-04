@@ -16,5 +16,5 @@ export class Urls {
     static readonly PASSWORD: string = '/password';
     static readonly EMAIL: string = '/email';
     static readonly FAVOURITE: string = '/favourite';
-    static readonly PROFILE_DEFAULT_IMAGE_URL: string = "./../../../../assets/images/user_avatar.png"
+    static readonly PROFILE_DEFAULT_IMAGE_URL: string = "/assets/images/user_avatar.png"
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Urls } from 'src/app/shared/constants/urls';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,27 +12,21 @@ export class ImageService {
   behaviorSubject = new BehaviorSubject<string>('');
   userImageUrl = this.behaviorSubject.asObservable();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private authService: AuthenticationService) {
+  }
 
   change(url: string) {
     this.behaviorSubject.next(url);
   }
 
   resolveUploadUrl(url: string): string {
-    let result;
     if (url) {
-      let prefix = url.substring(0, url.indexOf('user/') + 4);
-      let suffix = url.substring(url.lastIndexOf('/image'));
-      result = prefix + suffix;
-    } else {
-      result = Urls.ROOT_REST_URL + Urls.USER + Urls.IMAGE;
+      return url;
     }
-    return result;
+    return Urls.ROOT_REST_URL + Urls.USER + '/' + this.authService.getUsername() + Urls.IMAGE;
   }
 
   uploadImage(url: string, image: any) {
-    console.log(url);
-
     let reader = new FileReader();
     reader.readAsDataURL(image);
     reader.onload = event => {
@@ -39,6 +34,7 @@ export class ImageService {
       formData.append('image', image);
       this.httpClient.put(url, formData).subscribe(response => {
         this.change(url);
+        this.authService.updateUserImageUrl(url);
       }, error => {
         alert('Error occured');
       });

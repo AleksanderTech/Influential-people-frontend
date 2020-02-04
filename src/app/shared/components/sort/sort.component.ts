@@ -12,8 +12,6 @@ export class SortComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.entities);
-
   }
 
 }

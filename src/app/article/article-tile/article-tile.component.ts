@@ -19,8 +19,6 @@ export class ArticleTileComponent implements OnInit {
   constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
-    console.log(this.article);
-    
   }
 
 

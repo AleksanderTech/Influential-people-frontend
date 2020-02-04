@@ -14,25 +14,18 @@ export class CommentComponent implements OnInit {
   @Input() comment: ArticleComment;
   @Input() articleId: number;
   @Output() commentDeleted: EventEmitter<ArticleComment> = new EventEmitter<ArticleComment>();
-  profileImageUrl:string;
   readonly defaultImageUrl:string = Urls.PROFILE_DEFAULT_IMAGE_URL;
   
-
   constructor(private commentService: CommentService, private authService: AuthenticationService) { }
 
   ngOnInit() {
-    this.profileImageUrl=this.authService.getUserImageUrl();
-    console.log(this.profileImageUrl);
-    
   }
 
   delete() {
     this.commentService.deleteComment(this.comment.id, this.articleId).subscribe(() => { this.commentDeleted.emit(this.comment); });
-
   }
 
   isOwner(articleComment: ArticleComment) {
     return articleComment.username === this.authService.getUsername();
   }
-
 }
