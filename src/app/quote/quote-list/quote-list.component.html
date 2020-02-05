@@ -90,7 +90,7 @@
       <li
         class="quote-item"
         *ngFor="
-          let quote of entities | searchFilter: searchValue:searchingAttribute
+          let quote of entities | searchFilter: quoteSearch.content:searchingAttribute
         "
       >
         <a class="router-link" routerLink="/quote/{{ quote.id }}/detail">{{ quote.content | truncate:[40] }}  </a>
