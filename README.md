@@ -1,6 +1,6 @@
 # InfluentialPeople
 
-[Running instance](alexecute.com).
+[Running instance](http://alexecute.com)
 
 [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
 
