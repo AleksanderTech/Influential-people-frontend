@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { UserRegistration } from "../../../shared/model/user-registration";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Urls } from "src/app/shared/constants/urls";
 import { Router } from "@angular/router";
 import { StateService } from "src/app/core/services/state.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchTwoValues } from 'src/app/shared/util/matcher';
+import { RegistrationService } from '../../service/registration.service';
 
 
 @Component({
@@ -22,7 +21,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient,
+    private registrationService:RegistrationService,
     private router: Router,
     private stateService: StateService
   ) { }
@@ -40,32 +39,24 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  get controls() { return this.registerForm.controls; }
-
   signUp(form: FormGroup) {
-
     if (this.registerForm.invalid) {
       this.invalidSubmit = true;
       return;
     }
     this.updateUserFields(form);
-    const headers = new HttpHeaders({ "Content-Type": "application/json" });
     this.loadingData = true;
-    this.httpClient
-      .post<any>(Urls.ROOT_REST_URL + Urls.SIGN_UP, JSON.stringify(this.user), {
-        headers: headers,
-        observe: "response"
-      })
+    this.registrationService.register(this.user)
       .subscribe(
-        response => {
+        response => { 
           this.loadingData = false;
           this.stateService.change(response);
-          this.router.navigate(["/sign-up/message"]);
+          this.router.navigate(["/"]);
         },
         error => {
           this.loadingData = false;
           this.stateService.change(error);
-          this.router.navigate(["/sign-up/message"]);
+          this.router.navigate(["/"]);
         }
       );
   }
