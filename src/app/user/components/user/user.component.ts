@@ -13,6 +13,8 @@ import { Quote } from 'src/app/quote/model/quote';
 import { UserEmail } from '../../model/user-email';
 import { ImageService } from 'src/app/core/services/image.service';
 import { Urls } from 'src/app/shared/constants/urls';
+import { Modal, ModalType } from 'src/app/shared/model/modal';
+import { Messages } from 'src/app/shared/constants/messages';
 
 @Component({
   selector: 'app-user',
@@ -25,8 +27,10 @@ export class UserComponent implements OnInit {
   newPassword: string;
   newEmail: string;
   currentUser: User;
+  modal:Modal;
   faTrash = faTrash;
   faSearch = faSearch;
+ 
 
   passwordChange: boolean;
   emailChange: boolean;
@@ -52,6 +56,10 @@ export class UserComponent implements OnInit {
     this.getFavouritesHeroes();
     this.getFavouritesArticles();
     this.getFavouritesQuotes();
+  }
+
+  onModalSubmitting(modal:Modal){
+    this.modal=modal;
   }
 
   onError() {
@@ -103,6 +111,7 @@ export class UserComponent implements OnInit {
   uploadFile(event: Event) {
     let file = event.target['files'][0];
     if (file.length === 0 || file.type.match(/image\/*/) == null) {
+      //bad format
       return;
     }
     this.imageService.uploadImage(this.imageService.resolveUploadUrl(this.currentUser.avatarImageUrl), file);
@@ -116,11 +125,11 @@ export class UserComponent implements OnInit {
     this.userService.changePassword(new UserPassword(this.newPassword)).subscribe(data => {
       if (data.status === 200) {
         this.tooglePasswordChange();
-        alert('Password changed successfully')
+        this.modal = new Modal(ModalType.INFO,Messages.PASSWORD_CHANGED_MESSAGE,true,null);
         this.getUser(this.authService.getUsername());
       }
     }, error => {
-      alert('Error occured')
+      this.modal = new Modal(ModalType.INFO,Messages.ERROR_MESSAGE,true,null);
     });
   }
 
@@ -128,10 +137,11 @@ export class UserComponent implements OnInit {
     this.userService.changeEmail(new UserEmail(this.newEmail)).subscribe(data => {
       if (data.status === 200) {
         this.toogleEmailChange();
+        this.modal = new Modal(ModalType.INFO,Messages.EMAIL_CHANGED_MESSAGE,true,null);
         this.getUser(this.authService.getUsername());
       }
     }, error => {
-      alert('Error occured')
+      this.modal = new Modal(ModalType.INFO,Messages.ERROR_MESSAGE,true,null);
     });
   }
 

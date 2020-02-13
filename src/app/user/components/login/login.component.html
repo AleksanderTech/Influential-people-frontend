@@ -38,4 +38,6 @@
     <br />
     <br />
   </form>
+  <app-modal *ngIf="modal" (modalSubmitted)="onModalSubmitting($event)" [modal]="modal"></app-modal>
+  <app-modal *ngIf="accountCreated" (modalSubmitted)="onModalSubmitting($event)" [modal]="modal"></app-modal>
 </div>

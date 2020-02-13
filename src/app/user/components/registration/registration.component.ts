@@ -5,6 +5,8 @@ import { StateService } from "src/app/core/services/state.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchTwoValues } from 'src/app/shared/util/matcher';
 import { RegistrationService } from '../../service/registration.service';
+import { Modal, ModalType } from 'src/app/shared/model/modal';
+import { Messages } from 'src/app/shared/constants/messages';
 
 
 @Component({
@@ -14,6 +16,7 @@ import { RegistrationService } from '../../service/registration.service';
 })
 export class RegistrationComponent implements OnInit {
 
+  modal: Modal;
   loadingData: boolean;
   user: UserRegistration;
   invalidSubmit: boolean;
@@ -21,14 +24,14 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private registrationService:RegistrationService,
+    private registrationService: RegistrationService,
     private router: Router,
     private stateService: StateService
   ) { }
 
-  ngOnInit() {
+  get controls() { return this.registerForm.controls; }
 
-    this.user = new UserRegistration();
+  ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.pattern("(.)+[@][^@]+[.][a-zA-Z0-9]+")]],
@@ -37,6 +40,7 @@ export class RegistrationComponent implements OnInit {
     }, {
       validator: matchTwoValues('password', 'confirmPassword')
     });
+    this.user = new UserRegistration();
   }
 
   signUp(form: FormGroup) {
@@ -48,20 +52,24 @@ export class RegistrationComponent implements OnInit {
     this.loadingData = true;
     this.registrationService.register(this.user)
       .subscribe(
-        response => { 
+        response => {
           this.loadingData = false;
           this.stateService.change(response);
-          this.router.navigate(["/"]);
+          this.modal = new Modal(ModalType.INFO,Messages.REGISTRATION_MESSAGE_SUCCESS,true);
         },
         error => {
           this.loadingData = false;
           this.stateService.change(error);
-          this.router.navigate(["/"]);
+          this.modal = new Modal(ModalType.INFO,Messages.REGISTRATION_MESSAGE_ERROR,true);
         }
       );
   }
 
-  private updateUserFields(form: FormGroup) {
+  onModalSubmitting(modal:Modal){
+    this.modal = modal;
+  }
+
+  updateUserFields(form: FormGroup) {
     this.user.email = form.controls.email.value;
     this.user.username = form.controls.username.value;
     this.user.password = form.controls.password.value;

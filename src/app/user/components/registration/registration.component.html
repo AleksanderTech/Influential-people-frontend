@@ -86,7 +86,7 @@
         >
           Password confirmation and Password must match.
         </div>
-      </div>
+      </div>  
       <button
         class="sign-up-button"
         type="button"
@@ -98,5 +98,6 @@
       <br />
     </form>
   </div>
+  <app-modal *ngIf="modal" (modalSubmitted)="onModalSubmitting($event)" [modal]="modal"></app-modal>
   <ng-template #loading><app-spinner></app-spinner></ng-template>
 </div>

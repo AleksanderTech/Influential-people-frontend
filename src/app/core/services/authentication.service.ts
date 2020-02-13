@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from "@angular/core";
 import { map } from "rxjs/operators";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { UserLogin } from "../../shared/model/user-login";
 import { Observable, BehaviorSubject } from "rxjs";
 import { Urls } from 'src/app/shared/constants/urls';
@@ -18,17 +18,19 @@ export class AuthenticationService {
   }
 
   authenticate(user: UserLogin): Observable<any> {
+    const headers=new HttpHeaders({
+      'Content-Type':  'application/json',});
     return this.httpClient
       .post<any>(Urls.ROOT_REST_URL + Urls.LOGIN, JSON.stringify(user), {
-        observe: "response"
+        observe: "response",headers
       })
       .pipe(
         map(response => {
           sessionStorage.setItem(UserAttributes.USERNAME, user.username);
           let token = (
-            SecurityConstants.TOKEN_PREFIX +
-            response.headers.get(SecurityConstants.AUTHORIZATION)
-          ).replace(SecurityConstants.TOKEN_PREFIX, "");
+            SecurityConstants.TOKEN_PREFIX +' '+
+            response.body['jwt']
+          );
           sessionStorage.setItem(SecurityConstants.TOKEN, token);
           sessionStorage.setItem(SecurityConstants.TOKEN, token);
           this.getUser(user.username).subscribe(user => {
