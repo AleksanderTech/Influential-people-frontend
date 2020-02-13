@@ -17,7 +17,7 @@
       </div>
     </div>
     <label for="password">Password</label>
-    <input
+    <input (keypress)="onEnter(logInForm,$event)"
       formControlName="password"
       placeholder="Enter password"
       type="password"

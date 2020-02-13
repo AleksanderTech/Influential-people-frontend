@@ -54,7 +54,13 @@ export class LoginComponent implements OnInit {
     this.modal = modal;
   }
 
-  logIn(form: FormGroup) {
+  onEnter(form: FormGroup,event:any){
+    if(event.keyCode===13){
+      this.logIn(form);
+    }
+  }
+
+  logIn(form: FormGroup,) {
     if (this.logInForm.invalid) {
       this.invalidSubmit = true;
       return;
