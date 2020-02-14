@@ -5,7 +5,7 @@
       src="../../../assets/images/{{ categoryImageName }}.png"
     /></div>
     <div *ngIf="topHeroes" class="top-10">
-      <h3>Top 10 {{ category.name }}</h3>
+      <h3>Top 10 {{ category.name | capitalizeFirsts }}</h3>
       <br />
       <div *ngIf="topHeroes.length > 0">
         <div class="top-hero" *ngFor="let hero of topHeroes; let i = index">
@@ -21,7 +21,7 @@
   </div>
   <br />
   <div class="category-item">
-    <h3>Category - {{ category.name }}</h3>
+    <h3>Category - {{ category.name | capitalizeFirsts }}</h3>
   </div>
   <div class="category-item quote">
     <h5>
@@ -36,7 +36,7 @@
     <a routerLink=""> {{ category.name }} articles</a><br />
   </div> -->
   <div class="category-item">
-    <a routerLink="/hero/{{category.name}}"> {{ category.name }} heroes</a><br />
+    <a routerLink="/hero/{{category.name}}"> {{ category.name | capitalizeFirsts }} heroes</a><br />
   </div>
   <!-- <div class="category-item">
     <a routerLink=""> {{ category.name }} quotes</a>

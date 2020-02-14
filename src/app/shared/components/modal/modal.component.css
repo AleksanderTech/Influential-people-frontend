@@ -19,6 +19,9 @@
   display:flex;
   align-items: center;
   flex-direction: column;
+  color:#a56245;
+  font-size: 1.3rem;
+  font-size: bold;
   width: 70%;
   margin:20% auto;
 }

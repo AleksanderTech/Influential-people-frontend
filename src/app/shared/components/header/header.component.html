@@ -31,8 +31,8 @@
       </div>
       <div class="flex-item account">
         <div *ngIf="!loginService.isUserLoggedIn()">
-          <span class="user-item"><a routerLink="/sign-in">sign in</a></span>
-          <span class="user-item"><a routerLink="/sign-up">sign up</a></span>
+          <span class="user-item"><a routerLink="/sign-in">Sign in</a></span>
+          <span class="user-item"><a routerLink="/sign-up">Sign up</a></span>
         </div>
         <div *ngIf="loginService.isUserLoggedIn()" class="flex-item">
           <a routerLink="/user"> {{ currentUsername() }}</a>
@@ -66,8 +66,8 @@
         </li>
       </ul>
       <ul *ngIf="!loginService.isUserLoggedIn()" class="navbar-items">
-        <li><a class="navbar-link" routerLink="/sign-in">sign in</a></li>
-        <li><a class="navbar-link" routerLink="/sign-up">sign up</a></li>
+        <li><a class="navbar-link" routerLink="/sign-in">Sign in</a></li>
+        <li><a class="navbar-link" routerLink="/sign-up">Sign up</a></li>
       </ul>
     </div>
   </nav>

@@ -15,6 +15,7 @@ import { ClickOutsideDirective } from './directives/dropdown.directive';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ExtractRolePipe } from './pipes/extract-role.pipe';
 import { ModalComponent } from './components/modal/modal.component';
+import { CapitalizeFirstsPipe } from './pipes/capitalize-firsts.pipe';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ModalComponent } from './components/modal/modal.component';
     ClickOutsideDirective,
     TruncatePipe,
     ExtractRolePipe,
-    ModalComponent
+    ModalComponent,
+    CapitalizeFirstsPipe
   ],
   imports: [
     FontAwesomeModule,
@@ -53,7 +55,8 @@ import { ModalComponent } from './components/modal/modal.component';
     SortComponent,
     ExtractRolePipe,
     ClickOutsideDirective,
-    ModalComponent
+    ModalComponent,
+    CapitalizeFirstsPipe
   ]
 })
 export class SharedModule { }

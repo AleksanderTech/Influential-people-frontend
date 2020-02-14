@@ -14,11 +14,11 @@
   <span>
     <label class="btn btn-outline-light banner-button">
       <input type="file" (change)="uploadFile($event)" />
-      change image
+      Change image
     </label>
     <input
       class="btn btn-outline-light banner-button"
-      value="sign out"
+      value="Sign out"
       type="button"
       (click)="logout()"
     />
@@ -42,7 +42,7 @@
       ><span class="span-wrap">{{ currentUser.email }}</span>
     </div>
     <button class="btn btn-dark change-button" (click)="toogleEmailChange()">
-      change email
+      Change email
     </button>
     <div *ngIf="emailChange" class="email-change">
       <input
@@ -57,7 +57,7 @@
     </div>
 
     <button class="btn btn-dark change-button" (click)="tooglePasswordChange()">
-      change password
+      Change password
     </button>
     <div *ngIf="passwordChange" class="password-change">
       <input
