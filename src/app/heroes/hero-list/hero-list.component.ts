@@ -46,18 +46,31 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     this.getFavouritesHeroes();
   }
 
+  extractDisplayName(value:string,type:string):string{
+    if(type === 'sort'){
+      if(value === 'none'){
+        return type;
+      }else{
+        if(value === 'asc'){
+          return 'lowest rank';
+        }else if(value==='desc'){
+          return 'highest rank';
+        }return value;
+      }
+    }else if(type ==='filter'){
+      if(value === 'none'){
+        return type;
+      }else{
+        return value;
+      }
+    }
+  }
+
   sort(sortType: string) {
     this.selectedSort = sortType;
-    if (sortType === this.heroSearch.SORT_ASC) {
-      this.heroSearch.sort = sortType;
-      this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
-    } else if (sortType === this.heroSearch.SORT_DESC) {
-      this.heroSearch.sort = sortType;
-      this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
-    } else {
-      this.heroSearch.resetSort();
-      this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
-    }
+    this.heroSearch.sort = sortType;
+    this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
+    this.heroSearch.resetSort();
   }
 
   filter(categoryName: string) {

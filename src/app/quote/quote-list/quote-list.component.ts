@@ -156,4 +156,24 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.selectedPage = page;
     this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
   }
+
+  extractDisplayName(value:string,type:string):string{
+    if(type === 'sort'){
+      if(value === 'none'){
+        return type;
+      }else{
+        if(value === 'asc'){
+          return 'alphabetical';
+        }else if(value==='desc'){
+          return 'reverse';
+        }return value;
+      }
+    }else if(type ==='filter'){
+      if(value === 'none'){
+        return type;
+      }else{
+        return value;
+      }
+    }
+  }
 }

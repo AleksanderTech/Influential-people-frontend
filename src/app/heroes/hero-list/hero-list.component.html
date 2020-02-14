@@ -13,14 +13,13 @@
         <button
           class="btn btn-dark dropdown-toggle"
           type="button"
-          id="dropdownMenuButton"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
         >
-          sort
+         {{extractDisplayName(selectedSort,'sort')}}
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu">
           <a class="dropdown-item" (click)="sort('none')" 
           [ngClass]="{'dropdown-item-selected':  'none' === selectedSort }">none</a>
           <a class="dropdown-item" (click)="sort('desc')"
@@ -38,15 +37,13 @@
         <button
           class="btn btn-dark dropdown-toggle"
           type="button"
-          id="dropdownMenuButton"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-       
         >
-          filter
+        {{extractDisplayName(selectedFilter,'filter')}}
         </button>
-        <div class="dropdown-menu scrollable"  aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu scrollable">
           <a
           class="dropdown-item"
           (click)="filter('none')"

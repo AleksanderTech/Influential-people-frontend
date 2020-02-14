@@ -97,7 +97,7 @@
 
 .hamburger-line {
   width: 2rem;
-  height: 0.2rem;
+  height: 4px;
   background-color: var(--dark);
   margin: 6px 6px;
 }

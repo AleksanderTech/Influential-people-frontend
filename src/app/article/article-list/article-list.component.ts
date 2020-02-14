@@ -120,4 +120,24 @@ export class ArticleListComponent extends List<Article> implements OnInit {
     this.selectedPage = page;
     this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
   }
+
+  extractDisplayName(value:string,type:string):string{
+    if(type === 'sort'){
+      if(value === 'none'){
+        return type;
+      }else{
+        if(value === 'asc'){
+          return 'oldest';
+        }else if(value==='desc'){
+          return 'newest';
+        }return value;
+      }
+    }else if(type ==='filter'){
+      if(value === 'none'){
+        return type;
+      }else{
+        return value;
+      }
+    }
+  }
 }
