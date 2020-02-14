@@ -123,7 +123,7 @@ export class UserComponent implements OnInit {
   uploadFile(event: Event) {
     let file = event.target['files'][0];
     if (file.length === 0 || !this.isFileImage(file)) {
-      this.showModal(ModalType.INFO, Messages.INCORRECT_IMAGE_FORMAT);
+      this.showModal(ModalType.INFO, Messages.INCORRECT_IMAGE_FORMAT_MESSAGE);
       return;
     }
     this.imageService.uploadImage(this.imageService.resolveUploadUrl(this.currentUser.avatarImageUrl), file);
@@ -134,6 +134,13 @@ export class UserComponent implements OnInit {
   }
 
   changePassword() {
+    if(this.newPassword.length<4){
+      this.modal = new Modal(ModalType.INFO, Messages.INCORRECT_PASSWORD_FORMAT_MESSAGE, true, null);
+      console.log('alo');
+      console.log(this.modal);
+      
+      return;
+    }
     this.userService.changePassword(new UserPassword(this.newPassword)).subscribe(data => {
       if (data.status === 200) {
         this.tooglePasswordChange();
@@ -146,15 +153,19 @@ export class UserComponent implements OnInit {
   }
 
   changeEmail() {
-    this.userService.changeEmail(new UserEmail(this.newEmail)).subscribe(data => {
-      if (data.status === 200) {
-        this.toogleEmailChange();
-        this.modal = new Modal(ModalType.INFO, Messages.EMAIL_CHANGED_MESSAGE, true, null);
-        this.getUser(this.authService.getUsername());
-      }
-    }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
-    });
+    if (!this.newEmail.match("(.)+[@][^@]+[.][a-zA-Z0-9]+")) {
+      this.modal = new Modal(ModalType.INFO, Messages.INCORRECT_EMAIL_FORMAT_MESSAGE, true, null);
+      return;
+    }
+      this.userService.changeEmail(new UserEmail(this.newEmail)).subscribe(data => {
+        if (data.status === 200) {
+          this.toogleEmailChange();
+          this.modal = new Modal(ModalType.INFO, Messages.EMAIL_CHANGED_MESSAGE, true, null);
+          this.getUser(this.authService.getUsername());
+        }
+      }, error => {
+        this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      });
   }
 
   getUser(username: string) {

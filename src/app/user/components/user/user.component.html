@@ -48,6 +48,7 @@
       <input
         *ngIf="emailChange"
         type="text"
+        placeholder="New email"
         [(ngModel)]="newEmail"
       />&nbsp;
       <button class="btn btn-dark" (click)="changeEmail()">
@@ -63,6 +64,7 @@
       <input
         *ngIf="passwordChange"
         type="password"
+        placeholder="New password"
         [(ngModel)]="newPassword"
       />&nbsp;
       <button class="btn btn-dark" (click)="changePassword()">
