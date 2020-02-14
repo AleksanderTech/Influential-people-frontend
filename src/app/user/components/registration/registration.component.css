@@ -2,13 +2,25 @@
   margin-top: 80px;
 }
 
-input[type="text"],
-input[type="password"] {
+input{
+  font-size: 1.2rem;
+  opacity: 1;
+  background-color: white;
+}
+
+input[type=text], input[type=password] {
   width: 100%;
-  padding: 16px;
-  margin: 8px 0 25px 0;
+  margin: 0 auto;
+  margin-top: 1.8rem;
+  margin-bottom: 1rem;
+  display: block;
   border: none;
-  background: #eeeeee;
+  border-bottom: 2px solid #a56245;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  display: block;
+  outline: none;
 }
 
 button {

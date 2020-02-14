@@ -65,8 +65,8 @@
           <a routerLink="/user" class="navbar-link"> {{ currentUsername() }}</a>
         </li>
       </ul>
-      <ul *ngIf="!loginService.isUserLoggedIn()" class="navbar-items">
-        <li><a class="navbar-link" routerLink="/sign-in">Sign in</a></li>
+      <ul *ngIf="!loginService.isUserLoggedIn()" class="navbar-items" (click)="closeNavbar()">
+        <li><a class="navbar-link"  routerLink="/sign-in">Sign in</a></li>
         <li><a class="navbar-link" routerLink="/sign-up">Sign up</a></li>
       </ul>
     </div>

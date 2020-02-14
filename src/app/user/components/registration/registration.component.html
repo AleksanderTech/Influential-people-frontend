@@ -1,12 +1,12 @@
 <div class="container">
   <div *ngIf="!loadingData; else loading">
     <form [formGroup]="registerForm">
-      <label for="username"><b>Username</b></label>
+    
       <input
         formControlName="username"
         type="text"
         id="username"
-        placeholder="Enter Username"
+        placeholder="Username"
         name="username"
       />
       <div *ngIf="invalidSubmit">
@@ -14,39 +14,37 @@
           *ngIf="controls.username.errors?.required && invalidSubmit"
           class="alert alert-danger"
         >
-          Username is required.
+          Username is required
         </div>
         <div
           *ngIf="controls.username.errors?.minlength && invalidSubmit"
           class="alert alert-danger"
         >
-          Username must be at least 3 characters long.
+          Username must be at least 3 characters long
         </div>
       </div>
-
-      <label for="email"><b>Email</b></label>
+      
       <input
         formControlName="email"
         type="text"
         id="email"
-        placeholder="Enter Email"
+        placeholder="Email"
         name="email"
       />
       <div *ngIf="invalidSubmit">
         <div *ngIf="controls.email.errors?.required" class="alert alert-danger">
-          Email is required.
+          Email is required
         </div>
         <div *ngIf="controls.email.errors?.pattern" class="alert alert-danger">
-          Invalid email format.
+          Invalid email format
         </div>
       </div>
 
-      <label for="password"><b>Password</b></label>
       <input
         formControlName="password"
         type="password"
         id="password"
-        placeholder="Enter Password"
+        placeholder="Password"
         name="password"
       />
       <div *ngIf="invalidSubmit">
@@ -54,17 +52,15 @@
           *ngIf="controls.password.errors?.required"
           class="alert alert-danger"
         >
-          Password is required.
+          Password is required
         </div>
         <div
           *ngIf="controls.password.errors?.minlength"
           class="alert alert-danger"
         >
-          Password must be at least 4 characters long.
+          Password must be at least 4 characters long
         </div>
       </div>
-
-      <label for="pswConfirm"><b>Confirm Password</b></label>
 
       <input (keypress)="onEnter(registerForm,$event)"
         formControlName="confirmPassword"
@@ -78,13 +74,13 @@
           *ngIf="controls.confirmPassword.errors?.required"
           class="alert alert-danger"
         >
-          Password confirmation is required.
+          Password confirmation is required
         </div>
         <div
           *ngIf="controls.confirmPassword.errors?.match"
           class="alert alert-danger"
         >
-          Password confirmation and Password must match.
+          Password confirmation and Password must match
         </div>
       </div>  
       <button
