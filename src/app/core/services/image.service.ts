@@ -9,14 +9,20 @@ import { AuthenticationService } from './authentication.service';
 })
 export class ImageService {
 
-  behaviorSubject = new BehaviorSubject<string>('');
-  userImageUrl = this.behaviorSubject.asObservable();
+  userImageUrlSubject = new BehaviorSubject<string>('');
+  fileUploadedSubject = new BehaviorSubject<boolean>(true);
+  userImageUrl = this.userImageUrlSubject.asObservable();
+  fileUploaded = this.fileUploadedSubject.asObservable();
 
   constructor(private httpClient: HttpClient, private authService: AuthenticationService) {
   }
 
-  change(url: string) {
-    this.behaviorSubject.next(url);
+  changeUserImageUrl(url: string) {
+    this.userImageUrlSubject.next(url);
+  }
+
+  changeFileUploaded(isUploaded:boolean){
+    this.fileUploadedSubject.next(isUploaded);
   }
 
   resolveUploadUrl(url: string): string {
@@ -32,11 +38,12 @@ export class ImageService {
     reader.onload = event => {
       const formData = new FormData();
       formData.append('image', image);
-      this.httpClient.put(url, formData).subscribe(response => {
-        this.change(url);
+      return this.httpClient.put(url, formData).subscribe(response => {
+        this.changeUserImageUrl(url);
         this.authService.updateUserImageUrl(url);
+        this.changeFileUploaded(true);
       }, error => {
-        alert('Error occured');
+        this.changeFileUploaded(false);
       });
     }
   }

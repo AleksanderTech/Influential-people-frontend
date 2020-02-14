@@ -9,4 +9,5 @@ export class Messages {
     static readonly PASSWORD_CHANGED_MESSAGE = 'Password changed successfully';
     static readonly EMAIL_CHANGED_MESSAGE = 'Email changed successfully';
     static readonly ERROR_MESSAGE = 'Error occured, try again later';
+    static readonly INCORRECT_IMAGE_FORMAT = 'Incorrect image format';
 }

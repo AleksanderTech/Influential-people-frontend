@@ -63,7 +63,15 @@ export class RegistrationComponent implements OnInit {
           this.modal = new Modal(ModalType.INFO,Messages.REGISTRATION_MESSAGE_ERROR,true);
         }
       );
+  } 
+
+  
+  onEnter(form: FormGroup,event:any){
+    if(event.keyCode===13){
+      this.signUp(form);
+    }
   }
+
 
   onModalSubmitting(modal:Modal){
     this.modal = modal;

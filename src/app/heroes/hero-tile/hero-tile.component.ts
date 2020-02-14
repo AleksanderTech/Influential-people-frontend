@@ -4,23 +4,23 @@ import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { HeroService } from '../service/hero.service';
 import { Urls } from 'src/app/shared/constants/urls';
+import { Modal, ModalType } from 'src/app/shared/model/modal';
+import { Messages } from 'src/app/shared/constants/messages';
 
 @Component({
   selector: 'app-hero-tile',
   templateUrl: './hero-tile.component.html',
   styleUrls: ['./hero-tile.component.css']
 })
-export class HeroTileComponent implements OnInit {
+export class HeroTileComponent {
 
   @Input('hero') hero: Hero;
   @Input('isFavourite') isFavourite: boolean;
+  modal:Modal;
   faStar = faStar;
   faSolid = faSolid;
 
   constructor(private heroService: HeroService) { }
-
-  ngOnInit() {
-  }
 
   toogleFavourite(name: string) {
     if (this.isFavourite) {
@@ -34,7 +34,7 @@ export class HeroTileComponent implements OnInit {
     this.heroService.deleteFavourite(name).subscribe(response => {
       this.isFavourite = false;
     }, error => {
-      alert('Error occured');
+      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
     });
   }
 
@@ -42,7 +42,7 @@ export class HeroTileComponent implements OnInit {
     this.heroService.addFavourite(name).subscribe(response => {
       this.isFavourite = true;
     }, error => {
-      alert('Error occured');
+      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
     });
   }
 }

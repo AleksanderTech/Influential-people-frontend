@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/user/service/user.service';
 import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { Modal, ModalType } from 'src/app/shared/model/modal';
+import { Messages } from 'src/app/shared/constants/messages';
 
 @Component({
   selector: 'app-quote-list',
@@ -29,6 +31,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
   selectedFilter: string;
   selectedSort: string;
   pathVariableHero: string;
+  modal:Modal;
 
   constructor(private quoteService: QuoteService, private userService: UserService, private heroService: HeroService, private route: ActivatedRoute) {
     super();
@@ -110,7 +113,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.quoteService.deleteFavourite(id).subscribe(response => {
       this.getFavouritesQuotes();
     }, error => {
-      alert('Error occured');
+      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
     });
   }
 
@@ -118,7 +121,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.quoteService.addFavourite(id).subscribe(response => {
       this.getFavouritesQuotes();
     }, error => {
-      alert('Error occured');
+      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
     });
   }
 

@@ -27,10 +27,9 @@ export class UserComponent implements OnInit {
   newPassword: string;
   newEmail: string;
   currentUser: User;
-  modal:Modal;
+  modal: Modal;
   faTrash = faTrash;
   faSearch = faSearch;
- 
 
   passwordChange: boolean;
   emailChange: boolean;
@@ -52,14 +51,23 @@ export class UserComponent implements OnInit {
         }, 200);
       }
     });
+    this.imageService.fileUploaded.subscribe(isUploaded => {
+      if (!isUploaded) {
+        this.showModal(ModalType.INFO, Messages.ERROR_MESSAGE);
+      }
+    })
     this.getUser(this.authService.getUsername());
     this.getFavouritesHeroes();
     this.getFavouritesArticles();
     this.getFavouritesQuotes();
   }
 
-  onModalSubmitting(modal:Modal){
-    this.modal=modal;
+  showModal(modalType: ModalType, message: string) {
+    this.modal = new Modal(modalType, message, true, null);
+  }
+
+  onModalSubmitting(modal: Modal) {
+    this.modal = modal;
   }
 
   onError() {
@@ -88,7 +96,7 @@ export class UserComponent implements OnInit {
     this.heroService.deleteFavourite(id).subscribe(response => {
       this.getFavouritesHeroes();
     }, error => {
-      alert('Error occured')
+      this.showModal(ModalType.INFO, Messages.ERROR_MESSAGE);
     });
   }
 
@@ -96,7 +104,7 @@ export class UserComponent implements OnInit {
     this.articleService.deleteFavourite(+id).subscribe(response => {
       this.getFavouritesArticles();
     }, error => {
-      alert('Error occured');
+      this.showModal(ModalType.INFO, Messages.ERROR_MESSAGE);
     });
   }
 
@@ -104,14 +112,18 @@ export class UserComponent implements OnInit {
     this.quoteService.deleteFavourite(id).subscribe(response => {
       this.getFavouritesQuotes();
     }, error => {
-      alert('Error occured');
+      this.showModal(ModalType.INFO, Messages.ERROR_MESSAGE);
     });
+  }
+
+  isFileImage(file) {
+    return file && file['type'].split('/')[0] === 'image';
   }
 
   uploadFile(event: Event) {
     let file = event.target['files'][0];
-    if (file.length === 0 || file.type.match(/image\/*/) == null) {
-      //bad format
+    if (file.length === 0 || !this.isFileImage(file)) {
+      this.showModal(ModalType.INFO, Messages.INCORRECT_IMAGE_FORMAT);
       return;
     }
     this.imageService.uploadImage(this.imageService.resolveUploadUrl(this.currentUser.avatarImageUrl), file);
@@ -125,11 +137,11 @@ export class UserComponent implements OnInit {
     this.userService.changePassword(new UserPassword(this.newPassword)).subscribe(data => {
       if (data.status === 200) {
         this.tooglePasswordChange();
-        this.modal = new Modal(ModalType.INFO,Messages.PASSWORD_CHANGED_MESSAGE,true,null);
+        this.modal = new Modal(ModalType.INFO, Messages.PASSWORD_CHANGED_MESSAGE, true, null);
         this.getUser(this.authService.getUsername());
       }
     }, error => {
-      this.modal = new Modal(ModalType.INFO,Messages.ERROR_MESSAGE,true,null);
+      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
     });
   }
 
@@ -137,11 +149,11 @@ export class UserComponent implements OnInit {
     this.userService.changeEmail(new UserEmail(this.newEmail)).subscribe(data => {
       if (data.status === 200) {
         this.toogleEmailChange();
-        this.modal = new Modal(ModalType.INFO,Messages.EMAIL_CHANGED_MESSAGE,true,null);
+        this.modal = new Modal(ModalType.INFO, Messages.EMAIL_CHANGED_MESSAGE, true, null);
         this.getUser(this.authService.getUsername());
       }
     }, error => {
-      this.modal = new Modal(ModalType.INFO,Messages.ERROR_MESSAGE,true,null);
+      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
     });
   }
 
