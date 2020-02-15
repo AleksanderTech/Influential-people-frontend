@@ -136,9 +136,6 @@ export class UserComponent implements OnInit {
   changePassword() {
     if(this.newPassword.length<4){
       this.modal = new Modal(ModalType.INFO, Messages.INCORRECT_PASSWORD_FORMAT_MESSAGE, true, null);
-      console.log('alo');
-      console.log(this.modal);
-      
       return;
     }
     this.userService.changePassword(new UserPassword(this.newPassword)).subscribe(data => {
@@ -172,6 +169,10 @@ export class UserComponent implements OnInit {
     this.userService.getUser(username).subscribe(user => {
       this.currentUser = user;
     });
+  } 
+
+  isAdmin():boolean{
+    return this.currentUser.roles.includes('ROLE_ADMIN');
   }
 
   toogleEmailChange() {

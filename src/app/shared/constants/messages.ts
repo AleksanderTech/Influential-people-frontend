@@ -12,4 +12,5 @@ export class Messages {
     static readonly ERROR_MESSAGE:string = 'Error occured, try again later';
     static readonly INCORRECT_IMAGE_FORMAT_MESSAGE:string = 'Incorrect image format';  
     static readonly INCORRECT_EMAIL_FORMAT_MESSAGE:string = 'Incorrect email format';
+    static readonly ARE_YOU_SURE_MESSAGE:string = 'Are you sure ?';
 }

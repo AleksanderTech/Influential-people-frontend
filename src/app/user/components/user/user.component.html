@@ -1,15 +1,17 @@
 <div *ngIf="currentUser" class="banner flex-container">
   <div class="circle flex-item">
-    <img *ngIf="currentUser.avatarImageUrl"
+    <img
+      *ngIf="currentUser.avatarImageUrl"
       class="profile-image"
-      src="{{currentUser.avatarImageUrl}}"
+      src="{{ currentUser.avatarImageUrl }}"
       alt=""
     />
-    <img *ngIf="!currentUser.avatarImageUrl"
-    class="profile-image"
-    src="{{profileDefaultUrl}}"
-    alt=""
-  />
+    <img
+      *ngIf="!currentUser.avatarImageUrl"
+      class="profile-image"
+      src="{{ profileDefaultUrl }}"
+      alt=""
+    />
   </div>
   <span>
     <label class="btn btn-outline-light banner-button">
@@ -60,6 +62,7 @@
     <button class="btn btn-dark change-button" (click)="tooglePasswordChange()">
       Change password
     </button>
+
     <div *ngIf="passwordChange" class="password-change">
       <input
         *ngIf="passwordChange"
@@ -70,20 +73,26 @@
       <button class="btn btn-dark" (click)="changePassword()">
         save</button
       >&nbsp;
-      <button class="btn btn-dark" (click)="tooglePasswordChange()">cancel</button>
+      <button class="btn btn-dark" (click)="tooglePasswordChange()">
+        cancel
+      </button>
     </div>
 
-    <!-- <div>actions</div> -->
+    <a routerLink="/management"><button *ngIf="isAdmin()" class="btn btn-dark change-button">
+      Manage
+    </button></a>
+   
   </div>
   <div class="line"></div>
   <h2 class="favourite-header">Favourites</h2>
   <div class="bottom-panel">
     <div class="favourite">
       <div class="favourite-subheader">
-      <h3>Heroes</h3>
-      <a routerLink="/hero"
-      ><fa-icon class="icon" [icon]="faSearch"></fa-icon
-    ></a></div>
+        <h3>Heroes</h3>
+        <a routerLink="/hero"
+          ><fa-icon class="icon" [icon]="faSearch"></fa-icon
+        ></a>
+      </div>
       <div *ngFor="let hero of favouriteHeroes">
         <div class="favourite-item">
           <a routerLink="/hero/{{ hero.name }}/detail">{{ hero.name }}</a
@@ -117,10 +126,11 @@
     </div>
     <div class="favourite">
       <div class="favourite-subheader">
-      <h3>Articles</h3>
-      <a routerLink="/article"
-      ><fa-icon class="icon" [icon]="faSearch"></fa-icon
-    ></a></div>
+        <h3>Articles</h3>
+        <a routerLink="/article"
+          ><fa-icon class="icon" [icon]="faSearch"></fa-icon
+        ></a>
+      </div>
       <div *ngFor="let article of favouriteArticles">
         <div class="favourite-item">
           <a routerLink="/article/{{ article.id }}/detail">{{
@@ -135,5 +145,9 @@
       </div>
     </div>
   </div>
-  <app-modal *ngIf="modal" (modalSubmitted)="onModalSubmitting($event)" [modal]="modal"></app-modal>
+  <app-modal
+    *ngIf="modal"
+    (modalSubmitted)="onModalSubmitting($event)"
+    [modal]="modal"
+  ></app-modal>
 </div>

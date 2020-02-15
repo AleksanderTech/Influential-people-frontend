@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { List } from 'src/app/shared/components/list/list';
+import { List } from 'src/app/shared/other/list';
 import { Quote } from '../model/quote';
 import { QuoteService } from '../service/quote.service';
 import { QuoteSearch } from '../model/quote-search';

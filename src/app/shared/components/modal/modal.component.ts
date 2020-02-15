@@ -25,6 +25,5 @@ export class ModalComponent {
   close() {
     this.modal.showModal = false;
     this.modal.isSubmitted=false;
-    this.modalSubmit.emit(this.modal);
   }
 }

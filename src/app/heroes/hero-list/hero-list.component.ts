@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../service/hero.service';
 import { Hero } from '../model/hero';
-import { List } from 'src/app/shared/components/list/list';
+import { List } from 'src/app/shared/other/list';
 import { HeroSearch } from '../model/ hero-search';
 import { CategoryService } from 'src/app/category/service/category.service';
 import { Category } from 'src/app/category/model/category';

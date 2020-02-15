@@ -1,7 +1,5 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { CoreRoutingModule } from './core-routing.module';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
@@ -12,20 +10,16 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
 @NgModule({
-
   imports: [
     RouterModule,
     CommonModule,
-    CoreRoutingModule,
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
   ],
-
   providers: [AuthenticationService, AuthRedirectorService, {
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true
   }]
-
 })
 export class CoreModule {
 

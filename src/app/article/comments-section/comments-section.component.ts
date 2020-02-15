@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { List } from 'src/app/shared/components/list/list';
 import { ArticleComment } from '../model/article-comment';
 import { Article } from '../model/article';
 import { CommentService } from '../service/comment.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Urls } from 'src/app/shared/constants/urls';
+import { List } from 'src/app/shared/other/list';
 
 @Component({
   selector: 'app-comments-section',

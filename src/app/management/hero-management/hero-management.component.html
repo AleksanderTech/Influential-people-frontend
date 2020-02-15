@@ -1,0 +1,32 @@
+<app-panel-management></app-panel-management>
+<div class="wrapper">
+  <div class="wrapper-item tools">
+    <app-search
+      class="tools-item"
+      (entitySearching)="onEntitySearching($event)"
+      (entityChoosing)="onEntityChoosing($event)"
+      [searchingAttribute]="searchingAttribute"
+      [entities]="entities"
+      entityName="hero"
+    ></app-search>
+    <button class="btn btn-dark tools-item" (click)="newHero()">NEW</button>
+  </div>
+  <div class="wrapper-item hero-list">
+    <div class="hero-item" *ngFor="let hero of entities">
+     <span class="hero-item-subitem hero-item-subitem-name">{{ hero.name }}</span> 
+     <button class="btn btn-outline-dark hero-item-subitem" (click)="editHero(hero)">edit</button>
+     <button class="btn btn-dark hero-item-subitem hero-item-subitem-delete" (click)="deleteHero(hero)">delete</button>
+    </div>
+  </div>
+  <app-paginator
+    class="wrapper-item paging"
+    *ngIf="numberOfPages"
+    [numberOfPages]="numberOfPages"
+    (pageClicked)="updatePage($event)"
+  ></app-paginator>
+  <app-modal
+    *ngIf="modal"
+    (modalSubmitted)="onModalSubmitting($event)"
+    [modal]="modal"
+  ></app-modal>
+</div>
