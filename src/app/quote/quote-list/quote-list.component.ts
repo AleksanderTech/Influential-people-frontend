@@ -31,7 +31,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
   selectedFilter: string;
   selectedSort: string;
   pathVariableHero: string;
-  modal:Modal;
+  modal: Modal;
 
   constructor(private quoteService: QuoteService, private userService: UserService, private heroService: HeroService, private route: ActivatedRoute) {
     super();
@@ -56,16 +56,8 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
 
   sort(sortType: string) {
     this.selectedSort = sortType;
-    if (sortType === this.quoteSearch.SORT_ALPH_ASC) {
-      this.quoteSearch.sort = sortType;
-      this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
-    } else if (sortType === this.quoteSearch.SORT_ALPH_DESC) {
-      this.quoteSearch.sort = sortType;
-      this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
-    } else {
-      this.quoteSearch.resetSort();
-      this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
-    }
+    this.quoteSearch.sort = sortType;
+    this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
   }
 
   filter(heroName: string) {
@@ -142,7 +134,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.quoteSearch.content = searchValue;
     this.getFavouritesQuotes();
     this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
-   
+
   }
 
   onEntityChoosing(chosenEntity: Quote) {
@@ -157,21 +149,21 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
   }
 
-  extractDisplayName(value:string,type:string):string{
-    if(type === 'sort'){
-      if(value === 'none'){
+  extractDisplayName(value: string, type: string): string {
+    if (type === 'sort') {
+      if (value === 'none') {
         return type;
-      }else{
-        if(value === 'asc'){
+      } else {
+        if (value === 'asc') {
           return 'alphabetical';
-        }else if(value==='desc'){
+        } else if (value === 'desc') {
           return 'reverse';
-        }return value;
+        } return value;
       }
-    }else if(type ==='filter'){
-      if(value === 'none'){
+    } else if (type === 'filter') {
+      if (value === 'none') {
         return type;
-      }else{
+      } else {
         return value;
       }
     }

@@ -1,2 +1,32 @@
 <app-panel-management></app-panel-management>
-<app-search></app-search>
+<div class="wrapper">
+  <div class="wrapper-item tools">
+    <app-search
+      class="tools-item"
+      (entitySearching)="onEntitySearching($event)"
+      (entityChoosing)="onEntityChoosing($event)"
+      [searchingAttribute]="searchingAttribute"
+      [entities]="entities"
+      entityName="article"
+    ></app-search>
+    <button class="btn btn-dark tools-item" (click)="newArticle()">NEW</button>
+  </div>
+  <div class="wrapper-item article-list">
+    <div class="article-item" *ngFor="let article of entities">
+     <span class="article-item-subitem article-item-subitem-title">{{ article.title | truncate:[30]}}</span> 
+     <button class="btn btn-outline-dark article-item-subitem" (click)="editArticle(article)">edit</button>
+     <button class="btn btn-dark article-item-subitem article-item-subitem-delete" (click)="deleteArticle(article)">delete</button>
+    </div>
+  </div>
+  <app-paginator
+    class="wrapper-item paging"
+    *ngIf="numberOfPages"
+    [numberOfPages]="numberOfPages"
+    (pageClicked)="updatePage($event)"
+  ></app-paginator>
+  <app-modal
+    *ngIf="modal"
+    (modalSubmitted)="onModalSubmitting($event)"
+    [modal]="modal"
+  ></app-modal>
+</div>

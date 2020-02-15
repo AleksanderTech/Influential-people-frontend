@@ -1,2 +1,32 @@
 <app-panel-management></app-panel-management>
-<app-search></app-search>
+<div class="wrapper">
+  <div class="wrapper-item tools">
+    <app-search
+      class="tools-item"
+      (entitySearching)="onEntitySearching($event)"
+      (entityChoosing)="onEntityChoosing($event)"
+      [searchingAttribute]="searchingAttribute"
+      [entities]="entities"
+      entityName="quote"
+    ></app-search>
+    <button class="btn btn-dark tools-item" (click)="newQuote()">NEW</button>
+  </div>
+  <div class="wrapper-item quote-list">
+    <div class="quote-item" *ngFor="let quote of entities">
+     <span class="quote-item-subitem quote-item-subitem-content">{{ quote.content | truncate:[30] }}</span> 
+     <button class="btn btn-outline-dark quote-item-subitem" (click)="editQuote(quote)">edit</button>
+     <button class="btn btn-dark quote-item-subitem quote-item-subitem-delete" (click)="deleteQuote(quote)">delete</button>
+    </div>
+  </div>
+  <app-paginator
+    class="wrapper-item paging"
+    *ngIf="numberOfPages"
+    [numberOfPages]="numberOfPages"
+    (pageClicked)="updatePage($event)"
+  ></app-paginator>
+  <app-modal
+    *ngIf="modal"
+    (modalSubmitted)="onModalSubmitting($event)"
+    [modal]="modal"
+  ></app-modal>
+</div>

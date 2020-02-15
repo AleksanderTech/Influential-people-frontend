@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit {
   }
 
   emitChosenEntity(entity: any) {
-    this.searchingValue = entity.name;
+    this.searchingValue = entity[this.searchingAttribute];
     this.entityChoosing.emit(entity);
   }
 

@@ -32,12 +32,12 @@
   
   .user-item-subitem{
       flex-grow: 1;
-      margin:0 0.5rem
+      margin-left: 0.5rem;
   }
   
   .user-item-subitem-name{
       text-align: left;
-      width: 60%;
+      width: 65%;
   }
   
   .user-item-subitem-delete{
@@ -50,10 +50,10 @@
       color:white;
    }
   
-  @media screen and (min-width: 650px){
+  @media screen and (min-width: 750px){
       .user-list{
           align-self: center;
-          width: 60%;
+          width: 55%;
       }
   }
   /* user-list */

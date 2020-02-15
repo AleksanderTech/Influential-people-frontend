@@ -48,16 +48,8 @@ export class ArticleListComponent extends List<Article> implements OnInit {
 
   sort(sortType: string) {
     this.selectedSort = sortType;
-    if (sortType === this.articleSearch.SORT_NEWEST) {
-      this.articleSearch.sort = sortType;
-      this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
-    } else if (sortType === this.articleSearch.SORT_OLDEST) {
-      this.articleSearch.sort = sortType;
-      this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
-    } else {
-      this.articleSearch.resetSort();
-      this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
-    }
+    this.articleSearch.sort = sortType;
+    this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
   }
 
   filter(heroName: string) {
@@ -121,21 +113,21 @@ export class ArticleListComponent extends List<Article> implements OnInit {
     this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
   }
 
-  extractDisplayName(value:string,type:string):string{
-    if(type === 'sort'){
-      if(value === 'none'){
+  extractDisplayName(value: string, type: string): string {
+    if (type === 'sort') {
+      if (value === 'none') {
         return type;
-      }else{
-        if(value === 'asc'){
+      } else {
+        if (value === 'asc') {
           return 'oldest';
-        }else if(value==='desc'){
+        } else if (value === 'desc') {
           return 'newest';
-        }return value;
+        } return value;
       }
-    }else if(type ==='filter'){
-      if(value === 'none'){
+    } else if (type === 'filter') {
+      if (value === 'none') {
         return type;
-      }else{
+      } else {
         return value;
       }
     }

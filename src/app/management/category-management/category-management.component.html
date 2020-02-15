@@ -1,2 +1,26 @@
 <app-panel-management></app-panel-management>
-<app-search></app-search>
+<div class="wrapper">
+  <div class="wrapper-item tools">
+    <app-search
+      class="tools-item"
+      (entitySearching)="onEntitySearching($event)"
+      (entityChoosing)="onEntityChoosing($event)"
+      [searchingAttribute]="searchingAttribute"
+      [entities]="entities"
+      entityName="category"
+    ></app-search>
+    <button class="btn btn-dark tools-item" (click)="newCategory()">NEW</button>
+  </div>
+  <div class="wrapper-item category-list">
+    <div class="category-item" *ngFor="let category of entities">
+     <span class="category-item-subitem category-item-subitem-name">{{ category.name | capitalizeFirsts }}</span> 
+     <button class="btn btn-outline-dark category-item-subitem" (click)="editCategory(category)">edit</button>
+     <button class="btn btn-dark category-item-subitem category-item-subitem-delete" (click)="deleteCategory(category)">delete</button>
+    </div>
+  </div>
+  <app-modal
+    *ngIf="modal"
+    (modalSubmitted)="onModalSubmitting($event)"
+    [modal]="modal"
+  ></app-modal>
+</div>

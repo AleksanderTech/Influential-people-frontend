@@ -70,7 +70,6 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     this.selectedSort = sortType;
     this.heroSearch.sort = sortType;
     this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
-    this.heroSearch.resetSort();
   }
 
   filter(categoryName: string) {
