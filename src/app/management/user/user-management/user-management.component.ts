@@ -3,7 +3,7 @@ import { User } from 'src/app/shared/model/user';
 import { List } from 'src/app/shared/other/list';
 import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
-import { UserManagementService } from '../service/user-management.service';
+import { UserManagementService } from '../../service/user-management.service';
 import { UserSearch } from 'src/app/user/model/ user-search';
 
 @Component({

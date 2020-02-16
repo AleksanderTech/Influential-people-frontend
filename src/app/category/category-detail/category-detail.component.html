@@ -2,7 +2,7 @@
   <!--  -->
   <div class="top-item">
     <div class="top-item-image"><img
-      src="../../../assets/images/{{ categoryImageName }}.png"
+      src="{{category.imageUrl}}" alt=""
     /></div>
     <div *ngIf="topHeroes" class="top-10">
       <h3>Top 10 {{ category.name | capitalizeFirsts }}</h3>

@@ -3,7 +3,7 @@ import { Article } from 'src/app/article/model/article';
 import { List } from 'src/app/shared/other/list';
 import { ArticleSearch } from 'src/app/article/model/article-search';
 import { Modal, ModalType } from 'src/app/shared/model/modal';
-import { ArticleManagementService } from '../service/article-management.service';
+import { ArticleManagementService } from '../../service/article-management.service';
 import { Messages } from 'src/app/shared/constants/messages';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/category/model/category';
 import { List } from 'src/app/shared/other/list';
 import { Modal, ModalType } from 'src/app/shared/model/modal';
-import { CategoryManagementService } from '../service/category-management.service';
+import { CategoryManagementService } from '../../service/category-management.service';
 import { Messages } from 'src/app/shared/constants/messages';
 
 @Component({

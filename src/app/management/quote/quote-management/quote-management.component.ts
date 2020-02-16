@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuoteSearch } from 'src/app/quote/model/quote-search';
 import { Quote } from 'src/app/quote/model/quote';
 import { List } from 'src/app/shared/other/list';
-import { QuoteManagementService } from '../service/quote-management.service';
+import { QuoteManagementService } from '../../service/quote-management.service';
 import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
 
