@@ -9,24 +9,58 @@
       [entities]="entities"
       entityName="quote"
     ></app-search>
-    <button class="btn btn-dark tools-item" (click)="newQuote()">NEW</button>
+    <button class="btn btn-dark tools-item" (click)="createEntity()">
+      CREATE
+    </button>
   </div>
   <div class="wrapper-item quote-list">
     <div class="quote-item" *ngFor="let quote of entities">
-     <span class="quote-item-subitem quote-item-subitem-content">{{ quote.content | truncate:[30] }}</span> 
-     <button class="btn btn-outline-dark quote-item-subitem" (click)="editQuote(quote)">edit</button>
-     <button class="btn btn-dark quote-item-subitem quote-item-subitem-delete" (click)="deleteQuote(quote)">delete</button>
+      <a
+        class="quote-item-subitem quote-item-subitem-name"
+        routerLink="/quote/{{ quote.id }}"
+      >
+        <span>{{ quote.content | truncate: [35] }}</span>
+      </a>
+      <button
+        class="btn btn-outline-dark quote-item-subitem"
+        (click)="changeEntity(quote)"
+      >
+        change
+      </button>
+      <button
+        class="btn btn-dark quote-item-subitem quote-item-subitem-delete"
+        (click)="deleteEntity(quote)"
+      >
+        delete
+      </button>
     </div>
   </div>
+  <app-new-quote
+    *ngIf="createMediator"
+    (quoteCreated)="onEntityCreate($event)"
+    [createMediator]="createMediator"
+    [heroes]="heroes"
+  >
+  </app-new-quote>
+  <app-change-quote
+    *ngIf="changeMediator"
+    (quoteChanged)="onEntityChange($event)"
+    [changeMediator]="changeMediator"
+    [heroes]="heroes"
+  ></app-change-quote>
+  <app-alert-modal
+    *ngIf="alertMediator"
+    (alertSubmitted)="onSubmit($event)"
+    [alertMediator]="alertMediator"
+  ></app-alert-modal>
+  <app-delete-modal
+    *ngIf="deleteMediator"
+    (deleteSubmitted)="onDelete($event)"
+    [deleteMediator]="deleteMediator"
+  ></app-delete-modal>
   <app-paginator
-    class="wrapper-item paging"
     *ngIf="numberOfPages"
     [numberOfPages]="numberOfPages"
     (pageClicked)="updatePage($event)"
   ></app-paginator>
-  <app-modal
-    *ngIf="modal"
-    (modalSubmitted)="onModalSubmitting($event)"
-    [modal]="modal"
-  ></app-modal>
 </div>

@@ -9,7 +9,7 @@
       <br />
       <div *ngIf="topHeroes.length > 0">
         <div class="top-hero" *ngFor="let hero of topHeroes; let i = index">
-          <a routerLink="/hero/{{hero.name}}/detail" *ngIf="i < 10">{{ hero.name }} - {{ hero.rate }} points</a>
+          <a routerLink="/hero/{{hero.name}}" *ngIf="i < 10">{{ hero.name }} - {{ hero.rate }} points</a>
         </div>
       </div>
       <div *ngIf="topHeroes.length < 1">
@@ -36,7 +36,7 @@
     <a routerLink=""> {{ category.name }} articles</a><br />
   </div> -->
   <div class="category-item">
-    <a routerLink="/hero/{{category.name}}"> {{ category.name | capitalizeFirsts }} heroes</a><br />
+    <a routerLink="/hero" [queryParams]="{ categoryName: category.name }"> {{ category.name | capitalizeFirsts }} heroes</a><br />
   </div>
   <!-- <div class="category-item">
     <a routerLink=""> {{ category.name }} quotes</a>

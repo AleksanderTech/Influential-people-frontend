@@ -1,1 +1,51 @@
-<p>new-category works!</p>
+<div class="modal" *ngIf="createMediator.display === true">
+  <div class="modal-content">
+    <div class="modal-content-close">
+      <span class="close" (click)="close()">&times;</span>
+    </div>
+    <div class="modal-content-image">
+      <img src="" alt="" #image />
+      <label class="modal-content-image-input">
+        <input 
+          type="file"
+          (change)="previewImage($event, image)"
+        />
+        Change image
+      </label>
+    </div>
+    <div class="modal-content-name">
+      <input 
+        *ngIf="newCategory"
+        type="text"
+        placeholder="name"
+        [(ngModel)]="newCategory.name"
+      />
+    </div>
+    <div class="modal-content-description">
+      <input
+        *ngIf="newCategory"
+        type="text"
+        placeholder="description"
+        [(ngModel)]="newCategory.description"
+      />
+    </div>
+
+    <div class="modal-content-buttons">
+      <button
+        type="button"
+        class="btn btn-outline-dark dark-button"
+        (click)="close()"
+      >
+        cancel
+      </button>
+      <button
+        type="button"
+        class="btn btn-dark brown-button"
+        (click)="create()"
+      >
+        create
+      </button>
+    </div>
+  </div>
+  <app-alert-modal *ngIf="alertMediator" (modalSubmitted)="onSubmit($event)" [alertMediator]="alertMediator"></app-alert-modal>
+</div>

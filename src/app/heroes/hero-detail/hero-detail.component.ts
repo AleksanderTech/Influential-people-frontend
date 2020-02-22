@@ -5,8 +5,8 @@ import { Hero } from '../model/hero';
 import { Rate } from '../model/rate';
 import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
+import { AlertMediator } from 'src/app/shared/model/alert-mediator';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class HeroDetailComponent implements OnInit {
   faSolid = faSolid;
 
   isFavourite;
-  modal:Modal;
+  alertMediator:AlertMediator;
   hero: Hero;
   isOpened: boolean;
   userRate: number;
@@ -48,7 +48,7 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.deleteFavourite(name).subscribe(response => {
       this.isFavourite = false;
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
 
@@ -56,7 +56,7 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.addFavourite(name).subscribe(response => {
       this.isFavourite = true;
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
   
@@ -87,7 +87,6 @@ export class HeroDetailComponent implements OnInit {
         this.userRate = data.rate;
       });
   }
-
 
   rate(listElement: HTMLElement, list: HTMLElement) {
     let rateValue = listElement.innerText;

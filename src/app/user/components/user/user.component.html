@@ -95,7 +95,7 @@
       </div>
       <div *ngFor="let hero of favouriteHeroes">
         <div class="favourite-item">
-          <a routerLink="/hero/{{ hero.name }}/detail">{{ hero.name }}</a
+          <a routerLink="/hero/{{ hero.name }}">{{ hero.name }}</a
           ><fa-icon
             class="icon"
             [icon]="faTrash"
@@ -113,7 +113,7 @@
       </div>
       <div *ngFor="let quote of favouriteQuotes">
         <div class="favourite-item">
-          <a routerLink="/quote/{{ quote.id }}/detail">{{
+          <a routerLink="/quote/{{ quote.id }}">{{
             quote.content | truncate: [20]
           }}</a
           ><fa-icon
@@ -133,7 +133,7 @@
       </div>
       <div *ngFor="let article of favouriteArticles">
         <div class="favourite-item">
-          <a routerLink="/article/{{ article.id }}/detail">{{
+          <a routerLink="/article/{{ article.id }}">{{
             article.title | truncate: [20]
           }}</a
           ><fa-icon
@@ -145,9 +145,9 @@
       </div>
     </div>
   </div>
-  <app-modal
+  <!-- <app-modal
     *ngIf="modal"
     (modalSubmitted)="onModalSubmitting($event)"
     [modal]="modal"
-  ></app-modal>
+  ></app-modal> -->
 </div>

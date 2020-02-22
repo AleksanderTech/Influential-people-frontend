@@ -15,10 +15,6 @@ export class HeroSearch {
         this.sort = sort;
     }
 
-    resetSort() {
-        this.sort = null;
-    }
-
     toQuery() {
         let query = '?';
         if (this.paging) {

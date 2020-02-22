@@ -9,24 +9,58 @@
       [entities]="entities"
       entityName="hero"
     ></app-search>
-    <button class="btn btn-dark tools-item" (click)="newHero()">NEW</button>
+    <button class="btn btn-dark tools-item" (click)="createEntity()">
+      CREATE
+    </button>
   </div>
   <div class="wrapper-item hero-list">
     <div class="hero-item" *ngFor="let hero of entities">
-     <span class="hero-item-subitem hero-item-subitem-name">{{ hero.name }}</span> 
-     <button class="btn btn-outline-dark hero-item-subitem" (click)="editHero(hero)">edit</button>
-     <button class="btn btn-dark hero-item-subitem hero-item-subitem-delete" (click)="deleteHero(hero)">delete</button>
+      <a
+        class="hero-item-subitem hero-item-subitem-name"
+        routerLink="/hero/{{ hero.name }}"
+      >
+        <span>{{ hero.name | capitalizeFirsts }}</span>
+      </a>
+      <button
+        class="btn btn-outline-dark hero-item-subitem"
+        (click)="changeEntity(hero)"
+      >
+        change
+      </button>
+      <button
+        class="btn btn-dark hero-item-subitem hero-item-subitem-delete"
+        (click)="deleteEntity(hero)"
+      >
+        delete
+      </button>
     </div>
   </div>
+  <app-new-hero
+    *ngIf="createMediator && categories"
+    (heroCreated)="onEntityCreate($event)"
+    [createMediator]="createMediator"
+    [categories]="categories"
+  >
+  </app-new-hero>
+  <app-change-hero
+    *ngIf="changeMediator"
+    (heroChanged)="onEntityChange($event)"
+    [changeMediator]="changeMediator"
+    [categories]="categories"
+  ></app-change-hero>
+  <app-alert-modal
+    *ngIf="alertMediator"
+    (alertSubmitted)="onSubmit($event)"
+    [alertMediator]="alertMediator"
+  ></app-alert-modal>
+  <app-delete-modal
+    *ngIf="deleteMediator"
+    (deleteSubmitted)="onDelete($event)"
+    [deleteMediator]="deleteMediator"
+  ></app-delete-modal>
   <app-paginator
-    class="wrapper-item paging"
-    *ngIf="numberOfPages"
-    [numberOfPages]="numberOfPages"
-    (pageClicked)="updatePage($event)"
-  ></app-paginator>
-  <app-modal
-    *ngIf="modal"
-    (modalSubmitted)="onModalSubmitting($event)"
-    [modal]="modal"
-  ></app-modal>
+  *ngIf="numberOfPages"
+  [numberOfPages]="numberOfPages"
+  (pageClicked)="updatePage($event)"
+></app-paginator>
 </div>

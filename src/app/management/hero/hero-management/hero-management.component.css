@@ -7,7 +7,7 @@
 .wrapper-item {
   text-align: center;
 }
-/* tools */
+/* -------------tools------------ */
 .tools {
   display: flex;
   justify-content: center;
@@ -17,8 +17,8 @@
 .tools-item {
   margin: 0 1rem;
 }
-/* tools */
-/* hero-list */
+/* --------------tools------------ */
+/* ----------hero-list--------- */
 .hero-list {
   list-style: none;
 }
@@ -30,36 +30,36 @@
   margin: 1rem;
 }
 
-.hero-item-subitem{
-    flex-grow: 1;
-    margin-left: 0.5rem;
+.hero-item-subitem {
+  flex-grow: 1;
+  margin-left: 0.5rem;
 }
 
-.hero-item-subitem-name{
-    text-align: left;
-    width: 65%;
+.hero-item-subitem-name {
+  text-align: left;
+  width: 65%;
 }
 
-.hero-item-subitem-delete{
-   background-color: #a56245;
-   color:white;
+.hero-item-subitem-delete {
+  background-color: #a56245;
+  color: white;
 }
 
-.hero-item-subitem-delete:hover{
-    background-color: brown;
-    color:white;
- }
-
-@media screen and (min-width: 750px){
-    .hero-list{
-        align-self: center;
-        width: 55%;
-    }
+.hero-item-subitem-delete:hover {
+  background-color: brown;
+  color: white;
 }
-/* hero-list */
-/* paging */
+
+@media screen and (min-width: 750px) {
+  .hero-list {
+    align-self: center;
+    width: 55%;
+  }
+}
+/* ----------hero-list--------- */
+/* -------------paging------------- */
 .paging {
   margin-bottom: 2rem;
 }
-/* paging */
+/* -------------paging------------- */
 

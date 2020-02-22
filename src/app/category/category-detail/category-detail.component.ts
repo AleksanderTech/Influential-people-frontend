@@ -37,7 +37,7 @@ export class CategoryDetailComponent implements OnInit {
   extractAuthorAndQuote(description: string): void {
     if (description.includes('author-')) {
       this.descriptionQuote = description.substring(0, description.lastIndexOf('author'));
-      this.descriptionAuthor = description.substring(description.lastIndexOf('author') + 'author-'.length, description.length - 1);
+      this.descriptionAuthor = description.substring(description.lastIndexOf('author') + 'author-'.length, description.length);
     }else{
       this.descriptionQuote = this.category.description;
     }

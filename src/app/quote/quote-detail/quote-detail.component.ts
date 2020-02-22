@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Quote } from '../model/quote';
 import { faStar as faSolid, faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
+import { AlertMediator } from 'src/app/shared/model/alert-mediator';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class QuoteDetailComponent implements OnInit {
   quoteId: number;
   quotes: Quote[];
   quoteIndex: number;
-  modal:Modal;
+  alertMediator:AlertMediator;
 
   constructor(private quoteService: QuoteService, private route: ActivatedRoute) { }
 
@@ -71,7 +71,7 @@ export class QuoteDetailComponent implements OnInit {
     this.quoteService.getQuotes().subscribe(data => {
       this.quotes = data;
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
 
@@ -87,7 +87,7 @@ export class QuoteDetailComponent implements OnInit {
     this.quoteService.deleteFavourite(id).subscribe(response => {
       this.isFavourite = false;
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
 
@@ -95,7 +95,7 @@ export class QuoteDetailComponent implements OnInit {
     this.quoteService.addFavourite(id).subscribe(response => {
       this.isFavourite = true;
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
 

@@ -23,7 +23,7 @@ export class HeroListComponent extends List<Hero> implements OnInit {
   heroSearch: HeroSearch;
   selectedFilter: string;
   selectedSort: string;
-  pathVariableCategory: string;
+  queryParamFilter: string;
 
   constructor(private userService: UserService, private heroService: HeroService, private categoryService: CategoryService, private route: ActivatedRoute) {
     super();
@@ -36,31 +36,31 @@ export class HeroListComponent extends List<Hero> implements OnInit {
     this.heroSearch.paging = true;
     this.selectedSort = 'none';
     this.selectedFilter = 'none';
-    this.pathVariableCategory = this.route.snapshot.paramMap.get('categoryName');
-    if (this.pathVariableCategory) {
-      this.heroSearch.categories = [this.pathVariableCategory];
-      this.selectedFilter = this.pathVariableCategory;
+    this.route.queryParams.subscribe(params => { this.queryParamFilter = params.categoryName; });
+    if (this.queryParamFilter) {
+      this.heroSearch.categories = [this.queryParamFilter];
+      this.selectedFilter = this.queryParamFilter;
     }
     this.getSpecificHeroes(this.selectedPage, this.pageSize, this.heroSearch);
     this.getCategories();
     this.getFavouritesHeroes();
   }
 
-  extractDisplayName(value:string,type:string):string{
-    if(type === 'sort'){
-      if(value === 'none'){
+  extractDisplayName(value: string, type: string): string {
+    if (type === 'sort') {
+      if (value === 'none') {
         return type;
-      }else{
-        if(value === 'asc'){
+      } else {
+        if (value === 'asc') {
           return 'lowest rank';
-        }else if(value==='desc'){
+        } else if (value === 'desc') {
           return 'highest rank';
-        }return value;
+        } return value;
       }
-    }else if(type ==='filter'){
-      if(value === 'none'){
+    } else if (type === 'filter') {
+      if (value === 'none') {
         return type;
-      }else{
+      } else {
         return value;
       }
     }

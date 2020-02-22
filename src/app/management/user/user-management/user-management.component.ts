@@ -1,63 +1,83 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/model/user';
 import { List } from 'src/app/shared/other/list';
-import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
+import { AlertMediator } from 'src/app/shared/model/alert-mediator';
+import { DeleteMediator } from 'src/app/shared/model/delete-mediator';
+import { Searchable } from 'src/app/shared/other/searchable';
+import { Manageable } from 'src/app/shared/other/manageable';
+import { ModalMediator } from 'src/app/shared/other/modal-mediator';
 import { UserManagementService } from '../../service/user-management.service';
-import { UserSearch } from 'src/app/user/model/ user-search';
 
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.css']
 })
-export class UserManagementComponent extends List<User> implements OnInit {
+export class UserManagementComponent extends List<User> implements OnInit,Searchable<User>,Manageable<User> {
 
-  searchingAttribute: string = 'username';
-  modal: Modal;
-  userSearch:UserSearch;
+  categorySearch: string;
+  searchingAttribute: string = 'name';
+  categoryMediator: ModalMediator<User>;
+  alertMediator: AlertMediator;
+  deleteMediator: DeleteMediator;
 
-  constructor(private _userManage: UserManagementService) {
+  constructor(private _categoryManage: UserManagementService) {
     super();
   }
 
   ngOnInit() {
-    this.userSearch = new UserSearch();
-    this.getSpecificUsers(this.selectedPage, this.pageSize,this.userSearch);
+    this.findEntities();
   }
 
-  getSpecificUsers(page: number, size: number,userSearch:UserSearch) {
-    this._userManage.getSpecificUsers(page, size,userSearch).subscribe(data => {
-      if (data['pageable']) {
-        this.entities = data['content'];
-        this.numberOfPages = data['totalPages'];
-      } else {
-        this.entities = data;
-        this.numberOfPages = 1;
-      }
+  findEntities(): void {
+    this._categoryManage.getSpecificUsers(null,null,null).subscribe(data => {
+      this.entities = data;
+      this.numberOfPages = 1;
     });
   }
 
-  newUser() {
-    this.modal = new Modal(ModalType.INFO, 'new user', true, null);
+  createEntity(): void {
+    this.categoryMediator = new ModalMediator<User>(true, null);
   }
 
-  deleteUser(user: User) {
-    this.modal = new Modal(ModalType.WARN, Messages.ARE_YOU_SURE_MESSAGE, true, null);
+  deleteEntity(entity: User): void {
+    this.alertMediator = new AlertMediator(Messages.ARE_YOU_SURE_MESSAGE, true, entity.username);
   }
 
-  editUser(user: User) {
-    this.modal = new Modal(ModalType.INFO, 'edit user', true, null);
+  changeEntity(entity: User): void {
+    this.categoryMediator = new ModalMediator<User>(true, entity);
   }
 
-  onModalSubmitting(modal: Modal) {
-    console.log('Modal submitted');
-    this.modal = modal;
+
+  onSubmit(alertMediator: AlertMediator) {
+    this.alertMediator = alertMediator;
+  }
+
+  onDelete(deleteMediator: DeleteMediator) {
+    this._categoryManage.deleteUser(deleteMediator.entity).subscribe(response => {
+      this.alertMediator = new AlertMediator(Messages.ENTITY_DELETED_SUCCESSFULLY, true, null);
+      this.findEntities();
+    }, error => {
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
+    });
+  }
+
+  onEntityChange(modalMediator: ModalMediator<User>): void {
+    this.categoryMediator = modalMediator;
+    this.findEntities();
+  }
+
+  onEntityCreate(modalMediator: ModalMediator<User>): void {
+    this.categoryMediator = modalMediator;
+    this.findEntities();
   }
 
   onEntitySearching(searchValue: string) {
-    this.userSearch.username = searchValue;
-    this.getSpecificUsers(this.selectedPage, this.pageSize,this.userSearch);
+    if (searchValue) {
+      this.entities = this.entities.filter(entity => entity.username.startsWith(searchValue));
+      return;
+    } this.findEntities();
   }
 
   onEntityChoosing(chosenEntity: User) {
@@ -66,6 +86,5 @@ export class UserManagementComponent extends List<User> implements OnInit {
 
   updatePage(page: number) {
     this.selectedPage = page;
-    this.getSpecificUsers(this.selectedPage, this.pageSize,this.userSearch);
   }
 }

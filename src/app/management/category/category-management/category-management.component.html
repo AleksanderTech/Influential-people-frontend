@@ -9,18 +9,51 @@
       [entities]="entities"
       entityName="category"
     ></app-search>
-    <button class="btn btn-dark tools-item" (click)="newCategory()">NEW</button>
+    <button class="btn btn-dark tools-item" (click)="createEntity()">
+      CREATE
+    </button>
   </div>
   <div class="wrapper-item category-list">
     <div class="category-item" *ngFor="let category of entities">
-     <span class="category-item-subitem category-item-subitem-name">{{ category.name | capitalizeFirsts }}</span> 
-     <button class="btn btn-outline-dark category-item-subitem" (click)="editCategory(category)">edit</button>
-     <button class="btn btn-dark category-item-subitem category-item-subitem-delete" (click)="deleteCategory(category)">delete</button>
+      <a
+        class="category-item-subitem category-item-subitem-name"
+        routerLink="/category/{{ category.name }}"
+      >
+        <span>{{ category.name | capitalizeFirsts }}</span>
+      </a>
+      <button
+        class="btn btn-outline-dark category-item-subitem"
+        (click)="changeEntity(category)"
+      >
+        change
+      </button>
+      <button
+        class="btn btn-dark category-item-subitem category-item-subitem-delete"
+        (click)="deleteEntity(category)"
+      >
+        delete
+      </button>
     </div>
   </div>
-  <app-modal
-    *ngIf="modal"
-    (modalSubmitted)="onModalSubmitting($event)"
-    [modal]="modal"
-  ></app-modal>
+  <app-new-category
+    *ngIf="createMediator"
+    (categoryCreated)="onEntityCreate($event)"
+    [createMediator]="createMediator"
+  >
+  </app-new-category>
+  <app-change-category
+    *ngIf="changeMediator"
+    (categoryChanged)="onEntityChange($event)"
+    [changeMediator]="changeMediator"
+  ></app-change-category>
+  <app-alert-modal
+    *ngIf="alertMediator"
+    (alertSubmitted)="onSubmit($event)"
+    [alertMediator]="alertMediator"
+  ></app-alert-modal>
+  <app-delete-modal
+    *ngIf="deleteMediator"
+    (deleteSubmitted)="onDelete($event)"
+    [deleteMediator]="deleteMediator"
+  ></app-delete-modal>
 </div>

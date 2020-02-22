@@ -1,12 +1,12 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../service/article.service';
 import { Article } from '../model/article';
 import { CommentService } from '../service/comment.service';
 import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
+import { AlertMediator } from 'src/app/shared/model/alert-mediator';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class ArticleDetailComponent implements OnInit {
   faStar = faStar;
   faSolid = faSolid;
 
-  modal:Modal;
+  alertMediator:AlertMediator;
   isFavourite:boolean;
   article: Article;
   constructor(private commentService: CommentService, private articleService: ArticleService, private route: ActivatedRoute) { }
@@ -43,7 +43,7 @@ export class ArticleDetailComponent implements OnInit {
     this.articleService.deleteFavourite(id).subscribe(response => {
       this.isFavourite = false;
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
 
@@ -51,7 +51,7 @@ export class ArticleDetailComponent implements OnInit {
     this.articleService.addFavourite(id).subscribe(response => {
       this.isFavourite = true;
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
   

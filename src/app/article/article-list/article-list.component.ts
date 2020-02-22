@@ -23,7 +23,7 @@ export class ArticleListComponent extends List<Article> implements OnInit {
   articleSearch: ArticleSearch;
   selectedFilter: string;
   selectedSort: string;
-  pathVariableHero: string;
+  queryParamFilter: string;
 
   constructor(private articleService: ArticleService, private userService: UserService, private heroService: HeroService, private route: ActivatedRoute) {
     super();
@@ -36,10 +36,10 @@ export class ArticleListComponent extends List<Article> implements OnInit {
     this.articleSearch.paging = true;
     this.selectedSort = 'none';
     this.selectedFilter = 'none';
-    this.pathVariableHero = this.route.snapshot.paramMap.get('heroName');
-    if (this.pathVariableHero) {
-      this.articleSearch.heroes = [this.pathVariableHero];
-      this.selectedFilter = this.pathVariableHero;
+    this.route.queryParams.subscribe(params => { this.queryParamFilter = params.heroName; });
+    if (this.queryParamFilter) {
+      this.articleSearch.heroes = [this.queryParamFilter];
+      this.selectedFilter = this.queryParamFilter;
     }
     this.getSpecificArticles(this.selectedPage, this.pageSize, this.articleSearch);
     this.getHeroes();

@@ -13,4 +13,8 @@ export class Messages {
     static readonly INCORRECT_IMAGE_FORMAT_MESSAGE:string = 'Incorrect image format';  
     static readonly INCORRECT_EMAIL_FORMAT_MESSAGE:string = 'Incorrect email format';
     static readonly ARE_YOU_SURE_MESSAGE:string = 'Are you sure ?';
+    static readonly ENTITY_CREATED_SUCCESSFULLY:string = 'Entity created successfully';
+    static readonly ENTITY_CHANGED_SUCCESSFULLY:string = 'Entity changed successfully';
+    static readonly ENTITY_DELETED_SUCCESSFULLY:string = 'Entity deleted successfully';
+    static readonly CANNOT_BE_EMPTY:string = 'Cannot be empty';
 }

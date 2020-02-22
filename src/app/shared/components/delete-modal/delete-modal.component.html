@@ -1,0 +1,27 @@
+<div
+  *ngIf="deleteMediator.display === true"
+  id="delete-modal-wrapper"
+>
+  <div class="delete-modal">
+    <div class="delete-modal-content">
+      <span class="delete-close" (click)="close()">&times;</span>
+      <p>Are you sure ?</p>
+      <div class="buttons">
+        <button
+          type="button"
+          class="btn btn-outline-dark dark-button"
+          (click)="close()"
+        >
+          cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark brown-button"
+          (click)="delete()"
+        >
+          delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

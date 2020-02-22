@@ -5,8 +5,8 @@ import { StateService } from "src/app/core/services/state.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchTwoValues } from 'src/app/shared/util/matcher';
 import { RegistrationService } from '../../service/registration.service';
-import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
+import { AlertMediator } from 'src/app/shared/model/alert-mediator';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { Messages } from 'src/app/shared/constants/messages';
 })
 export class RegistrationComponent implements OnInit {
 
-  modal: Modal;
+  alertMediator: AlertMediator;
   loadingData: boolean;
   user: UserRegistration;
   invalidSubmit: boolean;
@@ -55,16 +55,15 @@ export class RegistrationComponent implements OnInit {
         response => {
           this.loadingData = false;
           this.stateService.change(response);
-          this.modal = new Modal(ModalType.INFO,Messages.REGISTRATION_MESSAGE_SUCCESS,true);
+          this.alertMediator = new AlertMediator(Messages.REGISTRATION_MESSAGE_SUCCESS,true);
         },
         error => {
           this.loadingData = false;
           this.stateService.change(error);
-          this.modal = new Modal(ModalType.INFO,Messages.REGISTRATION_MESSAGE_ERROR,true);
+          this.alertMediator = new AlertMediator(Messages.REGISTRATION_MESSAGE_ERROR,true);
         }
       );
   } 
-
   
   onEnter(form: FormGroup,event:any){
     if(event.keyCode===13){
@@ -72,9 +71,8 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-
-  onModalSubmitting(modal:Modal){
-    this.modal = modal;
+  onModalSubmitting(modal:AlertMediator){
+    this.alertMediator = modal;
   }
 
   updateUserFields(form: FormGroup) {

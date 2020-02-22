@@ -14,19 +14,38 @@ import { NewQuoteComponent } from './quote/new-quote/new-quote.component';
 import { NewArticleComponent } from './article/new-article/new-article.component';
 import { NewUserComponent } from './user/new-user/new-user.component';
 import { NewCategoryComponent } from './category/new-category/new-category.component';
-import { ChangeCategoryComponent } from './category/change-category/change-category.component';
 import { ChangeUserComponent } from './user/change-user/change-user.component';
 import { ChangeHeroComponent } from './hero/change-hero/change-hero.component';
 import { ChangeArticleComponent } from './article/change-article/change-article.component';
 import { ChangeQuoteComponent } from './quote/change-quote/change-quote.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ChangeCategoryComponent } from './category/change-category/change-category.component';
 
 
 @NgModule({
-  declarations: [PanelManagementComponent, HeroManagementComponent, QuoteManagementComponent, UserManagementComponent, ArticleManagementComponent, CategoryManagementComponent, NewHeroComponent, NewQuoteComponent, NewArticleComponent, NewUserComponent, NewCategoryComponent, ChangeCategoryComponent, ChangeUserComponent, ChangeHeroComponent, ChangeArticleComponent, ChangeQuoteComponent],
+  declarations: [
+    PanelManagementComponent,
+    HeroManagementComponent,
+    QuoteManagementComponent,
+    UserManagementComponent,
+    ArticleManagementComponent,
+    CategoryManagementComponent,
+    NewHeroComponent,
+    NewQuoteComponent,
+    NewArticleComponent,
+    NewUserComponent,
+    NewCategoryComponent,
+    ChangeCategoryComponent,
+    ChangeUserComponent,
+    ChangeHeroComponent,
+    ChangeArticleComponent,
+    ChangeQuoteComponent],
   imports: [
     CommonModule,
     ManagementRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ManagementModule { }

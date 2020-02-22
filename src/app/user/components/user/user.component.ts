@@ -13,8 +13,8 @@ import { Quote } from 'src/app/quote/model/quote';
 import { UserEmail } from '../../model/user-email';
 import { ImageService } from 'src/app/core/services/image.service';
 import { Urls } from 'src/app/shared/constants/urls';
-import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
+import { AlertMediator } from 'src/app/shared/model/alert-mediator';
 
 @Component({
   selector: 'app-user',
@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
   newPassword: string;
   newEmail: string;
   currentUser: User;
-  modal: Modal;
+  alertMediator: AlertMediator;
   faTrash = faTrash;
   faSearch = faSearch;
 
@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
     });
     this.imageService.fileUploaded.subscribe(isUploaded => {
       if (!isUploaded) {
-        this.showModal(ModalType.INFO, Messages.ERROR_MESSAGE);
+        this.showModal(Messages.ERROR_MESSAGE);
       }
     })
     this.getUser(this.authService.getUsername());
@@ -62,12 +62,12 @@ export class UserComponent implements OnInit {
     this.getFavouritesQuotes();
   }
 
-  showModal(modalType: ModalType, message: string) {
-    this.modal = new Modal(modalType, message, true, null);
+  showModal(message: string) {
+    this.alertMediator = new AlertMediator(message, true, null);
   }
 
-  onModalSubmitting(modal: Modal) {
-    this.modal = modal;
+  onModalSubmitting(alertMediator: AlertMediator) {
+    this.alertMediator = alertMediator;
   }
 
   onError() {
@@ -96,7 +96,7 @@ export class UserComponent implements OnInit {
     this.heroService.deleteFavourite(id).subscribe(response => {
       this.getFavouritesHeroes();
     }, error => {
-      this.showModal(ModalType.INFO, Messages.ERROR_MESSAGE);
+      this.showModal(Messages.ERROR_MESSAGE);
     });
   }
 
@@ -104,7 +104,7 @@ export class UserComponent implements OnInit {
     this.articleService.deleteFavourite(+id).subscribe(response => {
       this.getFavouritesArticles();
     }, error => {
-      this.showModal(ModalType.INFO, Messages.ERROR_MESSAGE);
+      this.showModal(Messages.ERROR_MESSAGE);
     });
   }
 
@@ -112,7 +112,7 @@ export class UserComponent implements OnInit {
     this.quoteService.deleteFavourite(id).subscribe(response => {
       this.getFavouritesQuotes();
     }, error => {
-      this.showModal(ModalType.INFO, Messages.ERROR_MESSAGE);
+      this.showModal(Messages.ERROR_MESSAGE);
     });
   }
 
@@ -123,7 +123,7 @@ export class UserComponent implements OnInit {
   uploadFile(event: Event) {
     let file = event.target['files'][0];
     if (file.length === 0 || !this.isFileImage(file)) {
-      this.showModal(ModalType.INFO, Messages.INCORRECT_IMAGE_FORMAT_MESSAGE);
+      this.showModal(Messages.INCORRECT_IMAGE_FORMAT_MESSAGE);
       return;
     }
     this.imageService.uploadImage(this.imageService.resolveUploadUrl(this.currentUser.avatarImageUrl), file);
@@ -135,33 +135,33 @@ export class UserComponent implements OnInit {
 
   changePassword() {
     if(this.newPassword.length<4){
-      this.modal = new Modal(ModalType.INFO, Messages.INCORRECT_PASSWORD_FORMAT_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.INCORRECT_PASSWORD_FORMAT_MESSAGE, true, null);
       return;
     }
     this.userService.changePassword(new UserPassword(this.newPassword)).subscribe(data => {
       if (data.status === 200) {
         this.tooglePasswordChange();
-        this.modal = new Modal(ModalType.INFO, Messages.PASSWORD_CHANGED_MESSAGE, true, null);
+        this.alertMediator = new AlertMediator(Messages.PASSWORD_CHANGED_MESSAGE, true, null);
         this.getUser(this.authService.getUsername());
       }
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
 
   changeEmail() {
     if (!this.newEmail.match("(.)+[@][^@]+[.][a-zA-Z0-9]+")) {
-      this.modal = new Modal(ModalType.INFO, Messages.INCORRECT_EMAIL_FORMAT_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.INCORRECT_EMAIL_FORMAT_MESSAGE, true, null);
       return;
     }
       this.userService.changeEmail(new UserEmail(this.newEmail)).subscribe(data => {
         if (data.status === 200) {
           this.toogleEmailChange();
-          this.modal = new Modal(ModalType.INFO, Messages.EMAIL_CHANGED_MESSAGE, true, null);
+          this.alertMediator = new AlertMediator(Messages.EMAIL_CHANGED_MESSAGE, true, null);
           this.getUser(this.authService.getUsername());
         }
       }, error => {
-        this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+        this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
       });
   }
 

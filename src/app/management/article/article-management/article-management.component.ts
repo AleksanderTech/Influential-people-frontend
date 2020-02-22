@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/article/model/article';
 import { List } from 'src/app/shared/other/list';
 import { ArticleSearch } from 'src/app/article/model/article-search';
-import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { ArticleManagementService } from '../../service/article-management.service';
 import { Messages } from 'src/app/shared/constants/messages';
+import { AlertMediator } from 'src/app/shared/model/alert-mediator';
+import { DeleteMediator } from 'src/app/shared/model/delete-mediator';
 
 @Component({
   selector: 'app-article-management',
@@ -15,7 +16,8 @@ export class ArticleManagementComponent extends List<Article> implements OnInit 
 
   articleSearch: ArticleSearch;
   searchingAttribute: string = 'title';
-  modal:Modal;
+  alertMediator:AlertMediator;
+  deletionMediator:DeleteMediator;
 
   constructor(private _articleManage: ArticleManagementService) {
     super();
@@ -39,20 +41,19 @@ export class ArticleManagementComponent extends List<Article> implements OnInit 
   }
 
   newArticle(){
-    this.modal = new Modal(ModalType.INFO,'new article',true,null);
+    this.alertMediator = new AlertMediator('new article',true,null);
   }
 
   deleteArticle(article:Article){
-    this.modal = new Modal(ModalType.WARN,Messages.ARE_YOU_SURE_MESSAGE,true,null);
+    this.deletionMediator = new DeleteMediator(Messages.ARE_YOU_SURE_MESSAGE,true,null);
   }
 
   editArticle(article:Article){
-    this.modal = new Modal(ModalType.INFO,'edit article',true,null);
+    this.alertMediator = new AlertMediator('edit article',true,null);
   }
 
-  onModalSubmitting(modal:Modal){
-    console.log('Modal submitted');
-    this.modal=modal;
+  onModalSubmitting(alertMediator:AlertMediator){
+    this.alertMediator=alertMediator;
   }
 
   onEntitySearching(searchValue: string) {

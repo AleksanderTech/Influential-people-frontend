@@ -8,14 +8,11 @@ export class QuoteSearch {
     readonly SORT_ALPH_ASC: string = 'asc';
     readonly SORT_ALPH_DESC: string = 'desc';
 
-    constructor(heroes?: string[], paging?: boolean, sort?: string) {
+    constructor(content?: string, heroes?: string[], paging?: boolean, sort?: string) {
+        this.content = content;
         this.heroes = heroes;
         this.paging = paging;
         this.sort = sort;
-    }
-
-    resetSort() {
-        this.sort = null;
     }
 
     toQuery() {
@@ -28,9 +25,9 @@ export class QuoteSearch {
             }
         } if (this.sort) {
             if (this.sort === this.SORT_ALPH_ASC) {
-                query = query +'sort=asc&';
+                query = query + 'sort=asc&';
             } else if (this.sort === this.SORT_ALPH_DESC) {
-                query = query +'sort=desc&';
+                query = query + 'sort=desc&';
             }
         } if (this.content) {
             query = query + 'content=' + this.content + '&';

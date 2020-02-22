@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/user/service/user.service';
 import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
-import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
+import { AlertMediator } from 'src/app/shared/model/alert-mediator';
 
 @Component({
   selector: 'app-quote-list',
@@ -30,8 +30,8 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
   quoteSearch: QuoteSearch;
   selectedFilter: string;
   selectedSort: string;
-  pathVariableHero: string;
-  modal: Modal;
+  queryParamFilter: string;
+  alertMediator: AlertMediator;
 
   constructor(private quoteService: QuoteService, private userService: UserService, private heroService: HeroService, private route: ActivatedRoute) {
     super();
@@ -44,10 +44,10 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.quoteSearch.paging = true;
     this.selectedSort = 'none';
     this.selectedFilter = 'none';
-    this.pathVariableHero = this.route.snapshot.paramMap.get('heroName');
-    if (this.pathVariableHero) {
-      this.quoteSearch.heroes = [this.pathVariableHero];
-      this.selectedFilter = this.pathVariableHero;
+    this.route.queryParams.subscribe(params => { this.queryParamFilter = params.heroName; });
+    if (this.queryParamFilter) {
+      this.quoteSearch.heroes = [this.queryParamFilter];
+      this.selectedFilter = this.queryParamFilter;
     }
     this.getSpecificQuotes(this.selectedPage, this.pageSize, this.quoteSearch);
     this.getHeroes();
@@ -105,7 +105,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.quoteService.deleteFavourite(id).subscribe(response => {
       this.getFavouritesQuotes();
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
 
@@ -113,7 +113,7 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     this.quoteService.addFavourite(id).subscribe(response => {
       this.getFavouritesQuotes();
     }, error => {
-      this.modal = new Modal(ModalType.INFO, Messages.ERROR_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
     });
   }
 

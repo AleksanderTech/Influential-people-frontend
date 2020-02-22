@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from "../../../core/services/authentication.service";
 import { UserLogin } from "../../../shared/model/user-login";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Modal, ModalType } from 'src/app/shared/model/modal';
 import { Messages } from 'src/app/shared/constants/messages';
+import { AlertMediator } from 'src/app/shared/model/alert-mediator';
 
 @Component({
   selector: "app-login",
@@ -13,7 +13,7 @@ import { Messages } from 'src/app/shared/constants/messages';
 })
 export class LoginComponent implements OnInit {
 
-  modal: Modal;
+  alertMediator: AlertMediator;
   user: UserLogin;
   invalidSubmit: boolean;
   logInForm: FormGroup;
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       }
     });
     if (this.accountCreated) {
-      this.modal = new Modal(ModalType.INFO, Messages.ACTIVATION_ACCOUNT_MESSAGE, true, null);
+      this.alertMediator = new AlertMediator(Messages.ACTIVATION_ACCOUNT_MESSAGE, true, null);
     }
   }
 
@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
     return this.logInForm.controls;
   }
 
-  onModalSubmitting(modal: Modal) {
-    this.modal = modal;
+  onModalSubmitting(alertMediator: AlertMediator) {
+    this.alertMediator = alertMediator;
   }
 
   onEnter(form: FormGroup,event:any){
@@ -73,11 +73,11 @@ export class LoginComponent implements OnInit {
       error => {
         if (error['error'].message) {
           if (error['error'].message === Messages.NOT_FOUND_USER_MESSAGE) {
-            this.modal = new Modal(ModalType.INFO, Messages.NOT_FOUND_USER_MESSAGE, true);
+            this.alertMediator = new AlertMediator(Messages.NOT_FOUND_USER_MESSAGE, true);
           } else if (error['error'].message === Messages.INCORRECT_PASSWORD_MESSAGE) {
-            this.modal = new Modal(ModalType.INFO, Messages.INCORRECT_PASSWORD_MESSAGE, true);
+            this.alertMediator = new AlertMediator(Messages.INCORRECT_PASSWORD_MESSAGE, true);
           } else if (error['error'].message === Messages.USER_DISABLED_MESSAGE) {
-            this.modal = new Modal(ModalType.INFO, Messages.USER_DISABLED_MESSAGE + ', check your email to activate your account', true);
+            this.alertMediator = new AlertMediator(Messages.USER_DISABLED_MESSAGE + ', check your email to activate your account', true);
           }
         }
       }
