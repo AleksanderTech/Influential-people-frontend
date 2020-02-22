@@ -1,1 +1,65 @@
-<p>new-article works!</p>
+<div class="modal" *ngIf="createMediator.display === true">
+    <div class="modal-content">
+      <div class="modal-content-close">
+        <span class="close" (click)="close()">&times;</span>
+      </div>
+      <div class="modal-content-title">
+        <input 
+          type="text"
+          placeholder="title"
+          [(ngModel)]="createMediator.entity.title"
+        />
+      </div>
+      <div class="modal-content-text">
+        <textarea
+        placeholder="text..."
+        rows="10"
+        #textarea
+        (keydown)="resize(textarea)"
+        [(ngModel)]="createMediator.entity.text"
+      ></textarea>
+      </div>
+      <div class="modal-content-heroes">
+        <button class="brown-button" (click)="toogleList()" style="width:98%">
+          Heroes
+        </button>
+        <ol class="modal-content-heroes-list" *ngIf="displayHeroes && heroes">
+          <li class="modal-content-heroes-item" *ngFor="let hero of heroes">
+           
+            <label class="check-item">
+              <input
+                type="radio"
+                name="heroes"
+                value="{{ hero.name }}"
+                [(ngModel)] = "createMediator.entity.heroName"
+              />
+              <span class="checkmark"></span> {{ hero.name }}</label
+            ><br />
+          </li>
+        </ol>
+      </div>
+  
+      <div class="modal-content-buttons">
+        <button
+          type="button"
+          class="btn btn-outline-dark dark-button"
+          (click)="close()"
+        >
+          cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark brown-button"
+          (click)="create()"
+        >
+          create
+        </button>
+      </div>
+    </div>
+    <app-alert-modal
+      *ngIf="alertMediator"
+      (modalSubmitted)="onSubmit($event)"
+      [alertMediator]="alertMediator"
+    ></app-alert-modal>
+  </div>
+  

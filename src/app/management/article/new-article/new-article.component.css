@@ -1,0 +1,176 @@
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9995;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: black;
+  font-size: 1.3rem;
+  width: 60%;
+  max-height: 95%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+/* ------------modal-content-close----------*/
+.modal-content-close {
+  width: 100%;
+  text-align: end;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* ------------modal-content-close----------*/
+/* ------------modal-content-text----------*/
+.modal-content-text {
+  width: 80%;
+}
+
+textarea {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  width: 100%;
+  padding: 5px;
+  outline: none;
+  border: 2px solid brown;
+  min-height: 1.5rem;
+  resize: none;
+  overflow: hidden !important;
+}
+/* -----------modal-content-text---------- */
+/* ------------modal-content-title----------*/
+.modal-content-title {
+  width: 80%;
+}
+/* -----------modal-content-title---------- */
+/* -----------modal-content-heroes---------- */
+.modal-content-heroes {
+  width: 80%;
+}
+
+.modal-content-heroes-list {
+  list-style-type: none;
+}
+
+.modal-content-heroes-item {
+  width: 80%;
+  text-align: center;
+  margin: 5px auto;
+  height: 32px;
+  max-height: 5rem;
+}
+
+.check-item {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.checkmark {
+  display: inline-block;
+  height: 25px;
+  min-width: 25px;
+  background-color: #eee;
+}
+
+.check-item input:checked ~ .checkmark {
+  background-color: brown !important;
+}
+
+.checkmark:after {
+  content: "";
+  display: none;
+}
+
+.check-item input[type="radio"]:checked ~ .checkmark:after {
+  display: block;
+}
+
+.check-item input:hover ~ .checkmark {
+  background-color: rgb(226, 224, 224);
+}
+
+.check-item .checkmark:after {
+  margin-left: 8px;
+  margin-top: 5px;
+  width: 8px;
+  height: 13px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
+/* -----------modal-content-heroes---------- */
+/* -----------modal-content-buttons---------- */
+.brown-button {
+  color: white;
+  background-color: #a56245;
+  padding: 9px 16px;
+  margin: 6px;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.brown-button:hover {
+  background-color: #a56245e0;
+}
+
+.dark-button {
+  padding: 9px 16px;
+  margin: 6px;
+}
+/* ---------modal-content-buttons---------- */
+/* --------------others----------- */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 1.8rem;
+  margin-bottom: 1rem;
+  display: block;
+  border: none;
+  border-bottom: 2px solid #a56245;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  display: block;
+  outline: none;
+}
+/* --------------others----------- */

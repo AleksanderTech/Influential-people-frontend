@@ -56,6 +56,7 @@ export class ChangeQuoteComponent {
   close() {
     this.changeMediator.display = false;
     this.changeMediator.isSubmitted = false;
+    this.displayHeroes = false;
   }
 
   onSubmit(alertMediator: AlertMediator) {

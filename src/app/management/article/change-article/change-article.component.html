@@ -1,1 +1,65 @@
-<p>change-article works!</p>
+<div class="modal" *ngIf="changeMediator.display === true">
+    <div class="modal-content">
+      <div class="modal-content-close">
+        <span class="close" (click)="close()">&times;</span>
+      </div>
+      <div class="modal-content-title">
+        <input 
+          type="text"
+          placeholder="title"
+          [(ngModel)]="changeMediator.entity.title"
+        />
+      </div>
+      <div class="modal-content-text">
+        <textarea
+        placeholder="text..."
+        rows="5"
+        #textarea
+        (keydown)="resize(textarea)"
+        [(ngModel)]="changeMediator.entity.text"
+      ></textarea>
+      </div>
+      <div class="modal-content-heroes">
+        <button class="brown-button" (click)="toogleList()" style="width:98%">
+          Heroes
+        </button>
+        <ol class="modal-content-heroes-list" *ngIf="displayHeroes && heroes">
+          <li class="modal-content-heroes-item" *ngFor="let hero of heroes">
+            <label class="check-item">
+              <input
+                type="radio"
+                name="heroes"
+                value="{{ hero.name }}"
+                [(ngModel)] = "changeMediator.entity.heroName"
+                checked
+              />
+              <span class="checkmark"></span> {{ hero.name }}</label
+            ><br />
+          </li>
+        </ol>
+      </div>
+  
+      <div class="modal-content-buttons">
+        <button
+          type="button"
+          class="btn btn-outline-dark dark-button"
+          (click)="close()"
+        >
+          cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark brown-button"
+          (click)="change()"
+        >
+          change
+        </button>
+      </div>
+    </div>
+    <app-alert-modal
+      *ngIf="alertMediator"
+      (modalSubmitted)="onSubmit($event)"
+      [alertMediator]="alertMediator"
+    ></app-alert-modal>
+  </div>
+  
