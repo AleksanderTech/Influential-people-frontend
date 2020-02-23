@@ -9,24 +9,56 @@
       [entities]="entities"
       entityName="user"
     ></app-search>
-    <button class="btn btn-dark tools-item" (click)="newUser()">NEW</button>
+    <button class="btn btn-dark tools-item" (click)="createEntity()">
+      CREATE
+    </button>
   </div>
   <div class="wrapper-item user-list">
     <div class="user-item" *ngFor="let user of entities">
-     <span class="user-item-subitem user-item-subitem-name">{{ user.username }}</span> 
-     <button class="btn btn-outline-dark user-item-subitem" (click)="editUser(user)">edit</button>
-     <button class="btn btn-dark user-item-subitem user-item-subitem-delete" (click)="deleteUser(user)">delete</button>
+      <a
+        class="user-item-subitem user-item-subitem-name"
+        routerLink="/user/{{ user.id }}"
+      >
+        <span>{{ user.username | truncate: [35] }}</span>
+      </a>
+      <button
+        class="btn btn-outline-dark user-item-subitem"
+        (click)="changeEntity(user)"
+      >
+        change
+      </button>
+      <button
+        class="btn btn-dark user-item-subitem user-item-subitem-delete"
+        (click)="deleteEntity(user)"
+      >
+        delete
+      </button>
     </div>
   </div>
+  <app-new-user
+    *ngIf="createMediator"
+    (userCreated)="onEntityCreate($event)"
+    [createMediator]="createMediator"
+  >
+  </app-new-user>
+  <!-- <app-change-user
+    *ngIf="changeMediator"
+    (userChanged)="onEntityChange($event)"
+    [changeMediator]="changeMediator"
+  ></app-change-user> -->
+  <app-alert-modal
+    *ngIf="alertMediator"
+    (alertSubmitted)="onSubmit($event)"
+    [alertMediator]="alertMediator"
+  ></app-alert-modal>
+  <app-delete-modal
+    *ngIf="deleteMediator"
+    (deleteSubmitted)="onDelete($event)"
+    [deleteMediator]="deleteMediator"
+  ></app-delete-modal>
   <app-paginator
-    class="wrapper-item paging"
     *ngIf="numberOfPages"
     [numberOfPages]="numberOfPages"
     (pageClicked)="updatePage($event)"
   ></app-paginator>
-  <!-- <app-modal
-    *ngIf="modal"
-    (modalSubmitted)="onModalSubmitting($event)"
-    [modal]="modal"
-  ></app-modal> -->
 </div>

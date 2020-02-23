@@ -1,16 +1,10 @@
-export class User {
+export class NewUser {
 
     constructor(
         public username?: string,
         public password?: string,
         public enabled?: boolean,
         public email?: string,
-        public roles?: string[],
-        public avatarImageUrl?: string) {
+        public roles?: string[]) {
     }
-}
-
-export enum UserRole{
-    ROLE_USER,
-    ROLE_ADMIN
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/model/user';
+import { User, UserRole } from 'src/app/shared/model/user';
 import { List } from 'src/app/shared/other/list';
 import { Messages } from 'src/app/shared/constants/messages';
 import { AlertMediator } from 'src/app/shared/model/alert-mediator';
@@ -8,6 +8,7 @@ import { Searchable } from 'src/app/shared/other/searchable';
 import { Manageable } from 'src/app/shared/other/manageable';
 import { ModalMediator } from 'src/app/shared/other/modal-mediator';
 import { UserManagementService } from '../../service/user-management.service';
+import { UserSearch } from 'src/app/user/model/ user-search';
 
 @Component({
   selector: 'app-user-management',
@@ -16,68 +17,60 @@ import { UserManagementService } from '../../service/user-management.service';
 })
 export class UserManagementComponent extends List<User> implements OnInit,Searchable<User>,Manageable<User> {
 
-  categorySearch: string;
-  searchingAttribute: string = 'name';
-  categoryMediator: ModalMediator<User>;
+  userSearch: UserSearch;
+  searchingAttribute: string = 'username';
+
+  changeMediator: ModalMediator<User>;
+  createMediator: ModalMediator<User>;
   alertMediator: AlertMediator;
   deleteMediator: DeleteMediator;
 
-  constructor(private _categoryManage: UserManagementService) {
+  constructor(private _userManage: UserManagementService) {
     super();
   }
 
   ngOnInit() {
+    this.userSearch = new UserSearch(null,null, true);
     this.findEntities();
   }
 
   findEntities(): void {
-    this._categoryManage.getSpecificUsers(null,null,null).subscribe(data => {
-      this.entities = data;
-      this.numberOfPages = 1;
+    this._userManage.findUsers(this.selectedPage, this.pageSize, this.userSearch).subscribe(data => {
+      if (data['pageable']) {
+        this.entities = data['content'];
+        this.numberOfPages = data['totalPages'];
+      } else {
+        this.entities = data;
+        this.numberOfPages = 1;
+      }
     });
   }
 
   createEntity(): void {
-    this.categoryMediator = new ModalMediator<User>(true, null);
+    this.createMediator = new ModalMediator<User>(true, new User(null,null,false,null,[]));
   }
 
   deleteEntity(entity: User): void {
-    this.alertMediator = new AlertMediator(Messages.ARE_YOU_SURE_MESSAGE, true, entity.username);
+    this.deleteMediator = new DeleteMediator(Messages.ARE_YOU_SURE_MESSAGE, true, entity.username);
   }
 
   changeEntity(entity: User): void {
-    this.categoryMediator = new ModalMediator<User>(true, entity);
-  }
-
-
-  onSubmit(alertMediator: AlertMediator) {
-    this.alertMediator = alertMediator;
-  }
-
-  onDelete(deleteMediator: DeleteMediator) {
-    this._categoryManage.deleteUser(deleteMediator.entity).subscribe(response => {
-      this.alertMediator = new AlertMediator(Messages.ENTITY_DELETED_SUCCESSFULLY, true, null);
-      this.findEntities();
-    }, error => {
-      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
-    });
+    this.changeMediator = new ModalMediator<User>(true, entity);
   }
 
   onEntityChange(modalMediator: ModalMediator<User>): void {
-    this.categoryMediator = modalMediator;
+    this.changeMediator = modalMediator;
     this.findEntities();
   }
 
   onEntityCreate(modalMediator: ModalMediator<User>): void {
-    this.categoryMediator = modalMediator;
+    this.createMediator = modalMediator;
     this.findEntities();
   }
 
   onEntitySearching(searchValue: string) {
-    if (searchValue) {
-      this.entities = this.entities.filter(entity => entity.username.startsWith(searchValue));
-      return;
-    } this.findEntities();
+    this.userSearch.username = searchValue;
+    this.findEntities();
   }
 
   onEntityChoosing(chosenEntity: User) {
@@ -86,5 +79,19 @@ export class UserManagementComponent extends List<User> implements OnInit,Search
 
   updatePage(page: number) {
     this.selectedPage = page;
+    this.findEntities();
+  }
+
+  onSubmit(alertMediator: AlertMediator) {
+    this.alertMediator = alertMediator;
+  }
+
+  onDelete(deleteMediator: DeleteMediator) {
+    this._userManage.deleteUser(deleteMediator.entity).subscribe(() => {
+      this.alertMediator = new AlertMediator(Messages.ENTITY_DELETED_SUCCESSFULLY, true, null);
+      this.findEntities();
+    }, () => {
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
+    });
   }
 }
