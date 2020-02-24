@@ -5,6 +5,7 @@ import { Urls } from 'src/app/shared/constants/urls';
 import { User } from 'src/app/shared/model/user';
 import { UserSearch } from 'src/app/user/model/ user-search';
 import { NewUser } from '../user/model/new-user';
+import { ChangeUser } from '../user/model/change-user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class UserManagementService {
 
   createUser(user: NewUser): Observable<User> {
     return this._httpClient.post<User>(Urls.ROOT_REST_URL + Urls.USER, user);
+  }
+
+  changeUser(username: string, changes:User): Observable<User> {
+    return this._httpClient.patch<User>(Urls.ROOT_REST_URL + Urls.USER + '/' + username, changes);
   }
 
   deleteUser(username: string): Observable<User> {

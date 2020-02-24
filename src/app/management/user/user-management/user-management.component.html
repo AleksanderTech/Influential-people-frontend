@@ -17,7 +17,6 @@
     <div class="user-item" *ngFor="let user of entities">
       <a
         class="user-item-subitem user-item-subitem-name"
-        routerLink="/user/{{ user.id }}"
       >
         <span>{{ user.username | truncate: [35] }}</span>
       </a>
@@ -41,11 +40,11 @@
     [createMediator]="createMediator"
   >
   </app-new-user>
-  <!-- <app-change-user
+  <app-change-user
     *ngIf="changeMediator"
     (userChanged)="onEntityChange($event)"
     [changeMediator]="changeMediator"
-  ></app-change-user> -->
+  ></app-change-user>
   <app-alert-modal
     *ngIf="alertMediator"
     (alertSubmitted)="onSubmit($event)"

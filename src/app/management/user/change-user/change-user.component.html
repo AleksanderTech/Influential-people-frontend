@@ -1,1 +1,72 @@
-<p>change-user works!</p>
+<div class="modal" *ngIf="changeMediator.display === true">
+    <div class="modal-content">
+      <div class="modal-content-close">
+        <span class="close" (click)="close()">&times;</span>
+      </div>
+      <div class="modal-content-password">
+        <input
+          type="password"
+          placeholder="password"
+          [(ngModel)]="changeMediator.entity.password"
+        />
+      </div>
+      <div class="modal-content-email">
+        <input
+          type="text"
+          placeholder="email"
+          [(ngModel)]="changeMediator.entity.email"
+        />
+      </div>
+      <div class="modal-content-roles">
+        <ol class="modal-content-roles-list" *ngIf="roles">
+          <li class="modal-content-roles-item" *ngFor="let role of roles | keyvalue">
+            <label class="check-item">
+              <input
+                type="checkbox"
+                name="roles"
+                value="{{ role.key }}"
+                [ngModel]="roles.get(role.key)"
+                (ngModelChange)="roles.set(role.key, $event)"
+                checked
+              />
+              <span class="checkmark"></span>{{ role.key }}</label
+            ><br />
+          </li>
+        </ol>
+      </div>
+      <div class="modal-content-enable">
+        <label class="check-item">
+          <input
+            type="checkbox"
+            name="enable"
+            value="{{ changeMediator.entity.enabled }}"
+            [(ngModel)]="changeMediator.entity.enabled"
+            checked
+          />
+          <span class="checkmark"></span>enabled</label
+        ><br />
+      </div>
+      <div class="modal-content-buttons">
+        <button
+          type="button"
+          class="btn btn-outline-dark dark-button"
+          (click)="close()"
+        >
+          cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark brown-button"
+          (click)="change()"
+        >
+          change
+        </button>
+      </div>
+    </div>
+    <app-alert-modal
+      *ngIf="alertMediator"
+      (modalSubmitted)="onSubmit($event)"
+      [alertMediator]="alertMediator"
+    ></app-alert-modal>
+  </div>
+  
