@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     return this.logInForm.controls;
   }
 
-  onModalSubmitting(alertMediator: AlertMediator) {
+  onSubmit(alertMediator: AlertMediator) {
     this.alertMediator = alertMediator;
   }
 

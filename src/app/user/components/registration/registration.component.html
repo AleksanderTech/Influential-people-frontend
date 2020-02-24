@@ -1,7 +1,6 @@
 <div class="container">
   <div *ngIf="!loadingData; else loading">
     <form [formGroup]="registerForm">
-    
       <input
         formControlName="username"
         type="text"
@@ -23,7 +22,7 @@
           Username must be at least 3 characters long
         </div>
       </div>
-      
+
       <input
         formControlName="email"
         type="text"
@@ -62,7 +61,8 @@
         </div>
       </div>
 
-      <input (keypress)="onEnter(registerForm,$event)"
+      <input
+        (keypress)="onEnter(registerForm, $event)"
         formControlName="confirmPassword"
         type="password"
         id="pswConfirm"
@@ -82,7 +82,7 @@
         >
           Password confirmation and Password must match
         </div>
-      </div>  
+      </div>
       <button
         class="sign-up-button"
         type="button"
@@ -94,6 +94,10 @@
       <br />
     </form>
   </div>
-  <!-- <app-modal *ngIf="modal" (modalSubmitted)="onModalSubmitting($event)" [modal]="modal"></app-modal> -->
+  <app-alert-modal
+    *ngIf="alertMediator"
+    (alertSubmitted)="onSubmit($event)"
+    [alertMediator]="alertMediator"
+  ></app-alert-modal>
   <ng-template #loading><app-spinner></app-spinner></ng-template>
 </div>

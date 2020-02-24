@@ -1,6 +1,5 @@
 <div class="container">
   <form [formGroup]="logInForm">
- 
     <input
       placeholder="Username"
       formControlName="username"
@@ -16,8 +15,9 @@
         Username is required
       </div>
     </div>
-   
-    <input (keypress)="onEnter(logInForm,$event)"
+
+    <input
+      (keypress)="onEnter(logInForm, $event)"
       formControlName="password"
       placeholder="Password"
       type="password"
@@ -33,11 +33,14 @@
       </div>
     </div>
     <button (click)="logIn(logInForm)" type="button" class="sign-up-button">
-     Sign in
+      Sign in
     </button>
     <br />
     <br />
   </form>
-  <!-- <app-modal *ngIf="modal" (modalSubmitted)="onModalSubmitting($event)" [modal]="modal"></app-modal> -->
-  <!-- <app-modal *ngIf="accountCreated" (modalSubmitted)="onModalSubmitting($event)" [modal]="modal"></app-modal> -->
+  <app-alert-modal
+    *ngIf="alertMediator"
+    (alertSubmitted)="onSubmit($event)"
+    [alertMediator]="alertMediator"
+  ></app-alert-modal>
 </div>

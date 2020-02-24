@@ -66,7 +66,7 @@ export class UserComponent implements OnInit {
     this.alertMediator = new AlertMediator(message, true, null);
   }
 
-  onModalSubmitting(alertMediator: AlertMediator) {
+  onSubmit(alertMediator: AlertMediator) {
     this.alertMediator = alertMediator;
   }
 

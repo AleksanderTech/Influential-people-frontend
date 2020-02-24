@@ -71,7 +71,7 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  onModalSubmitting(modal:AlertMediator){
+  onSubmit(modal:AlertMediator){
     this.alertMediator = modal;
   }
 
