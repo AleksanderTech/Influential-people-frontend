@@ -60,6 +60,10 @@ export class RegistrationComponent implements OnInit {
         error => {
           this.loadingData = false;
           this.stateService.change(error);
+          if (error['error'].message === Messages.USER_EXISTS_MESSAGE) {
+            this.alertMediator = new AlertMediator(Messages.USER_EXISTS_MESSAGE,true);
+            return;
+          }
           this.alertMediator = new AlertMediator(Messages.REGISTRATION_MESSAGE_ERROR,true);
         }
       );
