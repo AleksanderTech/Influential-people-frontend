@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Urls } from 'src/app/shared/constants/urls';
 import { UserPassword } from '../model/user-password';
 import { Config } from 'protractor';
@@ -25,8 +25,8 @@ export class UserService {
     return this.httpClient.put<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.USER + Urls.EMAIL, email, { observe: 'response' });
   }
 
-  getUser(username: string): Observable<User> {
-    return this.httpClient.get<User>(Urls.ROOT_REST_URL + Urls.USER + '/' + username);
+  getUser(username: string,headers?:HttpHeaders): Observable<User> {
+    return this.httpClient.get<User>(Urls.ROOT_REST_URL + Urls.USER + '/' + username,{headers});
   }
 
   getFavouritesHeroes(): Observable<Hero[]> {

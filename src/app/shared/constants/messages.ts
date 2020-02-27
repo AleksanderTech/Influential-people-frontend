@@ -8,6 +8,7 @@ export class Messages {
     static readonly INCORRECT_PASSWORD_FORMAT_MESSAGE: string = 'Password must be at least 4 characters long';
     static readonly NOT_FOUND_USER_MESSAGE: string = 'The User with given username does not exist';
     static readonly USER_DISABLED_MESSAGE: string = 'User is disabled';
+    static readonly USER_DISABLED_CHECK_EMAIL_MESSAGE: string = 'User is disabled, check your email to activate your account';
     static readonly PASSWORD_CHANGED_MESSAGE: string = 'Password changed successfully';
     static readonly EMAIL_CHANGED_MESSAGE: string = 'Email changed successfully';
     static readonly ERROR_MESSAGE: string = 'Error occured, try again later';

@@ -14,27 +14,27 @@
         <div class="hamburger-line"></div>
       </div>
       <div class="logo flex-item">
-        <a *ngIf="loginService.isUserLoggedIn()" routerLink="/home">
+        <a *ngIf="isUserSignedIn()" routerLink="/home">
           <img class="crown" src="../../../../favicon.ico" alt="" />
           <span class="influential">Influential</span> People
         </a>
-        <a *ngIf="!loginService.isUserLoggedIn()" routerLink="/">
+        <a *ngIf="!isUserSignedIn()" routerLink="/">
           <img class="crown" src="../../../../favicon.ico" alt=""/>
           <span class="influential">Influential</span> People
         </a>
       </div>
-      <div *ngIf="loginService.isUserLoggedIn()" class="navbar-links flex-item">
+      <div *ngIf="isUserSignedIn()" class="navbar-links flex-item">
         <a routerLink="hero">Heroes</a>
         <a routerLink="quote">Quotes</a>
         <a routerLink="article">Articles</a>
         <a routerLink="category">Categories</a>
       </div>
       <div class="flex-item account">
-        <div *ngIf="!loginService.isUserLoggedIn()">
+        <div *ngIf="!isUserSignedIn()">
           <span class="user-item"><a routerLink="/sign-in">Sign in</a></span>
           <span class="user-item"><a routerLink="/sign-up">Sign up</a></span>
         </div>
-        <div *ngIf="loginService.isUserLoggedIn()" class="flex-item">
+        <div *ngIf="isUserSignedIn()" class="flex-item">
           <a routerLink="/user"> {{ currentUsername() }}</a>
         </div>
       </div>
@@ -53,7 +53,7 @@
       </div>
 
       <ul
-        *ngIf="loginService.isUserLoggedIn()"
+        *ngIf="isUserSignedIn()"
         class="navbar-items"
         (click)="closeNavbar()"
       >
@@ -65,7 +65,7 @@
           <a routerLink="/user" class="navbar-link"> {{ currentUsername() }}</a>
         </li>
       </ul>
-      <ul *ngIf="!loginService.isUserLoggedIn()" class="navbar-items" (click)="closeNavbar()">
+      <ul *ngIf="!isUserSignedIn()" class="navbar-items" (click)="closeNavbar()">
         <li><a class="navbar-link"  routerLink="/sign-in">Sign in</a></li>
         <li><a class="navbar-link" routerLink="/sign-up">Sign up</a></li>
       </ul>

@@ -5,8 +5,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
-import { AuthRedirectorService } from './services/auth-redirector.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [AuthenticationService, AuthRedirectorService, {
+  providers: [AuthenticationService, AuthGuard, {
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true
   }]
 })

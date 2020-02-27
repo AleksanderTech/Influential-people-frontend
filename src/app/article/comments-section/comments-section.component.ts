@@ -5,6 +5,7 @@ import { CommentService } from '../service/comment.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Urls } from 'src/app/shared/constants/urls';
 import { List } from 'src/app/shared/other/list';
+import { CurrentUserService } from 'src/app/core/services/current-user.service';
 
 @Component({
   selector: 'app-comments-section',
@@ -15,16 +16,19 @@ export class CommentsSectionComponent extends List<ArticleComment> implements On
 
   @Input() article: Article;
   pageSize: number = 10;
-  profileImageUrl:string;
-  readonly defaultImageUrl:string = Urls.PROFILE_DEFAULT_IMAGE_URL;
+  profileImageUrl: string;
+  readonly defaultImageUrl: string = Urls.PROFILE_DEFAULT_IMAGE_URL;
 
-  constructor(private commentService: CommentService, private authService: AuthenticationService) {
+  constructor(
+    private commentService: CommentService,
+    private currentUser: CurrentUserService) {
     super();
   }
 
   ngOnInit() {
     this.selectedPage = 0;
-    this.profileImageUrl=this.authService.getUserImageUrl();
+    // this.profileImageUrl=this.authService.getUserImageUrl();
+    this.profileImageUrl = '';
     this.getComments(this.article.id, this.selectedPage, this.pageSize);
   }
 
@@ -37,7 +41,7 @@ export class CommentsSectionComponent extends List<ArticleComment> implements On
     let comment = new ArticleComment();
     comment.content = text;
     comment.articleId = this.article.id;
-    comment.username = this.authService.getUsername();
+    comment.username = this.currentUser.getCurrentUser().username;
     comment.createdAt = new Date().getTime();
     this.commentService.addComment(comment, this.article.id).subscribe(comment => {
       this.entities.push(comment);

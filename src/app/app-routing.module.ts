@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { AuthRedirectorService } from './core/services/auth-redirector.service';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -15,8 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'hero',
-    loadChildren: () => import('./heroes/heroes.module').then(mod => mod.HeroesModule),
-    canLoad: [AuthRedirectorService]
+    loadChildren: () => import('./heroes/heroes.module').then(mod => mod.HeroesModule)
   },
   {
     path: 'article',

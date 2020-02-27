@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuoteListComponent } from './quote-list/quote-list.component';
 import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
-import { AuthRedirectorService } from '../core/services/auth-redirector.service';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', component: QuoteListComponent, canActivate: [AuthRedirectorService] },
-  { path: 'quote/:id', component: QuoteDetailComponent, canActivate: [AuthRedirectorService] },
+  { path: '', component: QuoteListComponent, canActivate: [AuthGuard] },
+  { path: 'quote/:id', component: QuoteDetailComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

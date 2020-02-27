@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { CommentService } from '../service/comment.service';
 import { ArticleComment } from '../model/article-comment';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Urls } from 'src/app/shared/constants/urls';
+import { CurrentUserService } from 'src/app/core/services/current-user.service';
 
 @Component({
   selector: 'app-comment',
@@ -16,16 +16,18 @@ export class CommentComponent implements OnInit {
   @Output() commentDeleted: EventEmitter<ArticleComment> = new EventEmitter<ArticleComment>();
   readonly defaultImageUrl:string = Urls.PROFILE_DEFAULT_IMAGE_URL;
   
-  constructor(private commentService: CommentService, private authService: AuthenticationService) { }
+  constructor(
+    private _commentService: CommentService, 
+    private _currentUser:CurrentUserService) { }
 
   ngOnInit() {
   }
 
   delete() {
-    this.commentService.deleteComment(this.comment.id, this.articleId).subscribe(() => { this.commentDeleted.emit(this.comment); });
+    this._commentService.deleteComment(this.comment.id, this.articleId).subscribe(() => { this.commentDeleted.emit(this.comment); });
   }
 
   isOwner(articleComment: ArticleComment) {
-    return articleComment.username === this.authService.getUsername();
+    return articleComment.username === this._currentUser.getCurrentUser().username;
   }
 }

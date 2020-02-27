@@ -15,6 +15,8 @@ import { ImageService } from 'src/app/core/services/image.service';
 import { Urls } from 'src/app/shared/constants/urls';
 import { Messages } from 'src/app/shared/constants/messages';
 import { AlertMediator } from 'src/app/shared/model/alert-mediator';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { CurrentUserService } from 'src/app/core/services/current-user.service';
 
 @Component({
   selector: 'app-user',
@@ -39,15 +41,21 @@ export class UserComponent implements OnInit {
   favouriteQuotes: Quote[];
   profileDefaultUrl: string = Urls.PROFILE_DEFAULT_IMAGE_URL;
 
-  constructor(private imageService: ImageService, private authService: AuthenticationService, private articleService: ArticleService, private quoteService: QuoteService,
-    private heroService: HeroService, private userService: UserService) { }
+  constructor(
+    private imageService: ImageService,
+    private authService: AuthService,
+    private currentUserService:CurrentUserService,
+    private articleService: ArticleService,
+    private quoteService: QuoteService,
+    private heroService: HeroService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.imageService.userImageUrl.subscribe(url => {
       if (this.currentUser) {
         this.currentUser.avatarImageUrl = '';
         setTimeout(() => {
-          this.getUser(this.authService.getUsername());
+          this.getUser(this.currentUserService.getCurrentUser().username);
         }, 200);
       }
     });
@@ -56,7 +64,7 @@ export class UserComponent implements OnInit {
         this.showModal(Messages.ERROR_MESSAGE);
       }
     })
-    this.getUser(this.authService.getUsername());
+    this.getUser(this.currentUserService.getCurrentUser().username);
     this.getFavouritesHeroes();
     this.getFavouritesArticles();
     this.getFavouritesQuotes();
@@ -130,11 +138,11 @@ export class UserComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logOut();
+    this.authService.logout();
   }
 
   changePassword() {
-    if(this.newPassword.length<4){
+    if (this.newPassword.length < 4) {
       this.alertMediator = new AlertMediator(Messages.INCORRECT_PASSWORD_FORMAT_MESSAGE, true, null);
       return;
     }
@@ -142,7 +150,7 @@ export class UserComponent implements OnInit {
       if (data.status === 200) {
         this.tooglePasswordChange();
         this.alertMediator = new AlertMediator(Messages.PASSWORD_CHANGED_MESSAGE, true, null);
-        this.getUser(this.authService.getUsername());
+        this.getUser(this.currentUserService.getCurrentUser().username);
       }
     }, error => {
       this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
@@ -154,24 +162,24 @@ export class UserComponent implements OnInit {
       this.alertMediator = new AlertMediator(Messages.INCORRECT_EMAIL_FORMAT_MESSAGE, true, null);
       return;
     }
-      this.userService.changeEmail(new UserEmail(this.newEmail)).subscribe(data => {
-        if (data.status === 200) {
-          this.toogleEmailChange();
-          this.alertMediator = new AlertMediator(Messages.EMAIL_CHANGED_MESSAGE, true, null);
-          this.getUser(this.authService.getUsername());
-        }
-      }, error => {
-        this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
-      });
+    this.userService.changeEmail(new UserEmail(this.newEmail)).subscribe(data => {
+      if (data.status === 200) {
+        this.toogleEmailChange();
+        this.alertMediator = new AlertMediator(Messages.EMAIL_CHANGED_MESSAGE, true, null);
+        this.getUser(this.currentUserService.getCurrentUser().username);
+      }
+    }, error => {
+      this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
+    });
   }
 
   getUser(username: string) {
     this.userService.getUser(username).subscribe(user => {
       this.currentUser = user;
     });
-  } 
+  }
 
-  isAdmin():boolean{
+  isAdmin(): boolean {
     return this.currentUser.roles.includes('ROLE_ADMIN');
   }
 

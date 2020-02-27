@@ -28,8 +28,6 @@ export class NewUserComponent implements OnInit {
 
   create() {
     this.createMediator.entity.roles = this.extractList(this.roles);
-    console.log(this.createMediator.entity);
-
     if (!this.isValid(this.createMediator.entity)) {
       this.alertMediator = new AlertMediator(Messages.CANNOT_BE_EMPTY, true, null); return;
     }
