@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
   img: File;
   newPassword: string;
   newEmail: string;
-  currentUser: User;
   alertMediator: AlertMediator;
   faTrash = faTrash;
   faSearch = faSearch;
@@ -36,7 +35,8 @@ export class ProfileComponent implements OnInit {
   favouriteHeroes: Hero[];
   favouriteArticles: Article[];
   favouriteQuotes: Quote[];
-  profileDefaultUrl: string = Urls.PROFILE_DEFAULT_IMAGE_URL;
+  currentUser: User;
+  readonly defaultImageUrl:string = Urls.PROFILE_DEFAULT_IMAGE_URL;
 
   constructor(
     private imageService: ImageService,
@@ -45,23 +45,39 @@ export class ProfileComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit() {
-    this.imageService.userImageUrl.subscribe(url => {
-      if (this.currentUser) {
-        this.currentUser.avatarImageUrl =null;
-        setTimeout(() => {
-          this.getUser(this.currentUserService.getCurrentUser().username);
-        }, 200);
-      }
-    });
-    this.imageService.fileUploaded.subscribe(isUploaded => {
-      if (!isUploaded) {
+    this.subscribeOnCurrentUser();
+    this.getUser(this.currentUser.username);
+    this.subscribeOnImageUpload();
+    this.getFavourites();
+  }
+
+  subscribeOnImageUpload() {
+    this.imageService.userImageUrlObservable.subscribe(raport => {
+      if (raport.isSuccessful) {
+        this.currentUser.avatarImageUrl = null;
+        this.refreshUserOnImageChange();
+      } else {
         this.showModal(Messages.ERROR_MESSAGE);
       }
-    })
-    this.getUser(this.currentUserService.getCurrentUser().username);
+    });
+  }
+
+  subscribeOnCurrentUser() {
+    this.currentUserService.currentUserObservable.subscribe(user => {
+      this.currentUser = user;
+    });
+  }
+
+  getFavourites() {
     this.getFavouritesHeroes();
     this.getFavouritesArticles();
     this.getFavouritesQuotes();
+  }
+
+  refreshUserOnImageChange() {
+    setTimeout(() => {
+      this.getUser(this.currentUser.username);
+    }, 200);
   }
 
   showModal(message: string) {
@@ -79,6 +95,12 @@ export class ProfileComponent implements OnInit {
   getFavouritesArticles() {
     this.userService.getFavouritesArticles().subscribe(entities => {
       this.favouriteArticles = entities['content'];
+    });
+  }
+
+  getUser(username: string) {
+    this.userService.getUser(username).subscribe(user => {
+      this.currentUser = user;
     });
   }
 
@@ -168,12 +190,6 @@ export class ProfileComponent implements OnInit {
       }
     }, error => {
       this.alertMediator = new AlertMediator(Messages.ERROR_MESSAGE, true, null);
-    });
-  }
-
-  getUser(username: string) {
-    this.userService.getUser(username).subscribe(user => {
-      this.currentUser = user;
     });
   }
 

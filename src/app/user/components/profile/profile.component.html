@@ -3,13 +3,16 @@
     <img
       *ngIf="currentUser.avatarImageUrl"
       class="profile-image"
-      src="{{ currentUser.avatarImageUrl }}"
+      [ngStyle]="{
+        'background-image': 'url(' + currentUser.avatarImageUrl + ')'
+      }"
+      style="background-size:cover; background-position:center"
       alt=""
     />
     <img
       *ngIf="!currentUser.avatarImageUrl"
       class="profile-image"
-      src="{{ profileDefaultUrl }}"
+      src="{{ defaultImageUrl }}"
       alt=""
     />
   </div>

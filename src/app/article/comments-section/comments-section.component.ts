@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ArticleComment } from '../model/article-comment';
 import { Article } from '../model/article';
 import { CommentService } from '../service/comment.service';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Urls } from 'src/app/shared/constants/urls';
 import { List } from 'src/app/shared/other/list';
 import { CurrentUserService } from 'src/app/core/services/current-user.service';
@@ -27,8 +26,9 @@ export class CommentsSectionComponent extends List<ArticleComment> implements On
 
   ngOnInit() {
     this.selectedPage = 0;
-    // this.profileImageUrl=this.authService.getUserImageUrl();
-    this.profileImageUrl = '';
+    this.currentUser.currentUserObservable.subscribe(user => {
+      this.profileImageUrl = user.avatarImageUrl;
+    })
     this.getComments(this.article.id, this.selectedPage, this.pageSize);
   }
 

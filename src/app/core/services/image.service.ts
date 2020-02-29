@@ -1,28 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { Urls } from 'src/app/shared/constants/urls';
 import { AuthenticationService } from './authentication.service';
+import { Raport } from 'src/app/shared/model/raport';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
 
-  userImageUrlSubject = new BehaviorSubject<string>('');
-  fileUploadedSubject = new BehaviorSubject<boolean>(true);
-  userImageUrl = this.userImageUrlSubject.asObservable();
-  fileUploaded = this.fileUploadedSubject.asObservable();
+  userImageUrlSubject = new BehaviorSubject<Raport<string>>(new Raport('', true));
+  userImageUrlObservable = this.userImageUrlSubject.asObservable();
 
   constructor(private httpClient: HttpClient, private authService: AuthenticationService) {
   }
 
-  changeUserImageUrl(url: string) {
-    this.userImageUrlSubject.next(url);
-  }
-
-  changeFileUploaded(isUploaded: boolean) {
-    this.fileUploadedSubject.next(isUploaded);
+  changeUserImageUrl(raport: Raport<string>) {
+    this.userImageUrlSubject.next(raport);
   }
 
   uploadImage(url: string, image: any) {
@@ -32,10 +26,9 @@ export class ImageService {
       const formData = new FormData();
       formData.append('image', image);
       return this.httpClient.put(url, formData).subscribe(response => {
-        this.changeUserImageUrl(url);
-        this.changeFileUploaded(true);
+        this.changeUserImageUrl(new Raport(url, true));
       }, error => {
-        this.changeFileUploaded(false);
+        this.changeUserImageUrl(new Raport(url, false));
       });
     }
   }

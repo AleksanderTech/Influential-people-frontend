@@ -39,8 +39,8 @@ a:hover {
 
 .profile-image {
   border-radius: 50%;
-  width: inherit;
-  height: inherit;
+  width: 125px;
+  height: 125px;
 }
 
 .username {
