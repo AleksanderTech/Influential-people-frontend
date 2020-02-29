@@ -6,7 +6,6 @@ import { ArticleSearch } from '../model/article-search';
 import { Hero } from 'src/app/heroes/model/hero';
 import { HeroService } from 'src/app/heroes/service/hero.service';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/user/service/user.service';
 
 @Component({
   selector: 'app-article-list',
@@ -25,7 +24,10 @@ export class ArticleListComponent extends List<Article> implements OnInit {
   selectedSort: string;
   queryParamFilter: string;
 
-  constructor(private articleService: ArticleService, private userService: UserService, private heroService: HeroService, private route: ActivatedRoute) {
+  constructor(
+    private articleService: ArticleService,
+    private heroService: HeroService,
+    private route: ActivatedRoute) {
     super();
   }
 
@@ -78,7 +80,7 @@ export class ArticleListComponent extends List<Article> implements OnInit {
   }
 
   getFavouritesArticles() {
-    this.userService.getFavouritesArticles().subscribe(entities => {
+    this.articleService.getFavouritesArticles().subscribe(entities => {
       this.favouriteArticles = entities['content'];
     });
   }

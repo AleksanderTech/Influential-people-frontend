@@ -6,7 +6,6 @@ import { QuoteSearch } from '../model/quote-search';
 import { HeroService } from 'src/app/heroes/service/hero.service';
 import { Hero } from 'src/app/heroes/model/hero';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/user/service/user.service';
 import { faStar as faSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { Messages } from 'src/app/shared/constants/messages';
@@ -33,7 +32,10 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
   queryParamFilter: string;
   alertMediator: AlertMediator;
 
-  constructor(private quoteService: QuoteService, private userService: UserService, private heroService: HeroService, private route: ActivatedRoute) {
+  constructor(
+    private quoteService: QuoteService,
+    private heroService: HeroService,
+    private route: ActivatedRoute) {
     super();
   }
 
@@ -79,13 +81,11 @@ export class QuoteListComponent extends List<Quote> implements OnInit {
     });
   }
 
-
   getFavouritesQuotes() {
-    this.userService.getFavouritesQuotes().subscribe(entities => {
+    this.quoteService.getFavouritesQuotes().subscribe(entities => {
       this.favouriteQuotes = entities['content'];
     });
   }
-
 
   isFavourite(id: number): boolean {
     if (this.favouriteQuotes) {

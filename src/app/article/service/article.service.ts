@@ -32,6 +32,10 @@ export class ArticleService {
     return this.httpClient.get<Article>(Urls.ROOT_REST_URL + Urls.ARTICLE + '/' + id + Urls.FAVOURITE);
   }
 
+  getFavouritesArticles(): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(Urls.ROOT_REST_URL + Urls.ARTICLE + Urls.FAVOURITE+'?size=200');
+  }
+  
   addFavourite(id: number): Observable<HttpResponse<Config>> {
     return this.httpClient.post<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.ARTICLE + '/' + id + Urls.FAVOURITE, '');
   }

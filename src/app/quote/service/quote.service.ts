@@ -32,6 +32,10 @@ export class QuoteService {
     return this.httpClient.get<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.QUOTE + '/' + id + Urls.FAVOURITE);
   }
 
+  getFavouritesQuotes(): Observable<Quote[]> {
+    return this.httpClient.get<Quote[]>(Urls.ROOT_REST_URL + Urls.QUOTE +  Urls.FAVOURITE+'?size=200');
+  }
+
   addFavourite(id: number): Observable<HttpResponse<Config>> {
     return this.httpClient.post<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.QUOTE + '/' + id + Urls.FAVOURITE, '');
   }

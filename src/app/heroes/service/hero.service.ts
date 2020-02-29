@@ -26,6 +26,10 @@ export class HeroService {
     return this.httpClient.get<Hero>(Urls.ROOT_REST_URL + Urls.HERO + '/' + name + Urls.FAVOURITE);
   }
 
+  getFavouritesHeroes(): Observable<Hero[]> {
+    return this.httpClient.get<Hero[]>(Urls.ROOT_REST_URL + Urls.HERO + Urls.FAVOURITE + '?size=200');
+  }
+
   addFavourite(name: string): Observable<HttpResponse<Config>> {
     return this.httpClient.post<HttpResponse<Config>>(Urls.ROOT_REST_URL + Urls.HERO + '/' + name + Urls.FAVOURITE, '');
   }

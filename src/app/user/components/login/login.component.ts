@@ -5,11 +5,11 @@ import { UserLogin } from "../../../shared/model/user-login";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Messages } from 'src/app/shared/constants/messages';
 import { AlertMediator } from 'src/app/shared/model/alert-mediator';
-import { UserService } from '../../service/user.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CurrentUserService } from 'src/app/core/services/current-user.service';
 import { SecurityConstants } from 'src/app/shared/constants/security-constants';
 import { HttpHeaders } from '@angular/common/http';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: "app-login",

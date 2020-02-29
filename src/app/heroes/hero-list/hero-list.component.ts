@@ -6,7 +6,6 @@ import { HeroSearch } from '../model/ hero-search';
 import { CategoryService } from 'src/app/category/service/category.service';
 import { Category } from 'src/app/category/model/category';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/user/service/user.service';
 
 @Component({
   selector: 'app-hero-list',
@@ -25,7 +24,10 @@ export class HeroListComponent extends List<Hero> implements OnInit {
   selectedSort: string;
   queryParamFilter: string;
 
-  constructor(private userService: UserService, private heroService: HeroService, private categoryService: CategoryService, private route: ActivatedRoute) {
+  constructor(
+    private heroService: HeroService,
+    private categoryService: CategoryService,
+    private route: ActivatedRoute) {
     super();
   }
 
@@ -98,7 +100,7 @@ export class HeroListComponent extends List<Hero> implements OnInit {
   }
 
   getFavouritesHeroes() {
-    this.userService.getFavouritesHeroes().subscribe(entities => {
+    this.heroService.getFavouritesHeroes().subscribe(entities => {
       this.favouriteHeroes = entities['content'];
     });
   }

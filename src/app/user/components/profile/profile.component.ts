@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../service/user.service';
 import { UserPassword } from '../../model/user-password';
 import { User } from 'src/app/shared/model/user';
 import { Article } from 'src/app/article/model/article';
 import { Hero } from 'src/app/heroes/model/hero';
 import { faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { HeroService } from 'src/app/heroes/service/hero.service';
-import { ArticleService } from 'src/app/article/service/article.service';
-import { QuoteService } from 'src/app/quote/service/quote.service';
 import { Quote } from 'src/app/quote/model/quote';
 import { UserEmail } from '../../model/user-email';
 import { ImageService } from 'src/app/core/services/image.service';
@@ -17,13 +13,14 @@ import { AlertMediator } from 'src/app/shared/model/alert-mediator';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CurrentUserService } from 'src/app/core/services/current-user.service';
 import { Util } from 'src/app/shared/other/util';
+import { UserService } from '../../service/user.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class UserComponent implements OnInit {
+export class ProfileComponent implements OnInit {
 
   img: File;
   newPassword: string;
@@ -45,9 +42,6 @@ export class UserComponent implements OnInit {
     private imageService: ImageService,
     private authService: AuthService,
     private currentUserService: CurrentUserService,
-    private articleService: ArticleService,
-    private quoteService: QuoteService,
-    private heroService: HeroService,
     private userService: UserService) { }
 
   ngOnInit() {
@@ -101,7 +95,7 @@ export class UserComponent implements OnInit {
   }
 
   deleteFavouriteHero(id: string) {
-    this.heroService.deleteFavourite(id).subscribe(response => {
+    this.userService.deleteFavouriteHero(id).subscribe(response => {
       this.getFavouritesHeroes();
     }, error => {
       this.showModal(Messages.ERROR_MESSAGE);
@@ -109,7 +103,7 @@ export class UserComponent implements OnInit {
   }
 
   deleteFavouriteArticle(id: string) {
-    this.articleService.deleteFavourite(+id).subscribe(response => {
+    this.userService.deleteFavouriteArticle(+id).subscribe(response => {
       this.getFavouritesArticles();
     }, error => {
       this.showModal(Messages.ERROR_MESSAGE);
@@ -117,7 +111,7 @@ export class UserComponent implements OnInit {
   }
 
   deleteFavouriteQuote(id: number) {
-    this.quoteService.deleteFavourite(id).subscribe(response => {
+    this.userService.deleteFavouriteQuote(id).subscribe(response => {
       this.getFavouritesQuotes();
     }, error => {
       this.showModal(Messages.ERROR_MESSAGE);
@@ -180,8 +174,6 @@ export class UserComponent implements OnInit {
   getUser(username: string) {
     this.userService.getUser(username).subscribe(user => {
       this.currentUser = user;
-      console.log(this.currentUser);
-      
     });
   }
 

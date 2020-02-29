@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { UserRegistration } from "../../../shared/model/user-registration";
-import { Router } from "@angular/router";
-import { StateService } from "src/app/core/services/state.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchTwoValues } from 'src/app/shared/util/matcher';
 import { RegistrationService } from '../../service/registration.service';
@@ -25,8 +23,6 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private registrationService: RegistrationService,
-    private router: Router,
-    private stateService: StateService
   ) { }
 
   get controls() { return this.registerForm.controls; }
@@ -54,12 +50,10 @@ export class RegistrationComponent implements OnInit {
       .subscribe(
         response => {
           this.loadingData = false;
-          this.stateService.change(response);
           this.alertMediator = new AlertMediator(Messages.REGISTRATION_MESSAGE_SUCCESS,true);
         },
         error => {
           this.loadingData = false;
-          this.stateService.change(error);
           if (error['error'].message === Messages.USER_EXISTS_MESSAGE) {
             this.alertMediator = new AlertMediator(Messages.USER_EXISTS_MESSAGE,true);
             return;
