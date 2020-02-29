@@ -12,10 +12,10 @@
       </div>
       <div class="modal-content-name">
         <input
-          *ngIf="newHero"
+          *ngIf="changedHero"
           type="text"
           placeholder="name"
-          [(ngModel)]="newHero.name"
+          [(ngModel)]="changedHero.name"
         />
       </div>
       <div class="modal-content-categories">
