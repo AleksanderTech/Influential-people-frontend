@@ -21,16 +21,8 @@ export class ImageService {
     this.userImageUrlSubject.next(url);
   }
 
-  changeFileUploaded(isUploaded:boolean){
+  changeFileUploaded(isUploaded: boolean) {
     this.fileUploadedSubject.next(isUploaded);
-  }
-
-  resolveUploadUrl(url: string): string {
-    if (url) {
-      return url;
-    }
-    return url;
-    // return Urls.ROOT_REST_URL + Urls.USER + '/' + this.authService.getUsername() + Urls.IMAGE;
   }
 
   uploadImage(url: string, image: any) {
@@ -41,7 +33,6 @@ export class ImageService {
       formData.append('image', image);
       return this.httpClient.put(url, formData).subscribe(response => {
         this.changeUserImageUrl(url);
-        // this.authService.updateUserImageUrl(url);
         this.changeFileUploaded(true);
       }, error => {
         this.changeFileUploaded(false);

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { UserService } from '../../service/user.service';
 import { UserPassword } from '../../model/user-password';
 import { User } from 'src/app/shared/model/user';
@@ -17,6 +16,7 @@ import { Messages } from 'src/app/shared/constants/messages';
 import { AlertMediator } from 'src/app/shared/model/alert-mediator';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CurrentUserService } from 'src/app/core/services/current-user.service';
+import { Util } from 'src/app/shared/other/util';
 
 @Component({
   selector: 'app-user',
@@ -44,7 +44,7 @@ export class UserComponent implements OnInit {
   constructor(
     private imageService: ImageService,
     private authService: AuthService,
-    private currentUserService:CurrentUserService,
+    private currentUserService: CurrentUserService,
     private articleService: ArticleService,
     private quoteService: QuoteService,
     private heroService: HeroService,
@@ -53,7 +53,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.imageService.userImageUrl.subscribe(url => {
       if (this.currentUser) {
-        this.currentUser.avatarImageUrl = '';
+        this.currentUser.avatarImageUrl =null;
         setTimeout(() => {
           this.getUser(this.currentUserService.getCurrentUser().username);
         }, 200);
@@ -134,7 +134,11 @@ export class UserComponent implements OnInit {
       this.showModal(Messages.INCORRECT_IMAGE_FORMAT_MESSAGE);
       return;
     }
-    this.imageService.uploadImage(this.imageService.resolveUploadUrl(this.currentUser.avatarImageUrl), file);
+    if (!this.currentUser.avatarImageUrl) {
+      this.imageService.uploadImage(Util.buildImageUrl(Urls.ROOT_REST_URL, Urls.USER, this.currentUser.username), file);
+    } else {
+      this.imageService.uploadImage(this.currentUser.avatarImageUrl, file);
+    }
   }
 
   logout() {
@@ -176,6 +180,8 @@ export class UserComponent implements OnInit {
   getUser(username: string) {
     this.userService.getUser(username).subscribe(user => {
       this.currentUser = user;
+      console.log(this.currentUser);
+      
     });
   }
 

@@ -22,6 +22,8 @@ export class HeroTileComponent {
   constructor(private heroService: HeroService) { }
 
   toogleFavourite(name: string) {
+    console.log(this.hero);
+    
     if (this.isFavourite) {
       this.deleteFavourite(name);
       return;

@@ -3,7 +3,16 @@
     <a routerLink="/hero/{{ hero.name }}"
       ><div class="flex-container">
         <div class="flex-item image">
-          <div><img src="{{ hero.avatarImageUrl }}" alt="" /></div>
+          <div>
+            <img *ngIf="hero.avatarImageUrl"
+              src=""
+              alt=""
+              [ngStyle]="{
+                'background-image': 'url(' + hero.avatarImageUrl + ')'
+              }"
+              style=" background-size:cover; background-position:center"
+            />
+          </div>
           <div class="name">{{ hero.name }}</div>
         </div>
         <div class="flex-item rate">{{ hero.rate }} points</div>
