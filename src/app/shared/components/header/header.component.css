@@ -167,7 +167,9 @@
 /* icon close */
 
 .small-screen-navbar {
-  width: 75vw;
+  /* width: 75vw; */
+  overflow-x: hidden;
+  width: 0;
   position: fixed;
   z-index: 5;
   top: 0;
@@ -176,24 +178,23 @@
   bottom: 0;
   z-index: 999;
   padding-top: 1rem;
-  padding-left: 2rem;
   color: white;
   background: #212121;
   opacity: 0.95;
-  transform: translateX(-100%);
-  transition: transform ease 0.7s;
+  /* transform: translateX(-100%); */
+  transition:  0.7s;
 }
 
 .navbar-header {
   display: block;
 }
 
-.show-navbar {
-  transform: translateX(0);
+ .show-navbar {
+  width: 280px;
 }
 
 .close-navbar {
-  transform: translateX(-100%);
+  width: 0;
 }
 
 .navbar-items {
@@ -209,6 +210,8 @@
   letter-spacing: 3px;
   font-size: 1.5rem;
   line-height: 4rem;
+  padding-left: 1rem;
+  white-space:nowrap;
   color: var(--smoke-white);
   display: inline-block;
   cursor: pointer;
@@ -221,9 +224,6 @@
 }
 
 @media screen and (min-width: 951px) {
-  .small-screen-navbar {
-    width: 26vw;
-  }
   .menu-icon {
     display: none;
   }

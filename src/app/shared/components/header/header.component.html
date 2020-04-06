@@ -40,14 +40,14 @@
       </div>
     </div>
     <div class="closeNavbar()"></div>
+
     <div
-      class="small-screen-navbar"
-      id="navbar"
-      [ngClass]="{
-        'show-navbar': isNavDisplayed,
-        'close-navbar': !isNavDisplayed
-      }"
-    >
+    class="small-screen-navbar"
+    [ngClass]="{
+      'show-navbar': isNavDisplayed,
+      'close-navbar': !isNavDisplayed
+    }"
+  >
       <div class="navbar-header" (click)="closeNavbar()">
         <div class="close-icon"></div>
       </div>
